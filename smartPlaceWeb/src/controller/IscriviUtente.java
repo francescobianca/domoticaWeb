@@ -29,7 +29,11 @@ public class IscriviUtente extends HttpServlet {
 		String cognome = req.getParameter("cognome");
 		String dataNascita = req.getParameter("dataNascita");
 		String password = req.getParameter("password");
-
+		System.out.println(email);
+		System.out.println(nome);
+		System.out.println(cognome);
+		System.out.println(dataNascita);
+		System.out.println(password);
 		DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
 		Date date;
 		try {
@@ -37,7 +41,9 @@ public class IscriviUtente extends HttpServlet {
 			Utente utente = new Utente(email, nome, cognome, date);
 			
 			UtenteDao utenteDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
-			
+			if(utenteDao!=null){
+				System.out.println("utente non null");
+			}
 			//System.out.println("okkk");
 			if (utenteDao.findByPrimaryKey(email) == null) {
 				System.out.println("OK");

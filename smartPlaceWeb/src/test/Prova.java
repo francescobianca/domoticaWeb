@@ -14,7 +14,7 @@ public class Prova {
 		Arduino a = new Arduino("127.0.0.1", 4000);
 		
 		UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
-		Utente u = uDao.findByPrimaryKey(""); //Metti l'email con la quale ti registri.
+		Utente u = uDao.findByPrimaryKey("prova@smartplace.com"); //Metti l'email con la quale ti registri.
 
 		a.setUtente(u);
 		
@@ -22,7 +22,7 @@ public class Prova {
 		aDao.save(a);
 
 		Sensore sensore1 = new Sensore("ventilatore","casa");
-		Sensore sensore2 = new Sensore("umidit√†","casa");
+		Sensore sensore2 = new Sensore("umidit‡","casa");
 		Sensore sensore3 = new Sensore("temperatura","casa");
 		
 		Sensore sensore4 = new Sensore("luce","salone");

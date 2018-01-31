@@ -55,7 +55,7 @@ public class UtilDao {
 					+ "create table attivitaperiodica(id BIGSERIAL primary key,"
 					+ "giornoInizio DATE, giornoFine DATE, orarioInizio TIME,"
 					+ "orarioFine TIME, nome VARCHAR(255), utente VARCHAR(255) REFERENCES utente(\"email\"),"
-					+ "indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255),"
+					+ "indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255), schedulata boolean,"
 					+ "FOREIGN KEY (indirizzoIP,tipo,stanza) REFERENCES sensore(\"arduino_indirizzoIP\",\"tipo\",\"stanza\"));"
 
 					+ "create table misurazione(arduino_indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255),giorno DATE, ora TIME,valore FLOAT, "

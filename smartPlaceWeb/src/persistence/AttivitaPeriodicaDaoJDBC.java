@@ -27,7 +27,7 @@ public class AttivitaPeriodicaDaoJDBC implements AttivitaPeriodicaDao {
 		
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into attivitaperiodica(giornoInizio, giornoFine, orarioInizio, orarioFine, nome,utente,indirizzoIP,tipo,stanza) values (?,?,?,?,?,?,?,?,?)";
+			String insert = "insert into attivitaperiodica(giornoInizio, giornoFine, orarioInizio, orarioFine, nome,utente,indirizzoIP,tipo,stanza,schedulata) values (?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			long dateInizio = attivita.getGiornoInizio().getTime();
@@ -47,7 +47,7 @@ public class AttivitaPeriodicaDaoJDBC implements AttivitaPeriodicaDao {
 			statement.setString(7, attivita.getSensore().getArduino().getIndirizzoIP());
 			statement.setString(8, attivita.getSensore().getTipo());
 			statement.setString(9, attivita.getSensore().getStanza());
-			
+			statement.setBoolean(10, false);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

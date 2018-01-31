@@ -11,10 +11,10 @@ public class Utente {
 	private String nome;
 	private String cognome;
 	private Date dataNascita;
-	private Set<AttivitaPeriodica> attività;
+	private Set<AttivitaPeriodica> attivita;
 
 	public Utente() {
-		this.attività = new HashSet<>();
+		this.attivita = new HashSet<>();
 	}
 
 	public Utente(String email, String nome, String cognome, Date dataNascita) {
@@ -56,20 +56,20 @@ public class Utente {
 		this.dataNascita = dataNascita;
 	}
 
-	public Set<AttivitaPeriodica> getAttività() {
-		return attività;
+	public Set<AttivitaPeriodica> getAttivita() {
+		return attivita;
 	}
 
-	public void setAttività(Set<AttivitaPeriodica> attività) {
-		this.attività = attività;
+	public void setAttivita(Set<AttivitaPeriodica> attivita) {
+		this.attivita = attivita;
 	}
 
-	public void addAttività(AttivitaPeriodica attivitaPeriodica) {
-		this.getAttività().add(attivitaPeriodica);
+	public void addAttivita(AttivitaPeriodica attivitaPeriodica) {
+		this.getAttivita().add(attivitaPeriodica);
 	}
 
 	public void removeStudente(AttivitaPeriodica attivitaPeriodica) {
-		this.getAttività().remove(attivitaPeriodica);
+		this.getAttivita().remove(attivitaPeriodica);
 	}
 
 	public boolean equals(Object object) {

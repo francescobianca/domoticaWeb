@@ -115,12 +115,12 @@ class UpdateServer extends Thread {
 								SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
 								s=sDao.findByPrimaryKey(indirizzo, tipo_sensore,"casa");
 								
-								float umidità = leggiUmidità(indirizzo,porta);
+								float umidita = leggiUmidita(indirizzo,porta);
 								
 								Misurazione m = new Misurazione();		
 								MisurazioneDao mDao = DatabaseManager.getInstance().getDaoFactory().getMisurazioneDAO();
 								
-								m.setValore(umidità);
+								m.setValore(umidita);
 								m.setSensore(s);
 								Date current = new Date();
 								m.setGiorno(current);
@@ -196,13 +196,13 @@ class UpdateServer extends Thread {
 	
 	}
 	
-	private float leggiUmidità(String indirizzo, int porta) {
+	private float leggiUmidita(String indirizzo, int porta) {
 
 		BufferedReader in = null;
 		PrintStream out = null;
 		Socket socket = null;
 
-		float umidità = 0;
+		float umidita = 0;
 
 		try {
 			// open a socket connection
@@ -221,7 +221,7 @@ class UpdateServer extends Thread {
 			String[] date = s.split("/");
 			String hum = date[0];
 
-			umidità = Float.parseFloat(hum);
+			umidita = Float.parseFloat(hum);
 
 			out.close();
 			in.close();
@@ -230,7 +230,7 @@ class UpdateServer extends Thread {
 			System.out.println(e.getMessage());
 		}
 
-		return umidità;
+		return umidita;
 	
 	}
 	

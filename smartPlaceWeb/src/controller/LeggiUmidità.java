@@ -20,7 +20,7 @@ import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
 @SuppressWarnings("serial")
-public class LeggiUmidit√† extends HttpServlet {
+public class LeggiUmidit‡ extends HttpServlet {
 
 	String ip = "";
 	int porta;

@@ -23,30 +23,30 @@ public class AttivitaPeriodicaDaoJDBC implements AttivitaPeriodicaDao {
 	}
 
 	@Override
-	public void save(AttivitaPeriodica attività) {
+	public void save(AttivitaPeriodica attivita) {
 		
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String insert = "insert into attivitaperiodica(giornoInizio, giornoFine, orarioInizio, orarioFine, nome,utente,indirizzoIP,tipo,stanza) values (?,?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
-			long dateInizio = attività.getGiornoInizio().getTime();
+			long dateInizio = attivita.getGiornoInizio().getTime();
 			statement.setDate(1, new java.sql.Date(dateInizio));
 
-			long dateFine = attività.getGiornoFine().getTime();
+			long dateFine = attivita.getGiornoFine().getTime();
 			statement.setDate(2, new java.sql.Date(dateFine));
 
-			long orarioInizio = attività.getOrarioInizio().getTime();
+			long orarioInizio = attivita.getOrarioInizio().getTime();
 			statement.setTime(3, new java.sql.Time(orarioInizio));
 
-			long orarioFine = attività.getOrarioFine().getTime();
+			long orarioFine = attivita.getOrarioFine().getTime();
 			statement.setTime(4, new java.sql.Time(orarioFine));
 
-			statement.setString(5, attività.getNome());
-			statement.setString(6, attività.getUtente().getEmail());
-			statement.setString(7, attività.getSensore().getArduino().getIndirizzoIP());
-			statement.setString(8, attività.getSensore().getTipo());
-			statement.setString(9, attività.getSensore().getStanza());
+			statement.setString(5, attivita.getNome());
+			statement.setString(6, attivita.getUtente().getEmail());
+			statement.setString(7, attivita.getSensore().getArduino().getIndirizzoIP());
+			statement.setString(8, attivita.getSensore().getTipo());
+			statement.setString(9, attivita.getSensore().getStanza());
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -149,30 +149,30 @@ public class AttivitaPeriodicaDaoJDBC implements AttivitaPeriodicaDao {
 	}
 
 	@Override
-	public void update(AttivitaPeriodica attività) {
+	public void update(AttivitaPeriodica attivita) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String update = "update attivitaperiodica SET giornoInizio = ?, giornoFine = ?, orarioInizio = ?, orarioFine = ?, nome = ?, utente = ?, indirizzoIP = ?, tipo = ? , stanza = ? WHERE id=?";
 			PreparedStatement statement = connection.prepareStatement(update);
 
-			long dateInizio = attività.getGiornoInizio().getTime();
+			long dateInizio = attivita.getGiornoInizio().getTime();
 			statement.setDate(1, new java.sql.Date(dateInizio));
 
-			long dateFine = attività.getGiornoFine().getTime();
+			long dateFine = attivita.getGiornoFine().getTime();
 			statement.setDate(2, new java.sql.Date(dateFine));
 
-			long orarioInizio = attività.getOrarioInizio().getTime();
+			long orarioInizio = attivita.getOrarioInizio().getTime();
 			statement.setTime(3, new java.sql.Time(orarioInizio));
 
-			long orarioFine = attività.getOrarioFine().getTime();
+			long orarioFine = attivita.getOrarioFine().getTime();
 			statement.setTime(5, new java.sql.Time(orarioFine));
 
-			statement.setString(5, attività.getNome());
-			statement.setString(6, attività.getUtente().getEmail());
-			statement.setString(7, attività.getSensore().getArduino().getIndirizzoIP());
-			statement.setString(8, attività.getSensore().getTipo());
-			statement.setString(9, attività.getSensore().getStanza());
-			statement.setInt(10, attività.getId());
+			statement.setString(5, attivita.getNome());
+			statement.setString(6, attivita.getUtente().getEmail());
+			statement.setString(7, attivita.getSensore().getArduino().getIndirizzoIP());
+			statement.setString(8, attivita.getSensore().getTipo());
+			statement.setString(9, attivita.getSensore().getStanza());
+			statement.setInt(10, attivita.getId());
 
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -187,12 +187,12 @@ public class AttivitaPeriodicaDaoJDBC implements AttivitaPeriodicaDao {
 	}
 
 	@Override
-	public void delete(AttivitaPeriodica attività) {
+	public void delete(AttivitaPeriodica attivita) {
 		Connection connection = this.dataSource.getConnection();
 		try {
 			String delete = "delete FROM attivitaperiodica WHERE id = ? ";
 			PreparedStatement statement = connection.prepareStatement(delete);
-			statement.setInt(1, attività.getId());
+			statement.setInt(1, attivita.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new PersistenceException(e.getMessage());

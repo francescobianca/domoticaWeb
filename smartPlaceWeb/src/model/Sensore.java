@@ -10,7 +10,7 @@ public class Sensore {
 	private String stanza;
 	/* ----- indirizzoIP, tipo e stanza primary key ------ */
 	private int stato;
-	private Set<AttivitaPeriodica> attività;
+	private Set<AttivitaPeriodica> attivita;
 	private Set<Misurazione> misurazioni;
 
 	public Sensore() {
@@ -53,19 +53,19 @@ public class Sensore {
 		this.stato = stato;
 	}
 
-	public Set<AttivitaPeriodica> getAttività() {
-		return attività;
+	public Set<AttivitaPeriodica> getAttivita() {
+		return attivita;
 	}
 
-	public void setAttività(Set<AttivitaPeriodica> attività) {
-		this.attività = attività;
+	public void setAttivita(Set<AttivitaPeriodica> attivita) {
+		this.attivita= attivita;
 	}
 
-	public void addAttività(AttivitaPeriodica attivitaPeriodica) {
-		if (attività == null) {
-			attività = new HashSet<AttivitaPeriodica>();
+	public void addAttivita(AttivitaPeriodica attivitaPeriodica) {
+		if (attivita == null) {
+			attivita = new HashSet<AttivitaPeriodica>();
 		}
-		attività.add(attivitaPeriodica);
+		attivita.add(attivitaPeriodica);
 	}
 
 	public Set<Misurazione> getMisurazioni() {

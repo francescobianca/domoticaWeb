@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>SmartPlaceWeb</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>IscriviUtenteServlet</servlet-name>
+		<servlet-class>controller.IscriviUtente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IscriviUtenteServlet</servlet-name>
+		<url-pattern>/iscriviUtente</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CheckLogin</servlet-name>
+		<servlet-class>controller.CheckLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckLogin</servlet-name>
+		<url-pattern>/checkLogin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AccendiLuci</servlet-name>
+		<servlet-class>controller.AccendiLuci</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AccendiLuci</servlet-name>
+		<url-pattern>/AccendiLuci</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ApriFinestre</servlet-name>
+		<servlet-class>controller.ApriFinestre</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApriFinestre</servlet-name>
+		<url-pattern>/ApriFinestre</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EliminaAttività</servlet-name>
+		<servlet-class>controller.EliminaAttività</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EliminaAttività</servlet-name>
+		<url-pattern>/EliminaAttività</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GraficoTemperatura</servlet-name>
+		<servlet-class>controller.GraficoTemperatura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GraficoTemperatura</servlet-name>
+		<url-pattern>/GraficoTemperatura</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GraficoUmidità</servlet-name>
+		<servlet-class>controller.GraficoUmidità</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GraficoUmidità</servlet-name>
+		<url-pattern>/GraficoUmidità</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiStatoFinestre</servlet-name>
+		<servlet-class>controller.LeggiStatoFinestre</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiStatoFinestre</servlet-name>
+		<url-pattern>/LeggiStatoFinestre</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiStatoLuci</servlet-name>
+		<servlet-class>controller.LeggiStatoLuci</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiStatoLuci</servlet-name>
+		<url-pattern>/LeggiStatoLuci</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiStatoVentilatore</servlet-name>
+		<servlet-class>controller.LeggiStatoVentilatore</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiStatoVentilatore</servlet-name>
+		<url-pattern>/LeggiStatoVentilatore</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiTemperatura</servlet-name>
+		<servlet-class>controller.LeggiTemperatura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiTemperatura</servlet-name>
+		<url-pattern>/LeggiTemperatura</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiUmidità</servlet-name>
+		<servlet-class>controller.LeggiUmidità</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiUmidità</servlet-name>
+		<url-pattern>/LeggiUmidità</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MonitoraTemperatura</servlet-name>
+		<servlet-class>controller.MonitoraTemperatura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MonitoraTemperatura</servlet-name>
+		<url-pattern>/MonitoraTemperatura</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PianificaAttività</servlet-name>
+		<servlet-class>controller.PianificaAttività</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PianificaAttività</servlet-name>
+		<url-pattern>/PianificaAttività</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TutteAttività</servlet-name>
+		<servlet-class>controller.TutteAttività</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TutteAttività</servlet-name>
+		<url-pattern>/TutteAttività</url-pattern>
+	</servlet-mapping>
+
+	<!-- Android Servlet -->
+
+	<servlet>
+		<servlet-name>accendiLuciAndroidServlet</servlet-name>
+		<servlet-class>controllerAndroid.accendiLuciAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>accendiLuciAndroidServlet</servlet-name>
+		<url-pattern>/accendiLuciAndroid</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>monitoraTemperaturaAndroidServlet</servlet-name>
+		<servlet-class>controllerAndroid.monitoraTemperaturaAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>monitoraTemperaturaAndroidServlet</servlet-name>
+		<url-pattern>/monitoraTemperaturaAndroid</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>apriFinestreAndroidServlet</servlet-name>
+		<servlet-class>controllerAndroid.apriFinestreAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>apriFinestreAndroidServlet</servlet-name>
+		<url-pattern>/apriFinestreAndroid</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>IscriviUtenteAndroidServlet</servlet-name>
+		<servlet-class>controllerAndroid.IscriviUtenteAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IscriviUtenteAndroidServlet</servlet-name>
+		<url-pattern>/iscriviUtenteAndroid</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CheckLoginAndroid</servlet-name>
+		<servlet-class>controllerAndroid.CheckLoginAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckLoginAndroid</servlet-name>
+		<url-pattern>/checkLoginAndroid</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CheckLoginGoogle</servlet-name>
+		<servlet-class>controllerAndroid.CheckLoginGoogle</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckLoginGoogle</servlet-name>
+		<url-pattern>/checkLoginGoogle</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiTemperaturaAndroid</servlet-name>
+		<servlet-class>controllerAndroid.leggiTemperaturaAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiTemperaturaAndroid</servlet-name>
+		<url-pattern>/LeggiTemperaturaAndroid</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readLightStateServlet</servlet-name>
+		<servlet-class>controllerAndroid.readLightState</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readLightStateServlet</servlet-name>
+		<url-pattern>/readLightState</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readFanStateServlet</servlet-name>
+		<servlet-class>controllerAndroid.readFanState</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readFanStateServlet</servlet-name>
+		<url-pattern>/readFanState</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readWindowStateServlet</servlet-name>
+		<servlet-class>controllerAndroid.readWindowState</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readWindowStateServlet</servlet-name>
+		<url-pattern>/readWindowState</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>temperatureChartServlet</servlet-name>
+		<servlet-class>controllerAndroid.temperatureChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>temperatureChartServlet</servlet-name>
+		<url-pattern>/temperatureChart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>planActivityServlet</servlet-name>
+		<servlet-class>controllerAndroid.planActivity</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>planActivityServlet</servlet-name>
+		<url-pattern>/planActivity</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiUmiditàAndroid</servlet-name>
+		<servlet-class>controllerAndroid.leggiUmiditàAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiUmiditàAndroid</servlet-name>
+		<url-pattern>/LeggiUmiditàAndroid</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>humidityChartServlet</servlet-name>
+		<servlet-class>controllerAndroid.humidityChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>humidityChartServlet</servlet-name>
+		<url-pattern>/humidityChart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>findAllActivity</servlet-name>
+		<servlet-class>controllerAndroid.findAllActivity</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findAllActivity</servlet-name>
+		<url-pattern>/findAllActivity</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deleteActivity</servlet-name>
+		<servlet-class>controllerAndroid.deleteActivity</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteActivity</servlet-name>
+		<url-pattern>/deleteActivity</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 
+	<listener>
+	    <listener-class>
+	        controller.MyAppServletContextListener
+	    </listener-class>
+	</listener>
+	 -->
+	
+	<!-- 
+	<listener>
+	    <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+	</listener>
+	-->
+	    
+</web-app>

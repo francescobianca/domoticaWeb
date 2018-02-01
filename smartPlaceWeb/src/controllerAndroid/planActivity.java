@@ -33,7 +33,7 @@ public class planActivity extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("programma un attività");
-		
+
 		try {
 
 			String utente = req.getParameter("utente");
@@ -47,46 +47,75 @@ public class planActivity extends HttpServlet {
 			String oraFine = req.getParameter("oraFine");
 			String sensore = req.getParameter("sensore");
 			String stanza = req.getParameter("stanza");
-			
-			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
-			Date parsedDataInizio = format.parse(giornoInizio);
-			Date parsedDataFine = format.parse(giornoFine);
+			boolean trovaAttivita = false;
+			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+			try {
+				String query = "select * from attivitaperiodica where utente = ? and nome = ?";
+				PreparedStatement statement = connection.prepareStatement(query);
+				statement.setString(1, utente);
+				statement.setString(2, nome);
+				ResultSet result = statement.executeQuery();
+				if (result.next()) {
+					trovaAttivita = true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					throw new PersistenceException(e.getMessage());
+				}
+			}
 
-			SimpleDateFormat orarioFormat = new SimpleDateFormat("HH:mm");
-			Date parsedOrarioInizio = orarioFormat.parse(oraInizio);
-			Date parsedOrarioFine = orarioFormat.parse(oraFine);
+			if (!trovaAttivita) {
 
-			@SuppressWarnings("deprecation")
-			Time timeInizio = new Time(parsedOrarioInizio.getHours(), parsedOrarioInizio.getMinutes(),
-					parsedOrarioFine.getSeconds());
-			@SuppressWarnings("deprecation")
-			Time timeFine = new Time(parsedOrarioFine.getHours(), parsedOrarioFine.getMinutes(),
-					parsedOrarioFine.getSeconds());
-			
-			AttivitaPeriodica activity = new AttivitaPeriodica(nome);
-			
-			activity.setGiornoInizio(parsedDataInizio);
-			activity.setGiornoFine(parsedDataFine);
-			activity.setOrarioInizio(timeInizio);
-			activity.setOrarioFine(timeFine);
+				SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
-			Utente u = new Utente();
-			UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
-			u = uDao.findByPrimaryKey(utente);
+				Date parsedDataInizio = format.parse(giornoInizio);
+				Date parsedDataFine = format.parse(giornoFine);
 
-			activity.setUtente(u);
+				SimpleDateFormat orarioFormat = new SimpleDateFormat("HH:mm");
+				Date parsedOrarioInizio = orarioFormat.parse(oraInizio);
+				Date parsedOrarioFine = orarioFormat.parse(oraFine);
 
-			Sensore s = new Sensore();
-			SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
-			
-			s = sDao.findByPrimaryKey(ip, sensore, stanza);
-			
-			activity.setSensore(s);
+				@SuppressWarnings("deprecation")
+				Time timeInizio = new Time(parsedOrarioInizio.getHours(), parsedOrarioInizio.getMinutes(),
+						parsedOrarioFine.getSeconds());
+				@SuppressWarnings("deprecation")
+				Time timeFine = new Time(parsedOrarioFine.getHours(), parsedOrarioFine.getMinutes(),
+						parsedOrarioFine.getSeconds());
 
-			AttivitaPeriodicaDao activityDao = DatabaseManager.getInstance().getDaoFactory().getAttivitaPeriodicaDAO();
-			
-			activityDao.save(activity);
+				AttivitaPeriodica activity = new AttivitaPeriodica(nome);
+
+				activity.setGiornoInizio(parsedDataInizio);
+				activity.setGiornoFine(parsedDataFine);
+				activity.setOrarioInizio(timeInizio);
+				activity.setOrarioFine(timeFine);
+
+				Utente u = new Utente();
+				UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
+				u = uDao.findByPrimaryKey(utente);
+
+				activity.setUtente(u);
+
+				Sensore s = new Sensore();
+				SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
+
+				s = sDao.findByPrimaryKey(ip, sensore, stanza);
+
+				activity.setSensore(s);
+
+				AttivitaPeriodicaDao activityDao = DatabaseManager.getInstance().getDaoFactory()
+						.getAttivitaPeriodicaDAO();
+
+				activityDao.save(activity);
+			} else {
+				resp.getOutputStream().print("attivitaGiaPresenteConLoStessoNome");
+				resp.getOutputStream().flush();
+				resp.getOutputStream().close();
+			}
 
 		} catch (Exception e) {
 			resp.getOutputStream().print("errore");

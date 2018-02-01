@@ -6,15 +6,18 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import model.AttivitaPeriodica;
 import persistence.DatabaseManager;
+import persistence.PersistenceException;
+import persistence.dao.AttivitaPeriodicaDao;
 
 public class ActivityJob implements Job {
 
@@ -22,6 +25,7 @@ public class ActivityJob implements Job {
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		JobDataMap map = arg0.getJobDetail().getJobDataMap();
 
+		int id = map.getInt("id");
 		String indirizzoIP = map.getString("indirizzoIP");
 		int porta = map.getInt("porta");
 		String stanza = map.getString("stanza");
@@ -30,16 +34,13 @@ public class ActivityJob implements Job {
 
 		boolean esegui = false;
 		try {
-			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
-			// fare ricerca per chiave primaria
-			String query = "select * from attivitaperiodica where tipo = ? and stanza = ? and \"indirizzoip\" = ?";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, tipo);
-			statement.setString(2, stanza);
-			statement.setString(3, indirizzoIP);
-			ResultSet set = statement.executeQuery();
-			if (set.next())
+
+			AttivitaPeriodicaDao aDao = DatabaseManager.getInstance().getDaoFactory().getAttivitaPeriodicaDAO();
+			AttivitaPeriodica a = aDao.findByPrimaryKey(id);
+
+			if (a != null)
 				esegui = true;
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -47,6 +48,7 @@ public class ActivityJob implements Job {
 
 		if (esegui) {
 			System.out.println(indirizzoIP + " " + porta + " " + stanza + " " + tipo + " " + operazione);
+			System.out.println(new Date().toString());
 
 			BufferedReader in = null;
 			PrintStream out = null;
@@ -181,11 +183,37 @@ public class ActivityJob implements Job {
 
 				}
 
+				if (operazione.equals("accendi"))
+					salvaStato(indirizzoIP, stanza, 1, tipo);
+				else if (operazione.equals("spegni"))
+					salvaStato(indirizzoIP, stanza, 0, tipo);
+					
 				out.close();
 				in.close();
 
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
+			}
+		}
+	}
+	
+	private void salvaStato(String indirizzoIP, String stanza, int stato, String tipo) {
+		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+		try {
+			String update = "update sensore set stato = ? where \"arduino_indirizzoIP\" = ? and stanza = ? and tipo = ?";
+			PreparedStatement updateStatement = connection.prepareStatement(update);
+			updateStatement.setInt(1, stato);
+			updateStatement.setString(2, indirizzoIP);
+			updateStatement.setString(3, stanza);
+			updateStatement.setString(4, tipo);
+			updateStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
 			}
 		}
 	}

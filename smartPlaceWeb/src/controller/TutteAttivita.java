@@ -18,7 +18,7 @@ import persistence.PersistenceException;
 //Servlet che legge tutte le attivitÃ  --> Bisogna mapparla nel web.xml
 
 @SuppressWarnings("serial")
-public class TutteAttività extends HttpServlet {
+public class TutteAttivita extends HttpServlet {
 
 	String utente = "";
 	String tipo = "";

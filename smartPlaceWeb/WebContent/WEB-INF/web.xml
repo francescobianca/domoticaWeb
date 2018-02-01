@@ -52,7 +52,7 @@
 	
 	<servlet>
 		<servlet-name>EliminaAttività</servlet-name>
-		<servlet-class>controller.EliminaAttività</servlet-class>
+		<servlet-class>controller.EliminaAttivita</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>EliminaAttività</servlet-name>
@@ -70,7 +70,7 @@
 	
 	<servlet>
 		<servlet-name>GraficoUmidità</servlet-name>
-		<servlet-class>controller.GraficoUmidità</servlet-class>
+		<servlet-class>controller.GraficoUmidita</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GraficoUmidità</servlet-name>
@@ -115,7 +115,7 @@
 	
 	<servlet>
 		<servlet-name>LeggiUmidità</servlet-name>
-		<servlet-class>controller.LeggiUmidità</servlet-class>
+		<servlet-class>controller.LeggiUmidita</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LeggiUmidità</servlet-name>
@@ -133,7 +133,7 @@
 	
 	<servlet>
 		<servlet-name>PianificaAttività</servlet-name>
-		<servlet-class>controller.PianificaAttività</servlet-class>
+		<servlet-class>controller.PianificaAttivita</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PianificaAttività</servlet-name>
@@ -142,7 +142,7 @@
 	
 	<servlet>
 		<servlet-name>TutteAttività</servlet-name>
-		<servlet-class>controller.TutteAttività</servlet-class>
+		<servlet-class>controller.TutteAttivita</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TutteAttività</servlet-name>
@@ -261,7 +261,7 @@
 	
 	<servlet>
 		<servlet-name>LeggiUmiditàAndroid</servlet-name>
-		<servlet-class>controllerAndroid.leggiUmiditàAndroid</servlet-class>
+		<servlet-class>controllerAndroid.leggiUmiditaAndroid</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LeggiUmiditàAndroid</servlet-name>

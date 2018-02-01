@@ -15,7 +15,7 @@ import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
 @SuppressWarnings("serial")
-public class EliminaAttività extends HttpServlet {
+public class EliminaAttivita extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

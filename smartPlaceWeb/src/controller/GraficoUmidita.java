@@ -18,7 +18,7 @@ import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
 @SuppressWarnings("serial")
-public class GraficoUmidità extends HttpServlet {
+public class GraficoUmidita extends HttpServlet {
 
 	String ip = "";
 	int porta;

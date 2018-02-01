@@ -25,7 +25,7 @@ import persistence.dao.SensoreDao;
 import persistence.dao.UtenteDao;
 
 @SuppressWarnings("serial")
-public class PianificaAttività extends HttpServlet {
+public class PianificaAttivita extends HttpServlet {
 
 	String ip = "";
 	int porta;

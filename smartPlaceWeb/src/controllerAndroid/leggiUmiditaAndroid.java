@@ -18,7 +18,7 @@ import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
 @SuppressWarnings("serial")
-public class leggiUmidit‡Android extends HttpServlet {
+public class leggiUmiditaAndroid extends HttpServlet {
 
 	String ip = "";
 	int porta;

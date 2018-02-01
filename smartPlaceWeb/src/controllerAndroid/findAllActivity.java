@@ -34,16 +34,27 @@ public class findAllActivity extends HttpServlet {
 			ResultSet r = findActivity();
 			boolean trovaDati = false;
 			String activity = "";
+			
+			if (tipo.equals("temperatura")) {
+				while (r.next()) {
 
-			while (r.next()) {
+					trovaDati = true;
 
-				trovaDati = true;
+					activity += r.getString("nome") + "," + r.getDate("giornoInizio") + "," + r.getTime("orarioInizio")
+							+ "," + r.getDate("giornoFine") + "," + r.getTime("orarioFine") + "," + r.getString("tipo");
+					activity += "/";
+				}
+			} else {
+				while (r.next()) {
 
-				activity += r.getString("nome") + "," + r.getDate("giornoInizio") + "," + r.getTime("orarioInizio")
-						+ "," + r.getDate("giornoFine") + "," + r.getTime("orarioFine");
-				activity += "/";
+					trovaDati = true;
+
+					activity += r.getString("nome") + "," + r.getDate("giornoInizio") + "," + r.getTime("orarioInizio")
+							+ "," + r.getDate("giornoFine") + "," + r.getTime("orarioFine") + ","
+							+ r.getString("stanza");
+					activity += "/";
+				}
 			}
-
 			if (trovaDati)
 				resp.getOutputStream().print(activity);
 			else
@@ -69,16 +80,14 @@ public class findAllActivity extends HttpServlet {
 				statement.setString(2, "ventilatore");
 				statement.setString(3, "riscaldamenti");
 				rs = statement.executeQuery();
-			}
-			else {
+			} else {
 				String query = "select * from attivitaperiodica where utente = ? and tipo = ?";
 				PreparedStatement statement = connection.prepareStatement(query);
 				statement.setString(1, utente);
 				statement.setString(2, tipo);
 				rs = statement.executeQuery();
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

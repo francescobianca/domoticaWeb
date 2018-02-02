@@ -6,8 +6,11 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+
+import javax.swing.plaf.SliderUI;
 
 import org.quartz.Job;
 import org.quartz.JobDataMap;
@@ -32,6 +35,8 @@ public class ActivityJob implements Job {
 		String tipo = map.getString("tipo");
 		String operazione = map.getString("operazione");
 
+		int x = 0; // Valore di apertura finestra
+
 		boolean esegui = false;
 		try {
 
@@ -49,7 +54,7 @@ public class ActivityJob implements Job {
 		if (esegui) {
 			System.out.println("----------------------------------------------------------------------");
 			System.out.println(indirizzoIP + " " + porta + " " + stanza + " " + tipo + " " + operazione);
-			System.out.println("Data escuzione: "+new Date().toString());
+			System.out.println("Data escuzione: " + new Date().toString());
 			System.out.println("----------------------------------------");
 
 			BufferedReader in = null;
@@ -169,27 +174,107 @@ public class ActivityJob implements Job {
 					}
 					break;
 
-				/*
-				 * case "finestra": switch (stanza) { case "bagno": switch
-				 * (operazione) { case "accendi": ; break; case "spegni": ;
-				 * break; default: ; } break; case "cameraLetto": switch
-				 * (operazione) { case "accendi": ; break; case "spegni": ;
-				 * break; default: ; } break; case "cucina": switch (operazione)
-				 * { case "accendi": ; break; case "spegni": ; break; default: ;
-				 * } break; case "salone": switch (operazione) { case "accendi":
-				 * ; break; case "spegni": ; break; default: ; } break; default:
-				 * ; } break;
-				 */
+				case "finestra":
+					x = leggiStatoFinestra(indirizzoIP, stanza);
+					switch (stanza) {
+					case "bagno":
+						switch (operazione) {
+						case "accendi":
+							if (x == 180)
+								;
+							else {
+								int j = (180 - x) / 30;
+								for (int i = 0; i < j - 1; i++) {
+									// open a socket connection
+									socket = new Socket("localhost", 4000);
+									// Apre i canali I/O
+									in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+									out = new PrintStream(socket.getOutputStream(), true);
+									out.println("apriFinestre");
+									out.println("7");
+									out.flush();
+									Thread.sleep(500);
+								}
+								x = x + ((j - 1) * 30);
+							}
+							break;
+						case "spegni":
+							if (x == 0)
+								;
+							else {
+								int z = x / 30;
+								for (int i = 0; i < z - 1; i++) {
+									// open a socket connection
+									socket = new Socket("localhost", 4000);
+									// Apre i canali I/O
+									in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+									out = new PrintStream(socket.getOutputStream(), true);
+									out.println("apriFinestre");
+									out.println("8");
+									out.flush();
+									Thread.sleep(500);
+								}
+								x = x - ((z - 1) * 30);
+							}
+							break;
+						default:
+							;
+						}
+						break;
+					case "cameraLetto":
+						switch (operazione) {
+						case "accendi":
+							;
+							break;
+						case "spegni":
+							;
+							break;
+						default:
+							;
+						}
+						break;
+					case "cucina":
+						switch (operazione) {
+						case "accendi":
+							;
+							break;
+						case "spegni":
+							;
+							break;
+						default:
+							;
+						}
+						break;
+					case "salone":
+						switch (operazione) {
+						case "accendi":
+							;
+							break;
+						case "spegni":
+							;
+							break;
+						default:
+							;
+						}
+						break;
+					default:
+						;
+					}
+					break;
+
 				default:
 					;
 
 				}
 
-				if (operazione.equals("accendi"))
-					salvaStato(indirizzoIP, stanza, 1, tipo);
-				else if (operazione.equals("spegni"))
-					salvaStato(indirizzoIP, stanza, 0, tipo);
-					
+				if (!tipo.equals("finestra")) {
+					if (operazione.equals("accendi"))
+						salvaStato(indirizzoIP, stanza, 1, tipo);
+					else if (operazione.equals("spegni"))
+						salvaStato(indirizzoIP, stanza, 0, tipo);
+				} else
+					salvaStato(indirizzoIP, stanza, x, tipo);
+
 				out.close();
 				in.close();
 
@@ -198,7 +283,7 @@ public class ActivityJob implements Job {
 			}
 		}
 	}
-	
+
 	private void salvaStato(String indirizzoIP, String stanza, int stato, String tipo) {
 		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 		try {
@@ -211,13 +296,42 @@ public class ActivityJob implements Job {
 			updateStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+	private int leggiStatoFinestra(String indirizzoIP, String stanza) {
+		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+		try {
+			String query = "select stato from sensore where \"arduino_indirizzoIP\" = ? and stanza = ? and tipo = ?";
+			PreparedStatement Statement = connection.prepareStatement(query);
+			Statement.setString(1, indirizzoIP);
+			Statement.setString(2, stanza);
+			Statement.setString(3, "finestra");
+
+			ResultSet rs = Statement.executeQuery();
+
+			if (rs.next()) {
+				System.out.println(rs.getInt("stato"));
+				return rs.getInt("stato");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+
+		return 0;
 	}
 
 }

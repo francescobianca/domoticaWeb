@@ -48,6 +48,8 @@ public class planActivity extends HttpServlet {
 			String sensore = req.getParameter("sensore");
 			String stanza = req.getParameter("stanza");
 
+			boolean c = noIncongruente(giornoInizio, giornoFine, oraInizio, oraFine, stanza, sensore);
+			
 			boolean trovaAttivita = false;
 			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 			try {
@@ -105,6 +107,11 @@ public class planActivity extends HttpServlet {
 
 				s = sDao.findByPrimaryKey(ip, sensore, stanza);
 
+				if (s == null)
+					resp.getOutputStream().print("sensoreNonEsiste");
+				resp.getOutputStream().flush();
+				resp.getOutputStream().close();
+
 				activity.setSensore(s);
 
 				AttivitaPeriodicaDao activityDao = DatabaseManager.getInstance().getDaoFactory()
@@ -145,6 +152,73 @@ public class planActivity extends HttpServlet {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+	}
+
+	private boolean noIncongruente(String giornoInizio, String giornoFine, String oraInizio, String oraFine,
+			String stanza, String tipo) {
+
+		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+
+			Date parsedDataInizio = format.parse(giornoInizio);
+			Date parsedDataFine = format.parse(giornoFine);
+
+			long dataInizioLong = parsedDataInizio.getTime();
+			long dataFineLong = parsedDataFine.getTime();
+
+			SimpleDateFormat orarioFormat = new SimpleDateFormat("HH:mm");
+			Date parsedOrarioInizio = orarioFormat.parse(oraInizio);
+			Date parsedOrarioFine = orarioFormat.parse(oraFine);
+
+			long orarioInizioLong = parsedOrarioInizio.getTime();
+			long orarioFineLong = parsedOrarioFine.getTime();
+
+			String query = "select * from attivitaperiodica where indirizzoIP = ? and tipo = ? and stanza = ? and "
+					+ " (( ? > giornoInizio and ? < giornoInizio) or (giornoInizio > ? and ? > giornoFine and giornoInizio > ? and ? > giornoFine)"
+					+ "or (giornoInizio > ? and ? > giornoFine and ? < giornoFine))";
+			
+			 /*and"
+				+ "((? >= orarioInizio) and (? <= orarioFine)) ";*/
+			
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, ip);
+			statement.setString(2, tipo);
+			statement.setString(3, stanza);
+			statement.setDate(4,  new java.sql.Date(dataInizioLong));
+			statement.setDate(5,  new java.sql.Date(dataFineLong));
+			statement.setDate(6,  new java.sql.Date(dataInizioLong));
+			statement.setDate(7,  new java.sql.Date(dataInizioLong));
+			statement.setDate(8,  new java.sql.Date(dataFineLong));
+			statement.setDate(9,  new java.sql.Date(dataFineLong));
+			statement.setDate(10,  new java.sql.Date(dataInizioLong));
+			statement.setDate(11,  new java.sql.Date(dataInizioLong));
+			statement.setDate(12,  new java.sql.Date(dataFineLong));
+			//statement.setTime(13,  new java.sql.Time(orarioFineLong));
+			//statement.setTime(14,  new java.sql.Time(orarioInizioLong));		
+			
+			System.out.println("sto eseguendo query incongruenze");
+			
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				
+				System.out.println("attività incongruente: "+result.getInt("id"));
+				System.out.println(new java.sql.Time(orarioFineLong)+" > "+result.getTime("orarioInizio").toString());
+				System.out.println(new java.sql.Time(orarioInizioLong)+ " < " +result.getTime("orarioFine").toString());			
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
+		return false;
+
 	}
 
 }

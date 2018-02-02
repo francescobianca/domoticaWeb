@@ -81,10 +81,13 @@ public class ReadActivity extends Thread {
 						int minuti = timeSQL.getMinutes();
 						@SuppressWarnings("deprecation")
 						int ora = timeSQL.getHours();
-
+						
 						java.sql.Date dataSQL = resultSet.getDate("giornoInizio");
 						java.sql.Date dataSQLFine = resultSet.getDate("giornoFine");
-
+						System.out.println("dataSQL:  giorno "+dataSQL.getDate()+" mese "+dataSQL.getMonth()+" anno "+dataSQL.getYear());
+						System.out.println("dataSQLFine:  giorno "+dataSQLFine.getDate()+" mese "+dataSQLFine.getMonth()+" anno "+dataSQLFine.getYear());
+						
+						
 						@SuppressWarnings("deprecation")
 						int giorno = dataSQL.getDate();
 
@@ -94,6 +97,9 @@ public class ReadActivity extends Thread {
 						@SuppressWarnings("deprecation")
 						int anno = dataSQL.getYear() + 1900;
 
+						// System.out.println("trigger:"+
+						// Integer.toString(resultSet.getInt("id"))+"inizio-->"+"0 "
+						// + minuti + " " + ora + " * * ?");
 						Trigger trigger = null;
 
 						if (dataSQL.equals(dataSQLFine)) {
@@ -104,14 +110,23 @@ public class ReadActivity extends Thread {
 											"0 " + minuti + " " + ora + " " + giorno + " " + mese + " ? " + anno))
 									.build();
 							System.out.println("stesso giorno trigger Inizio");
-						} else
-							trigger = TriggerBuilder.newTrigger()
-									.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "inizio",
-											"group1")
-									.withSchedule(
-											CronScheduleBuilder.cronSchedule("0 " + minuti + " " + ora + " * * ?"))
-									.startAt(dataSQL).endAt(dataSQLFine).build();
-
+						} else {
+							if (dataSQL.compareTo(new Date()) > 0) {
+								trigger = TriggerBuilder.newTrigger()
+										.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "inizio",
+												"group1")
+										.withSchedule(
+												CronScheduleBuilder.dailyAtHourAndMinute(ora, minuti))
+										.startAt(dataSQL).endAt(dataSQLFine).build();
+							} else {
+								trigger = TriggerBuilder.newTrigger()
+										.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "inizio",
+												"group1")
+										.withSchedule(
+												CronScheduleBuilder.dailyAtHourAndMinute(ora, minuti))
+										.startAt(new Date()).endAt(dataSQLFine).build();
+							}
+						}
 						/* JOB che chiude l'attività */
 						JobDetail jobEnd = JobBuilder.newJob(ActivityJob.class)
 								.withIdentity(Integer.toString(resultSet.getInt("id")) + "fine").build();
@@ -133,21 +148,30 @@ public class ReadActivity extends Thread {
 
 						if (dataSQL.equals(dataSQLFine)) {
 							triggerFine = TriggerBuilder.newTrigger()
-									.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "fine",
-											"group2")
-									.withSchedule(CronScheduleBuilder.cronSchedule("0 " + minutiFine + " " + oraFine
-											+ " " + giorno + " " + mese + " ? " + anno))
+									.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "fine", "group2")
+									.withSchedule(CronScheduleBuilder.cronSchedule(
+											"0 " + minutiFine + " " + oraFine + " " + giorno + " " + mese + " ? " + anno))
 									.build();
-
 							System.out.println("stesso giorno trigger fine");
-						} else
-							triggerFine = TriggerBuilder.newTrigger()
-									.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "fine",
-											"group2")
-									.withSchedule(CronScheduleBuilder
-											.cronSchedule("0 " + minutiFine + " " + oraFine + " * * ?"))
-									.startAt(dataSQL).endAt(dataSQLFine).build();
+						}
 
+						else {
+							if (dataSQL.compareTo(new Date()) > 0) {
+								triggerFine = TriggerBuilder.newTrigger()
+										.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "fine",
+												"group2")
+										.withSchedule(CronScheduleBuilder
+												.dailyAtHourAndMinute(oraFine, minutiFine))
+										.startAt(dataSQL).endAt(dataSQLFine).build();
+							} else {
+								triggerFine = TriggerBuilder.newTrigger()
+										.withIdentity("trigger:" + Integer.toString(resultSet.getInt("id")) + "fine",
+												"group2")
+										.withSchedule(CronScheduleBuilder
+												.dailyAtHourAndMinute(oraFine, minutiFine))
+										.startAt(new Date()).endAt(dataSQLFine).build();
+							}
+						}
 						try {
 							scheduler.scheduleJob(job, trigger);
 							scheduler.scheduleJob(jobEnd, triggerFine);

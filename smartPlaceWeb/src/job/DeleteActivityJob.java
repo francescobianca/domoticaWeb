@@ -17,6 +17,7 @@ public class DeleteActivityJob implements Job {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+		System.out.println("Controllo job da eliminare");
 		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 		try {
 			String delete = "delete from attivitaperiodica where giornoFine<=? and orarioFine<? ";

@@ -47,8 +47,10 @@ public class ActivityJob implements Job {
 		}
 
 		if (esegui) {
+			System.out.println("----------------------------------------------------------------------");
 			System.out.println(indirizzoIP + " " + porta + " " + stanza + " " + tipo + " " + operazione);
-			System.out.println(new Date().toString());
+			System.out.println("Data escuzione: "+new Date().toString());
+			System.out.println("----------------------------------------");
 
 			BufferedReader in = null;
 			PrintStream out = null;

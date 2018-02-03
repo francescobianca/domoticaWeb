@@ -3,6 +3,7 @@ package persistence;
 import persistence.dao.ArduinoDao;
 import persistence.dao.AttivitaPeriodicaDao;
 import persistence.dao.MisurazioneDao;
+import persistence.dao.RegolaDao;
 import persistence.dao.SensoreDao;
 import persistence.dao.UtenteDao;
 
@@ -58,6 +59,8 @@ public abstract class DAOFactory {
 	public abstract MisurazioneDao getMisurazioneDAO();
 	
 	public abstract SensoreDao getSensoreDAO();
+	
+	public abstract RegolaDao getRegolaDAO();
 
 	public abstract persistence.UtilDao getUtilDAO();
 	

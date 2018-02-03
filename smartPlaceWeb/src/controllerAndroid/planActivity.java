@@ -49,7 +49,7 @@ public class planActivity extends HttpServlet {
 			String stanza = req.getParameter("stanza");
 
 			boolean c = noIncongruente(giornoInizio, giornoFine, oraInizio, oraFine, stanza, sensore);
-			
+
 			boolean trovaAttivita = false;
 			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 			try {
@@ -104,7 +104,7 @@ public class planActivity extends HttpServlet {
 
 				Sensore s = new Sensore();
 				SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
-
+				
 				s = sDao.findByPrimaryKey(ip, sensore, stanza);
 
 				if (s == null)
@@ -175,39 +175,44 @@ public class planActivity extends HttpServlet {
 			long orarioFineLong = parsedOrarioFine.getTime();
 
 			String query = "select * from attivitaperiodica where indirizzoIP = ? and tipo = ? and stanza = ? and "
-					+ " (( ? > giornoInizio and ? < giornoInizio) or (giornoInizio > ? and ? > giornoFine and giornoInizio > ? and ? > giornoFine)"
-					+ "or (giornoInizio > ? and ? > giornoFine and ? < giornoFine))";
+					+ " (( ? < giornoInizio and ? < giornoFine) or (? >= giornoInizio and ? <= giornoFine)"
+					+ "or (? >= giornoInizio and ? > giornoFine) or (? < giornoInizio and ? > giornoFine)) "
+					+ "and ((? >= orarioInizio) and (? <= orarioFine))";
+
+			//Se un'attività rientra in questa query è incongruente.
 			
-			 /*and"
-				+ "((? >= orarioInizio) and (? <= orarioFine)) ";*/
-			
+			// (( ? > giornoInizio and ? < giornoInizio) or (giornoInizio > ?
+			// and ? > giornoFine and giornoInizio > ? and ? > giornoFine)"
+			// + "or (giornoInizio > ? and ? > giornoFine and ? < giornoFine))
+
+			/*
+			 * and" + "((? >= orarioInizio) and (? <= orarioFine)) ";
+			 */
+
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, ip);
 			statement.setString(2, tipo);
 			statement.setString(3, stanza);
-			statement.setDate(4,  new java.sql.Date(dataInizioLong));
-			statement.setDate(5,  new java.sql.Date(dataFineLong));
-			statement.setDate(6,  new java.sql.Date(dataInizioLong));
-			statement.setDate(7,  new java.sql.Date(dataInizioLong));
-			statement.setDate(8,  new java.sql.Date(dataFineLong));
-			statement.setDate(9,  new java.sql.Date(dataFineLong));
-			statement.setDate(10,  new java.sql.Date(dataInizioLong));
-			statement.setDate(11,  new java.sql.Date(dataInizioLong));
-			statement.setDate(12,  new java.sql.Date(dataFineLong));
-			//statement.setTime(13,  new java.sql.Time(orarioFineLong));
-			//statement.setTime(14,  new java.sql.Time(orarioInizioLong));		
-			
+			statement.setDate(4, new java.sql.Date(dataInizioLong));
+			statement.setDate(5, new java.sql.Date(dataFineLong));
+			statement.setDate(6, new java.sql.Date(dataInizioLong));
+			statement.setDate(7, new java.sql.Date(dataFineLong));
+			statement.setDate(8, new java.sql.Date(dataInizioLong));
+			statement.setDate(9, new java.sql.Date(dataFineLong));
+			statement.setDate(10, new java.sql.Date(dataInizioLong));
+			statement.setDate(11, new java.sql.Date(dataFineLong));
+			statement.setTime(12, new java.sql.Time(orarioFineLong));
+			statement.setTime(13, new java.sql.Time(orarioInizioLong));
+
 			System.out.println("sto eseguendo query incongruenze");
-			
+
 			ResultSet result = statement.executeQuery();
 			while (result.next()) {
-				
-				System.out.println("attività incongruente: "+result.getInt("id"));
-				System.out.println(new java.sql.Time(orarioFineLong)+" > "+result.getTime("orarioInizio").toString());
-				System.out.println(new java.sql.Time(orarioInizioLong)+ " < " +result.getTime("orarioFine").toString());			
-				
+
+				System.out.println("attività incongruente: " + result.getInt("id"));
+
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

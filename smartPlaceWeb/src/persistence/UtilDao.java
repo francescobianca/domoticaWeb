@@ -18,7 +18,8 @@ public class UtilDao {
 		try {
 			String delete = "drop SEQUENCE if EXISTS sequenza_id;" + "drop table if exists utente;"
 					+ "drop table if exists arduino;" + "drop table if exists attivitaPeriodica;"
-					+ "drop table if exists sensore;" + "drop table if exists misurazione;";
+					+ "drop table if exists sensore;" + "drop table if exists misurazione;"
+					+ "drop table if exists regola;";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();
@@ -51,7 +52,7 @@ public class UtilDao {
 					+ "create table sensore(\"arduino_indirizzoIP\" VARCHAR(255) REFERENCES arduino(\"indirizzoIP\"),"
 					+ "\"tipo\" VARCHAR(255), \"stanza\" VARCHAR(255),"
 					+ "stato INTEGER, PRIMARY KEY(\"arduino_indirizzoIP\",\"tipo\", \"stanza\"));"
-					
+
 					+ "create table attivitaperiodica(id BIGSERIAL primary key,"
 					+ "giornoInizio DATE, giornoFine DATE, orarioInizio TIME,"
 					+ "orarioFine TIME, nome VARCHAR(255), utente VARCHAR(255) REFERENCES utente(\"email\"),"
@@ -61,7 +62,12 @@ public class UtilDao {
 					+ "create table misurazione(arduino_indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255),giorno DATE, ora TIME,valore FLOAT, "
 					+ "FOREIGN KEY(arduino_indirizzoIP,tipo,stanza) "
 					+ "REFERENCES sensore(\"arduino_indirizzoIP\",\"tipo\",\"stanza\"),"
-					+ "PRIMARY KEY(arduino_indirizzoIP,tipo,stanza,giorno,ora));";
+					+ "PRIMARY KEY(arduino_indirizzoIP,tipo,stanza,giorno,ora));"
+
+					+ "create table regola (id BIGSERIAL primary key, "
+					+ "nome VARCHAR(255), valoreMisurazione FLOAT, utente VARCHAR(255) REFERENCES utente(\"email\"),"
+					+ "indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255), attiva boolean,"
+					+ "FOREIGN KEY (indirizzoIP,tipo,stanza) REFERENCES sensore(\"arduino_indirizzoIP\",\"tipo\",\"stanza\"));";
 
 			PreparedStatement statement = connection.prepareStatement(create);
 
@@ -106,6 +112,11 @@ public class UtilDao {
 			statement.executeUpdate();
 
 			delete = "delete FROM misurazione";
+			statement = connection.prepareStatement(delete);
+
+			statement.executeUpdate();
+			
+			delete = "delete FROM regola";
 			statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();

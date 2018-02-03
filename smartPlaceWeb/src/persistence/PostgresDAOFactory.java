@@ -3,6 +3,7 @@ package persistence;
 import persistence.dao.ArduinoDao;
 import persistence.dao.AttivitaPeriodicaDao;
 import persistence.dao.MisurazioneDao;
+import persistence.dao.RegolaDao;
 import persistence.dao.SensoreDao;
 import persistence.dao.UtenteDao;
 
@@ -26,7 +27,7 @@ class PostgresDAOFactory extends DAOFactory {
 	}
 
 	// --------------------------------------------
-	
+
 	@Override
 	public UtenteDao getUtenteDAO() {
 		return new UtenteDaoJDBC(dataSource);
@@ -50,6 +51,11 @@ class PostgresDAOFactory extends DAOFactory {
 	@Override
 	public SensoreDao getSensoreDAO() {
 		return new SensoreDaoJDBC(dataSource);
+	}
+
+	@Override
+	public RegolaDao getRegolaDAO() {
+		return new RegolaDaoJDBC(dataSource);
 	}
 
 	@Override

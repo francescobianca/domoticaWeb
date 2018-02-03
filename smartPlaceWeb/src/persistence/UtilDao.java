@@ -65,7 +65,7 @@ public class UtilDao {
 					+ "PRIMARY KEY(arduino_indirizzoIP,tipo,stanza,giorno,ora));"
 
 					+ "create table regola (id BIGSERIAL primary key, "
-					+ "nome VARCHAR(255), valoreMisurazione FLOAT, utente VARCHAR(255) REFERENCES utente(\"email\"),"
+					+ "nome VARCHAR(255), valoreMisurazione FLOAT, condizione VARCHAR(255), utente VARCHAR(255) REFERENCES utente(\"email\"),"
 					+ "indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255), attiva boolean,"
 					+ "FOREIGN KEY (indirizzoIP,tipo,stanza) REFERENCES sensore(\"arduino_indirizzoIP\",\"tipo\",\"stanza\"));";
 

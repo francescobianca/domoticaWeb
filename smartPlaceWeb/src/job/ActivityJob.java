@@ -63,7 +63,7 @@ public class ActivityJob implements Job {
 
 			try {
 				// open a socket connection
-				socket = new Socket("localhost", 4000);
+				socket = new Socket(indirizzoIP, porta);
 				// Apre i canali I/O
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out = new PrintStream(socket.getOutputStream(), true);
@@ -186,7 +186,7 @@ public class ActivityJob implements Job {
 								int j = (180 - x) / 30;
 								for (int i = 0; i < j - 1; i++) {
 									// open a socket connection
-									socket = new Socket("localhost", 4000);
+									socket = new Socket(indirizzoIP, porta);
 									// Apre i canali I/O
 									in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 									out = new PrintStream(socket.getOutputStream(), true);
@@ -205,7 +205,7 @@ public class ActivityJob implements Job {
 								int z = x / 30;
 								for (int i = 0; i < z - 1; i++) {
 									// open a socket connection
-									socket = new Socket("localhost", 4000);
+									socket = new Socket(indirizzoIP, porta);
 									// Apre i canali I/O
 									in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 									out = new PrintStream(socket.getOutputStream(), true);

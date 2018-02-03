@@ -295,6 +295,33 @@
 		<url-pattern>/deleteActivity</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>planRules</servlet-name>
+		<servlet-class>controllerAndroid.planRules</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>planRules</servlet-name>
+		<url-pattern>/planRules</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>findAllRules</servlet-name>
+		<servlet-class>controllerAndroid.findAllRules</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>findAllRules</servlet-name>
+		<url-pattern>/findAllRules</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>deleteRules</servlet-name>
+		<servlet-class>controllerAndroid.deleteRules</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteRules</servlet-name>
+		<url-pattern>/deleteRules</url-pattern>
+	</servlet-mapping>
+	
 	
 	<listener>
 	    <listener-class>

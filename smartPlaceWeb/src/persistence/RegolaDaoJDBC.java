@@ -26,7 +26,7 @@ public class RegolaDaoJDBC implements RegolaDao {
 	public void save(Regola regola) {
 		Connection connection = this.dataSource.getConnection();
 		try {
-			String insert = "insert into regola(nome,valoreMisurazione,utente,indirizzoIP,tipo,stanza,attiva) values (?,?,?,?,?,?,?)";
+			String insert = "insert into regola(nome,valoreMisurazione,utente,indirizzoIP,tipo,stanza,attiva,condizione) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 
 			statement.setString(1, regola.getNome());
@@ -37,6 +37,7 @@ public class RegolaDaoJDBC implements RegolaDao {
 			statement.setString(6, regola.getSensore().getStanza());
 			statement.setBoolean(7, false); // per vedere se la regola è attiva
 											// o no.
+			statement.setString(8, regola.getCondizione());
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -67,6 +68,7 @@ public class RegolaDaoJDBC implements RegolaDao {
 				regola.setId(result.getInt("id"));
 				regola.setNome(result.getString("nome"));
 				regola.setValoreMisurazione(result.getFloat("valoreMisurazione"));
+				regola.setCondizione(result.getString("condizione"));
 				Utente u = new Utente();
 				UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 				u = uDao.findByPrimaryKey(result.getString("utente"));
@@ -109,6 +111,7 @@ public class RegolaDaoJDBC implements RegolaDao {
 				regola.setId(result.getInt("id"));
 				regola.setNome(result.getString("nome"));
 				regola.setValoreMisurazione(result.getFloat("valoreMisurazione"));
+				regola.setCondizione(result.getString("condizione"));
 				Utente u = new Utente();
 				UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 				u = uDao.findByPrimaryKey(result.getString("utente"));
@@ -148,6 +151,7 @@ public class RegolaDaoJDBC implements RegolaDao {
 			statement.setString(3, regola.getSensore().getArduino().getIndirizzoIP());
 			statement.setString(4, regola.getSensore().getTipo());
 			statement.setString(5, regola.getSensore().getStanza());
+			statement.setString(6, regola.getCondizione());
 			statement.setInt(6, regola.getId());
 
 			statement.executeUpdate();

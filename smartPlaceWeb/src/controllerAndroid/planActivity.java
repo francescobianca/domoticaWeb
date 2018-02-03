@@ -48,7 +48,7 @@ public class planActivity extends HttpServlet {
 			String sensore = req.getParameter("sensore");
 			String stanza = req.getParameter("stanza");
 
-			boolean c = noIncongruente(giornoInizio, giornoFine, oraInizio, oraFine, stanza, sensore);
+			boolean congruente = noIncongruente(giornoInizio, giornoFine, oraInizio, oraFine, stanza, sensore);
 
 			boolean trovaAttivita = false;
 			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
@@ -71,59 +71,64 @@ public class planActivity extends HttpServlet {
 				}
 			}
 
-			if (!trovaAttivita) {
+			if (congruente) {
 
-				SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+				if (!trovaAttivita) {
+					SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
-				Date parsedDataInizio = format.parse(giornoInizio);
-				Date parsedDataFine = format.parse(giornoFine);
+					Date parsedDataInizio = format.parse(giornoInizio);
+					Date parsedDataFine = format.parse(giornoFine);
 
-				SimpleDateFormat orarioFormat = new SimpleDateFormat("HH:mm");
-				Date parsedOrarioInizio = orarioFormat.parse(oraInizio);
-				Date parsedOrarioFine = orarioFormat.parse(oraFine);
+					SimpleDateFormat orarioFormat = new SimpleDateFormat("HH:mm");
+					Date parsedOrarioInizio = orarioFormat.parse(oraInizio);
+					Date parsedOrarioFine = orarioFormat.parse(oraFine);
 
-				@SuppressWarnings("deprecation")
-				Time timeInizio = new Time(parsedOrarioInizio.getHours(), parsedOrarioInizio.getMinutes(),
-						parsedOrarioFine.getSeconds());
-				@SuppressWarnings("deprecation")
-				Time timeFine = new Time(parsedOrarioFine.getHours(), parsedOrarioFine.getMinutes(),
-						parsedOrarioFine.getSeconds());
+					@SuppressWarnings("deprecation")
+					Time timeInizio = new Time(parsedOrarioInizio.getHours(), parsedOrarioInizio.getMinutes(),
+							parsedOrarioFine.getSeconds());
+					@SuppressWarnings("deprecation")
+					Time timeFine = new Time(parsedOrarioFine.getHours(), parsedOrarioFine.getMinutes(),
+							parsedOrarioFine.getSeconds());
 
-				AttivitaPeriodica activity = new AttivitaPeriodica(nome);
+					AttivitaPeriodica activity = new AttivitaPeriodica(nome);
 
-				activity.setGiornoInizio(parsedDataInizio);
-				activity.setGiornoFine(parsedDataFine);
-				activity.setOrarioInizio(timeInizio);
-				activity.setOrarioFine(timeFine);
+					activity.setGiornoInizio(parsedDataInizio);
+					activity.setGiornoFine(parsedDataFine);
+					activity.setOrarioInizio(timeInizio);
+					activity.setOrarioFine(timeFine);
 
-				Utente u = new Utente();
-				UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
-				u = uDao.findByPrimaryKey(utente);
+					Utente u = new Utente();
+					UtenteDao uDao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
+					u = uDao.findByPrimaryKey(utente);
 
-				activity.setUtente(u);
+					activity.setUtente(u);
 
-				Sensore s = new Sensore();
-				SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
-				
-				s = sDao.findByPrimaryKey(ip, sensore, stanza);
+					Sensore s = new Sensore();
+					SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
 
-				if (s == null)
-					resp.getOutputStream().print("sensoreNonEsiste");
-				resp.getOutputStream().flush();
-				resp.getOutputStream().close();
+					s = sDao.findByPrimaryKey(ip, sensore, stanza);
 
-				activity.setSensore(s);
+					if (s == null)
+						resp.getOutputStream().print("sensoreNonEsiste");
+					resp.getOutputStream().flush();
+					resp.getOutputStream().close();
 
-				AttivitaPeriodicaDao activityDao = DatabaseManager.getInstance().getDaoFactory()
-						.getAttivitaPeriodicaDAO();
+					activity.setSensore(s);
 
-				activityDao.save(activity);
-			} else {
-				resp.getOutputStream().print("attivitaGiaPresenteConLoStessoNome");
+					AttivitaPeriodicaDao activityDao = DatabaseManager.getInstance().getDaoFactory()
+							.getAttivitaPeriodicaDAO();
+
+					activityDao.save(activity);
+				} else {
+					resp.getOutputStream().print("attivitaGiaPresenteConLoStessoNome");
+					resp.getOutputStream().flush();
+					resp.getOutputStream().close();
+				}
+			}else{
+				resp.getOutputStream().print("attivitaIncoerente");
 				resp.getOutputStream().flush();
 				resp.getOutputStream().close();
 			}
-
 		} catch (Exception e) {
 			resp.getOutputStream().print("errore");
 			resp.getOutputStream().flush();
@@ -179,8 +184,8 @@ public class planActivity extends HttpServlet {
 					+ "or (? >= giornoInizio and ? > giornoFine) or (? < giornoInizio and ? > giornoFine)) "
 					+ "and ((? >= orarioInizio) and (? <= orarioFine))";
 
-			//Se un'attività rientra in questa query è incongruente.
-			
+			// Se un'attività rientra in questa query è incongruente.
+
 			// (( ? > giornoInizio and ? < giornoInizio) or (giornoInizio > ?
 			// and ? > giornoFine and giornoInizio > ? and ? > giornoFine)"
 			// + "or (giornoInizio > ? and ? > giornoFine and ? < giornoFine))
@@ -207,14 +212,19 @@ public class planActivity extends HttpServlet {
 			System.out.println("sto eseguendo query incongruenze");
 
 			ResultSet result = statement.executeQuery();
+
+			// se non ci sono incongruenze allora ritorna true,altrimenti false
+			boolean condition = true;
 			while (result.next()) {
 
 				System.out.println("attività incongruente: " + result.getInt("id"));
-
+				condition = false;
 			}
 
+			return condition;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				connection.close();
@@ -222,8 +232,6 @@ public class planActivity extends HttpServlet {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		return false;
-
 	}
 
 }

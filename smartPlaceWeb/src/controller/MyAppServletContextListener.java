@@ -250,6 +250,7 @@ class UpdateServer extends Thread {
 	}
 
 	private void attivaRegola(Misurazione m) {
+		
 		BufferedReader in = null;
 		PrintStream out = null;
 		Socket socket = null;
@@ -284,12 +285,18 @@ class UpdateServer extends Thread {
 						statement.executeUpdate();
 						
 						// open a socket connection
-						socket = new Socket("localhost", 4000);
+						socket = new Socket(m.getSensore().getArduino().getIndirizzoIP(), porta);
 						// Apre i canali I/O
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintStream(socket.getOutputStream(), true);
+						
+						if (m.getSensore().getTipo().equals("temperatura")) {
+							out.println("setta led");
+							out.println("5");
+							out.flush();
+						}
 
-						switch (m.getSensore().getTipo()) {
+						/*switch (m.getSensore().getTipo()) {
 
 						case "ventilatore":
 							switch (m.getSensore().getStanza()) {
@@ -323,7 +330,7 @@ class UpdateServer extends Thread {
 						// Poi si aggiungono altri eventuali sensori.
 						default:
 							;
-						}
+						}*/
 						out.close();
 						in.close();
 					}
@@ -339,12 +346,18 @@ class UpdateServer extends Thread {
 						statement.executeUpdate();
 						
 						// open a socket connection
-						socket = new Socket("localhost", 4000);
+						socket = new Socket(m.getSensore().getArduino().getIndirizzoIP(), porta);
 						// Apre i canali I/O
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintStream(socket.getOutputStream(), true);
 
-						switch (m.getSensore().getTipo()) {
+						if (m.getSensore().getTipo().equals("temperatura")) {
+							out.println("setta led");
+							out.println("5");
+							out.flush();
+						}
+						
+						/*switch (m.getSensore().getTipo()) {
 
 						case "ventilatore":
 							switch (m.getSensore().getStanza()) {
@@ -378,7 +391,7 @@ class UpdateServer extends Thread {
 						// Poi si aggiungono altri eventuali sensori.
 						default:
 							;
-						}
+						}*/
 						out.close();
 						in.close();
 					}

@@ -38,7 +38,8 @@ public class findAllRules extends HttpServlet {
 
 				trovaDati = true;
 
-				rule += r.getString("nome") + "," + r.getFloat("valoreMisurazione") + "," + r.getString("tipo");
+				rule += r.getString("nome") + "," + r.getString("condizione") + "," + r.getFloat("valoreMisurazione")
+						+ "," + r.getString("tipo");
 				rule += "/";
 
 			}
@@ -54,7 +55,7 @@ public class findAllRules extends HttpServlet {
 			resp.getOutputStream().flush();
 			resp.getOutputStream().close();
 		}
-		
+
 	}
 
 	private ResultSet findRules() {

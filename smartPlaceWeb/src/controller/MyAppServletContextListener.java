@@ -294,43 +294,10 @@ class UpdateServer extends Thread {
 							out.println("setta led");
 							out.println("5");
 							out.flush();
+							
+							salvaStato(m.getSensore().getArduino().getIndirizzoIP(), "casa", 1 , "ventilatore");
 						}
-
-						/*switch (m.getSensore().getTipo()) {
-
-						case "ventilatore":
-							switch (m.getSensore().getStanza()) {
-							case "casa":
-								out.println("setta led");
-								out.println("5");
-								out.flush();
-								break;
-							default:
-								;
-							}
-							break;
-						case "riscaldementi":
-							switch (m.getSensore().getStanza()) {
-							case "casa":
-								;
-								break;
-							default:
-								;
-							}
-							break;
-						case "deumidificatore":
-							switch (m.getSensore().getStanza()) {
-							case "casa":
-								;
-								break;
-							default:
-								;
-							}
-							break;
-						// Poi si aggiungono altri eventuali sensori.
-						default:
-							;
-						}*/
+						
 						out.close();
 						in.close();
 					}
@@ -357,41 +324,6 @@ class UpdateServer extends Thread {
 							out.flush();
 						}
 						
-						/*switch (m.getSensore().getTipo()) {
-
-						case "ventilatore":
-							switch (m.getSensore().getStanza()) {
-							case "casa":
-								out.println("setta led");
-								out.println("5");
-								out.flush();
-								break;
-							default:
-								;
-							}
-							break;
-						case "riscaldementi":
-							switch (m.getSensore().getStanza()) {
-							case "casa":
-								;
-								break;
-							default:
-								;
-							}
-							break;
-						case "deumidificatore":
-							switch (m.getSensore().getStanza()) {
-							case "casa":
-								;
-								break;
-							default:
-								;
-							}
-							break;
-						// Poi si aggiungono altri eventuali sensori.
-						default:
-							;
-						}*/
 						out.close();
 						in.close();
 					}
@@ -409,6 +341,27 @@ class UpdateServer extends Thread {
 			}
 		}
 
+	}
+	
+	private void salvaStato(String indirizzoIP, String stanza, int stato, String tipo) {
+		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+		try {
+			String update = "update sensore set stato = ? where \"arduino_indirizzoIP\" = ? and stanza = ? and tipo = ?";
+			PreparedStatement updateStatement = connection.prepareStatement(update);
+			updateStatement.setInt(1, stato);
+			updateStatement.setString(2, indirizzoIP);
+			updateStatement.setString(3, stanza);
+			updateStatement.setString(4, tipo);
+			updateStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new PersistenceException(e.getMessage());
+			}
+		}
 	}
 
 }

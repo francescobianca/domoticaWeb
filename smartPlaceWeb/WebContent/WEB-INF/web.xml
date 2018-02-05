@@ -322,6 +322,14 @@
 		<url-pattern>/deleteRules</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>calendarActivity</servlet-name>
+		<servlet-class>controllerAndroid.calendarActivity</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>calendarActivity</servlet-name>
+		<url-pattern>/calendarActivity</url-pattern>
+	</servlet-mapping>
 	
 	<listener>
 	    <listener-class>

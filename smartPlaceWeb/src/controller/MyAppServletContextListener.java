@@ -120,7 +120,7 @@ class UpdateServer extends Thread {
 
 							}
 
-							else if (tipo_sensore.equals("umidit√†")) {
+							else if (tipo_sensore.equals("umidit‡")) {
 
 								Sensore s = new Sensore();
 								SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
@@ -128,6 +128,8 @@ class UpdateServer extends Thread {
 
 								float umidita = leggiUmidita(indirizzo, porta);
 
+								System.out.println("umidit‡"+umidita);
+								
 								Misurazione m = new Misurazione();
 								MisurazioneDao mDao = DatabaseManager.getInstance().getDaoFactory().getMisurazioneDAO();
 
@@ -145,7 +147,7 @@ class UpdateServer extends Thread {
 
 								mDao.save(m);
 								
-								attivaRegola(m);
+								//attivaRegola(m);
 								
 							}
 
@@ -258,15 +260,31 @@ class UpdateServer extends Thread {
 		ResultSet rs = null;
 		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 		try {
-			String query = "select * from regola where indirizzoIP = ? and stanza = ? and tipo = ? ";
 			
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, m.getSensore().getArduino().getIndirizzoIP());
-			statement.setString(2, m.getSensore().getStanza());
-			//statement.setString(3, m.getSensore().getTipo());
-			statement.setString(3, "ventilatore");
+			String query = "";
+			PreparedStatement statement;
 			
-			rs = statement.executeQuery();
+			if (m.getSensore().getTipo().equals("temperatura")) {
+
+				query = "select * from regola where indirizzoIP = ? and stanza = ? and (tipo = ? or tipo = ?)  and attiva=false";
+				statement = connection.prepareStatement(query);
+				statement.setString(1, m.getSensore().getArduino().getIndirizzoIP());
+				statement.setString(2, m.getSensore().getStanza());
+				statement.setString(3, "ventilatore");
+				statement.setString(4, "riscaldamento");
+				rs = statement.executeQuery();
+				
+			}
+			
+			else if (m.getSensore().getTipo().equals("umidit‡")) {
+				query = "select * from regola where indirizzoIP = ? and stanza = ? and tipo = ?  and attiva=false";
+				statement = connection.prepareStatement(query);
+				statement.setString(1, m.getSensore().getArduino().getIndirizzoIP());
+				statement.setString(2, m.getSensore().getStanza());
+				statement.setString(3, "deumidificatore");
+				rs = statement.executeQuery();
+			}
+			
 			
 			int porta = m.getSensore().getArduino().getPorta();
 
@@ -290,13 +308,32 @@ class UpdateServer extends Thread {
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintStream(socket.getOutputStream(), true);
 						
-						if (m.getSensore().getTipo().equals("temperatura")) {
+						/*if (m.getSensore().getTipo().equals("temperatura")) {
 							out.println("setta led");
 							out.println("5");
 							out.flush();
 							
 							salvaStato(m.getSensore().getArduino().getIndirizzoIP(), "casa", 1 , "ventilatore");
+						}*/
+						
+						switch (rs.getString("tipo")) {
+						case "ventilatore":
+							out.println("setta led");
+							out.println("5");
+							out.flush();
+							
+							salvaStato(m.getSensore().getArduino().getIndirizzoIP(), "casa", 1 , "ventilatore");
+							break;
+						case "riscaldamento":
+							;
+							break;
+						case "deumidificatore":
+							;
+							break;
+						default:
+							break;
 						}
+						
 						
 						out.close();
 						in.close();
@@ -318,10 +355,28 @@ class UpdateServer extends Thread {
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintStream(socket.getOutputStream(), true);
 
-						if (m.getSensore().getTipo().equals("temperatura")) {
+						/*if (m.getSensore().getTipo().equals("temperatura")) {
 							out.println("setta led");
 							out.println("5");
 							out.flush();
+						}*/
+						
+						switch (rs.getString("tipo")) {
+						case "ventilatore":
+							out.println("setta led");
+							out.println("5");
+							out.flush();
+							
+							salvaStato(m.getSensore().getArduino().getIndirizzoIP(), "casa", 1 , "ventilatore");
+							break;
+						case "riscaldamento":
+							;
+							break;
+						case "deumidificatore":
+							;
+							break;
+						default:
+							break;
 						}
 						
 						out.close();

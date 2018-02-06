@@ -91,7 +91,6 @@ public class readLightState extends HttpServlet {
 			statement.setString(2, "luce");
 			rs = statement.executeQuery();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {

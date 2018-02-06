@@ -40,7 +40,6 @@ public class monitoraTemperaturaAndroid extends HttpServlet {
 			findInfo(utente);
 
 			// open a socket connection
-			// socket=new Socket(ip,porta);
 			socket = new Socket(ip,porta);
 			// Apre i canali I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -113,7 +112,6 @@ public class monitoraTemperaturaAndroid extends HttpServlet {
 			updateStatement.setString(4, "ventilatore");
 			updateStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {

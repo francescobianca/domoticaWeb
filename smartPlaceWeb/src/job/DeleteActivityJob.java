@@ -14,7 +14,6 @@ import persistence.PersistenceException;
 
 public class DeleteActivityJob implements Job {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		System.out.println("Controllo job da eliminare");

@@ -67,13 +67,6 @@ class UpdateServer extends Thread {
 					while (resultSet.next()) {
 						String indirizzo = resultSet.getString("indirizzoIP");
 						int porta = resultSet.getInt("porta");
-						/*
-						 * Arduino arduino = new Arduino(); ArduinoDao
-						 * arduinoDao =
-						 * DatabaseManager.getInstance().getDaoFactory().
-						 * getArduinoDAO(); arduino =
-						 * arduinoDao.findByPrimaryKey(indirizzo);
-						 */
 
 						query = "select * from sensore where\"arduino_indirizzoIP\"=?";
 						statement = connection.prepareStatement(query);
@@ -90,14 +83,6 @@ class UpdateServer extends Thread {
 
 								float temp = leggiTemperatura(indirizzo, porta);
 
-								/*
-								 * Sensore s = new Sensore(); SensoreDao sDao =
-								 * DatabaseManager.getInstance().getDaoFactory()
-								 * .getSensoreDAO();
-								 * sDao.findByPrimaryKey(indirizzoIP, tipo,
-								 * stanza);
-								 */
-
 								Misurazione m = new Misurazione();
 								MisurazioneDao mDao = DatabaseManager.getInstance().getDaoFactory().getMisurazioneDAO();
 
@@ -105,7 +90,6 @@ class UpdateServer extends Thread {
 								m.setSensore(s);
 								Date current = new Date();
 								m.setGiorno(current);
-								// m.setOra(current);
 
 								Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),
 										Locale.ITALY);
@@ -147,8 +131,6 @@ class UpdateServer extends Thread {
 
 								mDao.save(m);
 								
-								//attivaRegola(m);
-								
 							}
 
 						}
@@ -169,7 +151,6 @@ class UpdateServer extends Thread {
 				}
 
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -308,14 +289,6 @@ class UpdateServer extends Thread {
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintStream(socket.getOutputStream(), true);
 						
-						/*if (m.getSensore().getTipo().equals("temperatura")) {
-							out.println("setta led");
-							out.println("5");
-							out.flush();
-							
-							salvaStato(m.getSensore().getArduino().getIndirizzoIP(), "casa", 1 , "ventilatore");
-						}*/
-						
 						switch (rs.getString("tipo")) {
 						case "ventilatore":
 							out.println("setta led");
@@ -354,12 +327,6 @@ class UpdateServer extends Thread {
 						// Apre i canali I/O
 						in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 						out = new PrintStream(socket.getOutputStream(), true);
-
-						/*if (m.getSensore().getTipo().equals("temperatura")) {
-							out.println("setta led");
-							out.println("5");
-							out.flush();
-						}*/
 						
 						switch (rs.getString("tipo")) {
 						case "ventilatore":

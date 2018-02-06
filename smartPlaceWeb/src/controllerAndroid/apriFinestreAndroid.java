@@ -41,7 +41,6 @@ public class apriFinestreAndroid extends HttpServlet {
 			findInfo(utente);
 
 			// open a socket connection
-			// socket=new Socket(ip,porta);
 			socket = new Socket(ip, porta);
 			// Apre i canali I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -134,7 +133,6 @@ public class apriFinestreAndroid extends HttpServlet {
 			statement.setString(4, "finestra");
 			statement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {

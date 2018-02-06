@@ -26,7 +26,7 @@ public class accendiLuciAndroid extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		BufferedReader in = null;
 		PrintStream out = null;
 		Socket socket = null;
@@ -40,7 +40,6 @@ public class accendiLuciAndroid extends HttpServlet {
 			findInfo(utente);
 
 			// open a socket connection
-			// socket=new Socket(ip,porta);
 			socket = new Socket(ip, porta);
 			// Apre i canali I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -58,27 +57,24 @@ public class accendiLuciAndroid extends HttpServlet {
 			} else if (stanza.equals("salone")) {
 				if (stato.equals("1"))
 					name = "3";
-				else if (stato.equals("0")) 
+				else if (stato.equals("0"))
 					name = "2";
 			} else if (stanza.equals("cucina")) {
 				if (stato.equals("1"))
-					name="a";
+					name = "a";
 				else if (stato.equals("0"))
-					name="b";
+					name = "b";
 			} else if (stanza.equals("cameraLetto")) {
 				if (stato.equals("1"))
-					name="c";
+					name = "c";
 				else if (stato.equals("0"))
-					name="d";
+					name = "d";
 			}
-			
 
 			// Invio nuovo stato da impostare al server di arduino
 			out.println("setta led");
 			out.println(name);
 			out.flush();
-
-			System.out.println(in.readLine());
 
 			out.close();
 			in.close();
@@ -92,7 +88,6 @@ public class accendiLuciAndroid extends HttpServlet {
 			resp.getOutputStream().print("errore");
 			resp.getOutputStream().flush();
 			resp.getOutputStream().close();
-			// System.out.println(e.getMessage());
 		}
 
 	}
@@ -130,9 +125,8 @@ public class accendiLuciAndroid extends HttpServlet {
 			updateStatement.setString(4, "luce");
 			updateStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {

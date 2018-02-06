@@ -38,7 +38,6 @@ public class leggiUmiditaAndroid extends HttpServlet {
 			findInfo(utente);
 
 			// open a socket connection
-			// socket=new Socket(ip,porta);
 			socket = new Socket(ip,porta);
 			// Apre i canali I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

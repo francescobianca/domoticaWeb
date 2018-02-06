@@ -25,7 +25,6 @@ import org.quartz.TriggerBuilder;
 import org.quartz.ee.servlet.QuartzInitializerListener;
 import org.quartz.impl.StdSchedulerFactory;
 
-import controllerAndroid.deleteActivity;
 import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
@@ -45,14 +44,6 @@ public class QuartzListener extends QuartzInitializerListener {
 		StdSchedulerFactory factory = (StdSchedulerFactory) ctx.getAttribute(QUARTZ_FACTORY_KEY);
 		try {
 			scheduler = factory.getScheduler();
-			/*
-			 * JobDetail jobDelete = JobBuilder.newJob(DeleteActivityJob.class).
-			 * withIdentity("delete activity").build(); Trigger triggerDelete =
-			 * TriggerBuilder.newTrigger()
-			 * .withIdentity("trigger delete activity", "group1")
-			 * .withSchedule(CronScheduleBuilder.cronSchedule("0 * * * * ?"))
-			 * .build(); scheduler.scheduleJob(jobDelete,triggerDelete);
-			 */
 
 			connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"), Locale.ITALY);
@@ -108,9 +99,6 @@ public class QuartzListener extends QuartzInitializerListener {
 					
 					java.sql.Date dataSQL = resultSet.getDate("giornoInizio");
 					java.sql.Date dataSQLFine = resultSet.getDate("giornoFine");
-					System.out.println("dataSQL:  giorno "+dataSQL.getDate()+" mese "+dataSQL.getMonth()+" anno "+dataSQL.getYear());
-					System.out.println("dataSQLFine:  giorno "+dataSQLFine.getDate()+" mese "+dataSQLFine.getMonth()+" anno "+dataSQLFine.getYear());
-					
 					
 					@SuppressWarnings("deprecation")
 					int giorno = dataSQL.getDate();
@@ -121,9 +109,6 @@ public class QuartzListener extends QuartzInitializerListener {
 					@SuppressWarnings("deprecation")
 					int anno = dataSQL.getYear() + 1900;
 
-					// System.out.println("trigger:"+
-					// Integer.toString(resultSet.getInt("id"))+"inizio-->"+"0 "
-					// + minuti + " " + ora + " * * ?");
 					Trigger trigger = null;
 
 					if (dataSQL.equals(dataSQLFine)) {
@@ -233,7 +218,6 @@ public class QuartzListener extends QuartzInitializerListener {
 			scheduler.clear();
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

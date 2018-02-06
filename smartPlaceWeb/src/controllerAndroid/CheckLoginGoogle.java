@@ -28,27 +28,27 @@ public class CheckLoginGoogle extends HttpServlet {
 		String nome = req.getParameter("nome");
 		String cognome = req.getParameter("cognome");
 		String email = req.getParameter("email");
-		
+
 		UtenteDao dao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 		UtenteCredenziali utente = dao.findByPrimaryKeyCredential(email);
 
 		if (utente == null) {
 			Utente utenteGoogle = new Utente(email, nome, cognome, new Date());
 			/*
-			 * L'utente non √® ancora registrato con l'email che ha inserito
+			 * L'utente non Ë ancora registrato con l'email che ha inserito
 			 * bisogna quindi registrare questo utente e poi farlo entrare.
 			 */
 
 			dao.save(utenteGoogle);
-			// L'utente √® stato registrato per la prima volta tramite google e
+			// L'utente Ë stato registrato per la prima volta tramite google e
 			// salvato nel database.
 			session.setAttribute("email", email);
 			resp.getOutputStream().print("ok");
 			resp.getOutputStream().flush();
 			resp.getOutputStream().close();
 		} else {
-			// Ha gi√† effettuato in precedenza un login con google quindi non
-			// c'√® bisogno di salvarlo nel database.
+			// Ha gi‡† effettuato in precedenza un login con google quindi non
+			// c'Ë bisogno di salvarlo nel database.
 			session.setAttribute("email", email);
 			resp.getOutputStream().print("ok");
 			resp.getOutputStream().flush();

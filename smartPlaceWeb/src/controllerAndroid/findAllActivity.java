@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
-//Servlet che legge tutte le attività --> Bisogna mapparla nel web.xml
-
 @SuppressWarnings("serial")
 public class findAllActivity extends HttpServlet {
 

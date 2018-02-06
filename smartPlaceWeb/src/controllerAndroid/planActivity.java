@@ -186,14 +186,6 @@ public class planActivity extends HttpServlet {
 
 			// Se un'attività rientra in questa query è incongruente.
 
-			// (( ? > giornoInizio and ? < giornoInizio) or (giornoInizio > ?
-			// and ? > giornoFine and giornoInizio > ? and ? > giornoFine)"
-			// + "or (giornoInizio > ? and ? > giornoFine and ? < giornoFine))
-
-			/*
-			 * and" + "((? >= orarioInizio) and (? <= orarioFine)) ";
-			 */
-
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, ip);
 			statement.setString(2, tipo);
@@ -213,7 +205,6 @@ public class planActivity extends HttpServlet {
 
 			ResultSet result = statement.executeQuery();
 
-			// se non ci sono incongruenze allora ritorna true,altrimenti false
 			boolean condition = true;
 			while (result.next()) {
 

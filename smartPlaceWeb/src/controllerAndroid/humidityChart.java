@@ -94,18 +94,15 @@ public class humidityChart extends HttpServlet {
 			Date parsed = format.parse(dataInizio);
 			java.sql.Date inizio = new java.sql.Date(parsed.getTime());
 
-			// long inizio = Long.parseLong(dataInizio);
 			statement.setDate(2, inizio);
 
 			Date parsed1 = format.parse(dataFine);
 			java.sql.Date fine = new java.sql.Date(parsed1.getTime());
 
-			// long fine = Long.parseLong(dataFine);
 			statement.setDate(3, fine);
-			statement.setString(4, "umidit√†");
+			statement.setString(4, "umidit‡");
 			rs = statement.executeQuery();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {

@@ -93,7 +93,6 @@ public class readFanState extends HttpServlet {
 			statement.setString(2, "ventilatore");
 			rs = statement.executeQuery();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {

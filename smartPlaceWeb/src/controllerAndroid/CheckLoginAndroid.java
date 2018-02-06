@@ -43,7 +43,7 @@ public class CheckLoginAndroid extends HttpServlet {
 		String password = req.getParameter("password");
 		UtenteDao dao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 		UtenteCredenziali utente = dao.findByPrimaryKeyCredential(email);
-		//System.out.println(utente.toString());
+
 		if (utente == null) {
 			resp.getOutputStream().print("DatiSbagliati");
 			resp.getOutputStream().flush();

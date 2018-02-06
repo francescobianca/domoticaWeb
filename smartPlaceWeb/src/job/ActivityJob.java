@@ -8,9 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-
-import javax.swing.plaf.SliderUI;
 
 import org.quartz.Job;
 import org.quartz.JobDataMap;
@@ -52,10 +49,6 @@ public class ActivityJob implements Job {
 		}
 
 		if (esegui) {
-			System.out.println("----------------------------------------------------------------------");
-			System.out.println(indirizzoIP + " " + porta + " " + stanza + " " + tipo + " " + operazione);
-			System.out.println("Data escuzione: " + new Date().toString());
-			System.out.println("----------------------------------------");
 
 			BufferedReader in = null;
 			PrintStream out = null;

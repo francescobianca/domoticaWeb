@@ -84,10 +84,7 @@ public class ReadActivity extends Thread {
 						
 						java.sql.Date dataSQL = resultSet.getDate("giornoInizio");
 						java.sql.Date dataSQLFine = resultSet.getDate("giornoFine");
-						System.out.println("dataSQL:  giorno "+dataSQL.getDate()+" mese "+dataSQL.getMonth()+" anno "+dataSQL.getYear());
-						System.out.println("dataSQLFine:  giorno "+dataSQLFine.getDate()+" mese "+dataSQLFine.getMonth()+" anno "+dataSQLFine.getYear());
-						
-						
+				
 						@SuppressWarnings("deprecation")
 						int giorno = dataSQL.getDate();
 

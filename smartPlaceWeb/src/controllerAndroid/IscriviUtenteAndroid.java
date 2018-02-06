@@ -92,6 +92,8 @@ public class IscriviUtenteAndroid extends HttpServlet {
 		Sensore sensore9 = new Sensore("finestra", "cucina");
 		Sensore sensore10 = new Sensore("finestra", "cameraLetto");
 		Sensore sensore11 = new Sensore("finestra", "bagno");
+		
+		Sensore sensore12 = new Sensore("cancello", "casa");
 
 		SensoreDao sDao = DatabaseManager.getInstance().getDaoFactory().getSensoreDAO();
 
@@ -106,6 +108,7 @@ public class IscriviUtenteAndroid extends HttpServlet {
 		sensore9.setArduino(arduino);
 		sensore10.setArduino(arduino);
 		sensore11.setArduino(arduino);
+		sensore12.setArduino(arduino);
 
 		sDao.save(sensore1);
 		sDao.save(sensore2);
@@ -118,6 +121,7 @@ public class IscriviUtenteAndroid extends HttpServlet {
 		sDao.save(sensore9);
 		sDao.save(sensore10);
 		sDao.save(sensore11);
+		sDao.save(sensore12);
 		
 	}
 }

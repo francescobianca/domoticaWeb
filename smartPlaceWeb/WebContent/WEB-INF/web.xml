@@ -331,6 +331,24 @@
 		<url-pattern>/calendarActivity</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>apriCancelloAndroid</servlet-name>
+		<servlet-class>controllerAndroid.apriCancelloAndroid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>apriCancelloAndroid</servlet-name>
+		<url-pattern>/apriCancelloAndroid</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>readGateState</servlet-name>
+		<servlet-class>controllerAndroid.readGateState</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>readGateState</servlet-name>
+		<url-pattern>/readGateState</url-pattern>
+	</servlet-mapping>
+	
 	<listener>
 	    <listener-class>
 	        controller.MyAppServletContextListener

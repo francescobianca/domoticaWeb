@@ -59,6 +59,9 @@ class UpdateServer extends Thread {
 
 				Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 				try {
+					//sleep(3600000);
+					sleep(60000);
+					
 					String query = "select * from arduino";
 					PreparedStatement statement = connection.prepareStatement(query);
 
@@ -138,7 +141,7 @@ class UpdateServer extends Thread {
 
 					// sleep(60000); // 1 minuto
 					//sleep(120000);
-					sleep(10000);
+					//sleep(10000);
 					
 				} catch (SQLException e) {
 					throw new PersistenceException(e.getMessage());

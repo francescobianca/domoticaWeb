@@ -50,7 +50,7 @@ public class CheckLoginGoogle extends HttpServlet {
 			// Ha già  effettuato in precedenza un login con google quindi non
 			// c'è bisogno di salvarlo nel database.
 			session.setAttribute("email", email);
-			resp.getOutputStream().print("ok");
+			resp.getOutputStream().print("registrato");
 			resp.getOutputStream().flush();
 			resp.getOutputStream().close();
 		}

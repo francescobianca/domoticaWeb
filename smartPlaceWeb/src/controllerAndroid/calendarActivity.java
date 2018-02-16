@@ -50,7 +50,13 @@ public class calendarActivity extends HttpServlet {
 							+ "," + r.getDate("giornoFine") + "," + r.getTime("orarioFine") + "," + r.getString("tipo")
 							+ "," + "deumidificatore";
 					activity += "/";
-				} else {
+				} else if (r.getString("tipo").equals("cancello")) {
+					activity += r.getString("nome") + "," + r.getDate("giornoInizio") + "," + r.getTime("orarioInizio")
+					+ "," + r.getDate("giornoFine") + "," + r.getTime("orarioFine") + "," + r.getString("tipo")
+					+ "," + "cancello";
+					activity += "/";
+				}
+				else {
 					activity += r.getString("nome") + "," + r.getDate("giornoInizio") + "," + r.getTime("orarioInizio")
 							+ "," + r.getDate("giornoFine") + "," + r.getTime("orarioFine") + "," + r.getString("tipo")
 							+ "," + r.getString("stanza");

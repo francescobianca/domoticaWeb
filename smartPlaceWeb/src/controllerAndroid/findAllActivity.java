@@ -33,7 +33,7 @@ public class findAllActivity extends HttpServlet {
 			boolean trovaDati = false;
 			String activity = "";
 			
-			if (tipo.equals("temperatura")) {
+			if (tipo.equals("temperatura") || tipo.equals("cancello")) {
 				while (r.next()) {
 
 					trovaDati = true;

@@ -57,8 +57,6 @@ public class ReadActivity extends Thread {
 						statement = connection.prepareStatement(query);
 						statement.setString(1, resultSet.getString("indirizzoIP"));
 
-						System.out.println("ID JOB:" + resultSet.getInt("id"));
-
 						ResultSet rs = statement.executeQuery();
 						int porta = 0;
 						if (rs.next()) {

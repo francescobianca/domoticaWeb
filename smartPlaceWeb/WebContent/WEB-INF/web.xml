@@ -349,6 +349,16 @@
 		<url-pattern>/readGateState</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>checkSensoriGoogle</servlet-name>
+		<servlet-class>controllerAndroid.checkSensoriGoogle</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>checkSensoriGoogle</servlet-name>
+		<url-pattern>/checkSensoriGoogle</url-pattern>
+	</servlet-mapping>
+	
+	
 	<listener>
 	    <listener-class>
 	        controller.MyAppServletContextListener

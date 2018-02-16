@@ -70,9 +70,7 @@ public class QuartzListener extends QuartzInitializerListener {
 					query = "select porta from arduino where \"indirizzoIP\" = ? ";
 					statement = connection.prepareStatement(query);
 					statement.setString(1, resultSet.getString("indirizzoIP"));
-
-					System.out.println("ID JOB:" + resultSet.getInt("id"));
-
+					
 					ResultSet rs = statement.executeQuery();
 					int porta = 0;
 					if (rs.next()) {

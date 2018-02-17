@@ -1,0 +1,18 @@
+@CHARSET "ISO-8859-1";
+.validFormBox {
+	background: rgba(111, 214, 111, 0.75);
+}
+
+.errorFormBox {
+	background: rgba(246, 59, 59, 0.75);
+}
+
+
+
+.label {
+    border: 1px solid #000;
+}
+
+.errore {
+	color: rgb(219, 55, 55)
+}

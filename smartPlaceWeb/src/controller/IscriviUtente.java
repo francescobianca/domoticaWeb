@@ -34,7 +34,6 @@ public class IscriviUtente extends HttpServlet {
 		String cognome = req.getParameter("cognome");
 		String dataNascita = req.getParameter("dataNascita");
 		String password = req.getParameter("password");
-
 		String indirizzoIP = req.getParameter("indirizzoIP");
 		String porta = req.getParameter("porta");
 
@@ -81,13 +80,31 @@ public class IscriviUtente extends HttpServlet {
 		}
 
 		boolean errori = false;
+		if(!req.getSession().getAttribute("email").equals(email))
+			errori=true;
+		if(!req.getSession().getAttribute("nome").equals(nome))
+			errori=true;
+		if(!req.getSession().getAttribute("cognome").equals(cognome))
+			errori=true;
+		if(!req.getSession().getAttribute("dataNascita").equals(dataNascita))
+			errori=true;
+		if(!req.getSession().getAttribute("indirizzoIP").equals(indirizzoIP))
+			errori=true;
+		if(!req.getSession().getAttribute("password").equals(password))
+			errori=true;
+		if(!req.getSession().getAttribute("porta").equals(porta))
+			errori=true;
+		/*
 		Enumeration<String> parametri = req.getParameterNames();
 		while (parametri.hasMoreElements()) {
-
 			String string = (String) parametri.nextElement();
-			if (!req.getParameter(string).equals(req.getSession().getAttribute(string)))
-				errori = true;
-		}
+			if (!string.equals("inviaDati")) {
+				if (!req.getParameter(string).equals(req.getSession().getAttribute(string))) {
+					System.err.println("" + req.getParameter(string) + " : " + req.getSession().getAttribute(string));
+					errori = true;
+				}
+			}
+		}*/
 		if (!errori) {
 			DateFormat format = new SimpleDateFormat("yyyy-mm-dd", Locale.ITALIAN);
 			Date date;
@@ -111,7 +128,7 @@ public class IscriviUtente extends HttpServlet {
 			} catch (ParseException e) {
 				resp.getWriter().print("errore");
 			}
-		}else{
+		} else {
 			System.out.println("I dati non corrispondono");
 		}
 	}

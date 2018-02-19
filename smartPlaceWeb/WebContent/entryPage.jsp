@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,8 +61,8 @@
 			Menu <i class="fa fa-bars"></i>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			
-			<c:if test="${loggato==null}">
+
+			<c:if test="${utente==null}">
 
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
@@ -76,14 +77,14 @@
 				</ul>
 
 			</c:if>
-			
-			<c:if test="${loggato!=null}">
+
+			<c:if test="${utente!=null}">
+				<a style="color:white" id="utente"
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
+					${utente.nome} ${utente.cognome}</a>
 
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href=""> ${loggato.utente.email}</a></li>
-						
+
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="dashboard.html">DashBoard</a></li>
@@ -96,8 +97,8 @@
 				</ul>
 
 			</c:if>
-			
-			
+
+
 
 		</div>
 	</div>

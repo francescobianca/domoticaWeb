@@ -42,7 +42,7 @@ public class CheckLogin extends HttpServlet{
 				session.setAttribute("nome", utente.getNome());
 				session.setAttribute("cognome", utente.getCognome());
 				RequestDispatcher disp;
-				disp= req.getRequestDispatcher("NewFile.jsp");
+				disp= req.getRequestDispatcher("entryPage.jsp");
 				req.setAttribute("utente", utente);
 				disp.forward(req, resp);
 			}else{

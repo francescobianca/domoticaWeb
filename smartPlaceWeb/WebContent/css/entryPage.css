@@ -3,7 +3,7 @@ img#logo {
 	right:10px;
 	width:150px;
 	height:auto;
-}
+} 
 
 img#house1 {
 	max-width: 100%;
@@ -97,3 +97,6 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+

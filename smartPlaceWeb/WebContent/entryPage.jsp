@@ -87,10 +87,9 @@
 
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="dashboard.html">DashBoard</a></li>
+						href="leggiStatoDispositivi">DashBoard</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-						href="">Logout</a></li>
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="checkLogin">Logout</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="aboutUS.html">About</a></li>
@@ -213,7 +212,10 @@
 
 	<script
 		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
+	
+	<!-- Custom js for entryPage -->
+	<script src="js/entryPage.js"></script>
+	
 </body>
 
 </html>

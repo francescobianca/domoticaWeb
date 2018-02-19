@@ -7,10 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Arduino;
 import model.Sensore;
@@ -122,7 +124,14 @@ public class IscriviUtente extends HttpServlet {
 				aDao.save(arduino);
 
 				installaDispositivi(arduino);
-
+				HttpSession session=req.getSession();
+				session.setAttribute("email", email);
+				session.setAttribute("nome", utente.getNome());
+				session.setAttribute("cognome", utente.getCognome());
+				RequestDispatcher disp;
+				disp= req.getRequestDispatcher("entryPage.jsp");
+				req.setAttribute("utente", utente);
+				disp.forward(req, resp);
 			} catch (ParseException e) {
 				resp.getWriter().print("errore");
 			}

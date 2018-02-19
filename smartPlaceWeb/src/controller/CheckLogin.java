@@ -18,9 +18,16 @@ import persistence.dao.UtenteDao;
 public class CheckLogin extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		PrintWriter out = resp.getWriter();
-		//Implementare logout
+		HttpSession session=req.getSession();
+		System.out.println("Logout");
+		//log-out
+		session.removeAttribute("email");
+		session.removeAttribute("nome");
+		session.removeAttribute("cognome");
+		
+		RequestDispatcher disp;
+		disp= req.getRequestDispatcher("entryPage.jsp");
+		disp.forward(req, resp);
 	}
 	
 	@Override

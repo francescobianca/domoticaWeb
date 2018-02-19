@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 
 <meta charset="utf-8">
@@ -90,7 +92,7 @@
 			<hr class="star-dark mb-5">
 			<div class="row">
 				<div class="col-md-6 col-lg-4">
-					<a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+					<a class="portfolio-item d-block mx-auto" href="#categoria_temperatura">
 						<div
 							class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 							<div
@@ -101,7 +103,7 @@
 					</a>
 				</div>
 				<div class="col-md-6 col-lg-4">
-					<a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
+					<a class="portfolio-item d-block mx-auto" href="#categoria_luci">
 						<div
 							class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 							<div
@@ -112,7 +114,7 @@
 					</a>
 				</div>
 				<div class="col-md-6 col-lg-4">
-					<a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
+					<a class="portfolio-item d-block mx-auto" href="#categoria_cancello">
 						<div
 							class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 							<div
@@ -123,7 +125,7 @@
 					</a>
 				</div>
 				<div class="col-md-6 col-lg-4">
-					<a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
+					<a class="portfolio-item d-block mx-auto" href="#categoria_finestre">
 						<div
 							class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 							<div
@@ -134,18 +136,18 @@
 					</a>
 				</div>
 				<div class="col-md-6 col-lg-4">
-					<a class="portfolio-item d-block mx-auto" href="#portfolio-modal-5">
+					<a class="portfolio-item d-block mx-auto" href="#categoria_umidita">
 						<div
 							class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 							<div
 								class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								<i class="fa fa-search-plus fa-3x"></i>
 							</div>
-						</div> <img class="img-fluid" src="images/umidit√†.png" alt="">
+						</div> <img class="img-fluid" src="images/umidita.png" alt="">
 					</a>
 				</div>
 				<div class="col-md-6 col-lg-4">
-					<a class="portfolio-item d-block mx-auto" href="#portfolio-modal-6">
+					<a class="portfolio-item d-block mx-auto" href="#categoria_sicurezza">
 						<div
 							class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 							<div
@@ -217,10 +219,10 @@
 		</a>
 	</div>
 
-	<!-- Portfolio Modals -->
+	<!-- Elenco categorie -->
 
-	<!-- Portfolio Modal 1 -->
-	<div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
+	<!-- Categoria temperatura-->
+	<div class="portfolio-modal mfp-hide" id="categoria_temperatura">
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -231,7 +233,6 @@
 						<h2 class="text-secondary text-uppercase mb-0">Temperatura</h2>
 						<hr class="star-dark mb-5">
 						<img class="img-fluid mb-5" src="img/portfolio/cabin.png" alt="">
-
 
 						<a
 							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
@@ -245,8 +246,8 @@
 
 
 
-	<!-- Portfolio Modal 2 -->
-	<div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
+	<!-- Categoria Luci -->
+	<div class="portfolio-modal mfp-hide" id="categoria_luci">
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -265,11 +266,18 @@
 							</div> <img class="img-fluid" src="images/bagno.png" alt="">
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Bagno</h3>
-
-						<label class="switch"> <input type="checkbox" checked>
+						
+						<c:if test="${luce_bagno.stato == 0}">
+						<label class="switch"> <input type="checkbox" unchecked id="luce_bagno">
 							<span class="slider round"></span>
 						</label>
-
+						</c:if>
+						<c:if test="${luce_bagno.stato == 1}">
+						<label class="switch"> <input type="checkbox" checked id="luce_bagno">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
+						<h2>${luce_bagno.stato}</h2>
 
 
 					</div>
@@ -283,7 +291,7 @@
 							</div> <img class="img-fluid" src="images/cucina.png" alt="">
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Cucina</h3>
-						<label class="switch"> <input type="checkbox" checked>
+						<label class="switch"> <input type="checkbox" checked id="luce_cucina">
 							<span class="slider round"></span>
 						</label>
 					</div>
@@ -299,7 +307,7 @@
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Camera
 							da letto</h3>
-						<label class="switch"> <input type="checkbox" checked>
+						<label class="switch"> <input type="checkbox" checked id="luce_letto">
 							<span class="slider round"></span>
 						</label>
 
@@ -315,7 +323,7 @@
 							</div> <img class="img-fluid" src="images/salotto.png" alt="">
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Salone</h3>
-						<label class="switch"> <input type="checkbox" checked>
+						<label class="switch"> <input type="checkbox" checked id="luce_salone">
 							<span class="slider round"></span>
 						</label>
 					</div>
@@ -337,8 +345,8 @@
 		</div>
 	</div>
 
-	<!-- Portfolio Modal 3 -->
-	<div class="portfolio-modal mfp-hide" id="portfolio-modal-3">
+	<!-- Categoria cancello-->
+	<div class="portfolio-modal mfp-hide" id="categoria_cancello">
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -360,8 +368,8 @@
 		</div>
 	</div>
 
-	<!-- Portfolio Modal 4 -->
-	<div class="portfolio-modal mfp-hide" id="portfolio-modal-4">
+	<!-- Categoria finestre -->
+	<div class="portfolio-modal mfp-hide" id="categoria_finestre">
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -381,15 +389,10 @@
 						</a>
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_bagno">
 								70%</div>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Bagno</h3>
-
-
-
-
-
 
 					</div>
 					<div class="col-md-6 col-lg-6">
@@ -403,7 +406,7 @@
 						</a>
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_cucina">
 								70%</div>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Cucina</h3>
@@ -421,7 +424,7 @@
 						</a>
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_letto">
 								70%</div>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Camera
@@ -441,7 +444,7 @@
 						</a>
 						<div class="progress">
 							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_salone">
 								70%</div>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Salone</h3>
@@ -466,8 +469,8 @@
 	</div>
 
 
-	<!-- Portfolio Modal 5 -->
-	<div class="portfolio-modal mfp-hide" id="portfolio-modal-5">
+	<!-- Categoria umidita† -->
+	<div class="portfolio-modal mfp-hide" id="categoria_umidita">
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -475,7 +478,7 @@
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
-						<h2 class="text-secondary text-uppercase mb-0">Umidit√†</h2>
+						<h2 class="text-secondary text-uppercase mb-0">Umidit‡</h2>
 						<hr class="star-dark mb-5">
 						<img class="img-fluid mb-5" src="img/portfolio/safe.png" alt="">
 
@@ -489,8 +492,8 @@
 		</div>
 	</div>
 
-	<!-- Portfolio Modal 6 -->
-	<div class="portfolio-modal mfp-hide" id="portfolio-modal-6">
+	<!--Categoria Sicurezza -->
+	<div class="portfolio-modal mfp-hide" id="categoria_sicurezza">
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>

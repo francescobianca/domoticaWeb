@@ -33,6 +33,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>leggiStatoDispositivi</servlet-name>
+		<servlet-class>controller.leggiStatoDispositivi</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>leggiStatoDispositivi</servlet-name>
+		<url-pattern>/leggiStatoDispositivi</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AccendiLuci</servlet-name>
 		<servlet-class>controller.AccendiLuci</servlet-class>
 	</servlet>

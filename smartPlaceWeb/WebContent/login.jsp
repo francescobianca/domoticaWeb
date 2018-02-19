@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html class="no-js">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -17,26 +17,40 @@
 <!-- Custom styles for this template-->
 <link href="startbootstrap-sb-admin-gh-pages/css/sb-admin.css"
 	rel="stylesheet">
+<!-- Custom css for login -->
+<link href="css/register.css" rel="stylesheet" type="text/css" />
+
 </head>
-
-
-
 <body class="bg-dark">
 	<div class="container">
 		<div class="card card-login mx-auto mt-5">
 			<div class="card-header">Login</div>
 			<div class="card-body">
-				<c:if test="${loggato==null}">
 				<form method="post" action="checkLogin">
 
 					<div class="form-group">
-						<label for="email">Indirizzo email</label> <input name="email"
-							type="text" class="form-control" />
-
+						<c:if test="${email!=null}">
+							<label for="email">Indirizzo email</label>
+							<input name="email" value="${email}" type="text"
+								class="form-control" id="emailBox" onblur="checkEmail()" />
+							<span class="card-Header errore" id="ErroreEmail"
+							style="display: none">Indirizzo non registrato</span>
+						</c:if>
+						<c:if test="${email==null}">
+							<label for="email">Indirizzo email</label>
+							<input name="email" type="text" class="form-control"
+								id="emailBox" onblur="checkEmail()" />
+							<span class="card-Header errore" id="ErroreEmail"
+								style="display: none">Indirizzo non registrato</span>
+						</c:if>
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label> <input name="password"
-							type="password" class="form-control" />
+							type="password" class="form-control" id="passwordBox" />
+						<c:if test="${email!=null}">
+							<span class="card-Header errore" id="ErroreConfermaPassword"
+								style="display: block">Password errata</span>
+						</c:if>
 					</div>
 
 					<div class="form-group">
@@ -47,14 +61,14 @@
 							</label>
 						</div>
 					</div>
-					
 
-				<div class="form-group">
-					<input name="inviaDati" type="submit" value="Login"  class="btn btn-primary btn-block"/>
-				</div>	
+
+					<div class="form-group">
+						<input name="inviaDati" type="submit" id="loginButton"
+							value="Login" class="btn btn-primary btn-block" />
+					</div>
 
 				</form>
-				</c:if>
 				<div class="text-center">
 					<a class="d-block small mt-3" href="register.html">Registra un
 						Account</a> <a class="d-block small" href="forgot-password.html">Hai
@@ -62,7 +76,7 @@
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 
 
 	<!-- Bootstrap core JavaScript-->
@@ -73,5 +87,8 @@
 	<!-- Core plugin JavaScript-->
 	<script
 		src="startbootstrap-sb-admin-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom js for login -->
+	<script src="js/login.js"></script>
 </body>
 </html>

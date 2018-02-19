@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,38 +20,7 @@ public class CheckLogin extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		PrintWriter out = resp.getWriter();
-		if ( (req.getParameter("logout") != null) && (req.getParameter("logout").equals("true"))){
-			session.setAttribute("email", null);	
-			out.println("<html>");
-			out.println("<head><title>Login</title></head>");
-			out.println("<body>");
-			out.println("<h1>Logout effettuato con successo</h1>");
-			out.println("</body>");
-			out.println("</html>");	
-		}else{
-			String email = (String) session.getAttribute("email");		
-			if (email != null){			
-				out.println("<html>");
-				out.println("<head><title>Login</title></head>");
-				out.println("<body>");
-				out.println("<h1>Sei già loggato come " + email + "</h1>");
-				out.println("<a href=\"checkLogin?logout=true\">Logout</a>");
-				out.println("</body>");
-				out.println("</html>");	
-			}else{
-				out.println("<html>");
-				out.println("<head><title>Effettual il Login</title></head>");
-				out.println("<body>");
-				out.println("<h1>Effettua il login</h1>");
-				out.println("<form method=\"post\" action=\"checkLogin\">");
-				out.println("Username : <input name=\"email\" type=\"text\" />");
-				out.println("Password : <input name=\"password\" type=\"password\" />");
-				out.println("<input type=\"submit\" />");
-				out.println("</form>");
-				out.println("</body>");
-				out.println("</html>");
-			}
-		}
+		//Implementare logout
 	}
 	
 	@Override
@@ -62,25 +32,25 @@ public class CheckLogin extends HttpServlet{
 		String password = req.getParameter("password");
 		UtenteDao dao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 		UtenteCredenziali utente = dao.findByPrimaryKeyCredential(email);
-		
-		if (utente == null){
-			out.println("<html>");
-			out.println("<head><title>Login</title></head>");
-			out.println("<body>");
-			out.println("<h1>Nessun utente è registrato come " + email + "</h1>");			
-			out.println("</body>");
-			out.println("</html>");				
+
+		if (req.getParameter("checkEmail")!=null){
+			if(utente!=null)
+				out.print("ok");
 		}else{
 			if (password.equals(utente.getPassword())){
 				session.setAttribute("email", email);
-				resp.sendRedirect("report/index.html"); 
+				session.setAttribute("nome", utente.getNome());
+				session.setAttribute("cognome", utente.getCognome());
+				RequestDispatcher disp;
+				disp= req.getRequestDispatcher("NewFile.jsp");
+				req.setAttribute("utente", utente);
+				disp.forward(req, resp);
 			}else{
-				out.println("<html>");
-				out.println("<head><title>Login</title></head>");
-				out.println("<body>");
-				out.println("<h1>Spiacente, password non corrispondente per l'utente " + email + "</h1>");			
-				out.println("</body>");
-				out.println("</html>");	
+				out.print("passwordErrata");
+				RequestDispatcher dispatcher;
+				dispatcher=req.getRequestDispatcher("login.jsp");
+				req.setAttribute("email", email);
+				dispatcher.forward(req, resp);
 			}				
 		}
 	}

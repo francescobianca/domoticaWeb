@@ -21,6 +21,8 @@
 <link href="startbootstrap-sb-admin-gh-pages/css/sb-admin.css"
 	rel="stylesheet">
 </head>
+<!-- Custom css for register page -->
+<link href="css/register.css" rel="stylesheet" type="text/css" />
 
 <script>
 	function messaggioPulisci() {
@@ -41,7 +43,9 @@
 
 					<div class="form-group">
 						<label for="email">Email:</label> <input name="email" type="text"
-							class="form-control" id="emailBox" onblur="checkEmail()" />
+							class="form-control" id="emailBox" onblur="checkEmail()" /> <span
+							class="card-Header errore" id="erroreEmail" style="display: none">Email
+							già esistente</span>
 					</div>
 
 					<div class="form-group">
@@ -52,26 +56,36 @@
 							</div>
 							<div class="col-md-6">
 								<label for="cognome">Cognome:</label> <input name="cognome"
-									type="text" class="form-control" id="cognomeBox" onblur="checkCognome()"/>
+									type="text" class="form-control" id="cognomeBox"
+									onblur="checkCognome()" />
 							</div>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="dataNascita">Data di Nascita:</label> <input
-							name="dataNascita" type="date" class="form-control" id="dataBox" onblur="sendDate()" />
+							name="dataNascita" type="date" class="form-control" id="dataBox"
+							onblur="sendDate()" />
 					</div>
 
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
 								<label for="password">Password:</label> <input name="password"
-									type="password" class="form-control" id="passwordBox" />
+									type="password" class="form-control" id="passwordBox"
+									onblur="controllaRequisitiPassword()" /> <span
+									class="card-Header errore" id="ErrorePassword"
+									style="dispaly: none">La password non rispetta i
+									requisiti. La password deve contentere almeno un numero, un
+									carattere maiuscolo, un carattere minuscolo e deve contenere
+									almeno 8 caratteri e massimo 16 caratteri</span>
 							</div>
 							<div class="col-md-6">
 								<label for="confermaPassword">Conferma password:</label> <input
-									name="confermaPassword" type="password" class="form-control" onblur="checkPassword()"
-									id ="confermaPasswordBox"/>
+									name="confermaPassword" type="password" class="form-control"
+									onblur="checkPassword()" id="confermaPasswordBox" /> <span
+									class="card-Header errore" id="ErroreConfermaPassword"
+									style="display: none">La due password non sono uguali</span>
 							</div>
 						</div>
 					</div>
@@ -91,20 +105,28 @@
 				id="containerDispositivo">
 				<div class="card-header">Configura il tuo dispositivo</div>
 				<div class="card-body">
-
 					<div class="form-group">
-						<label for="email">IndirizzoIP:</label> <input name="indirizzoIP"
-							type="text" class="form-control" id="indirizzoIP" onblur="checkIndirizzoIP()"/>
+						<input name="indietro" type="button" value="Indietro"
+								class="btn btn-primary btn-block" id="indietroButton" /> 
+					</div>
+					<div class="form-group">
+						<label for="email">Indirizzo IP:</label> <input name="indirizzoIP"
+							type="text" class="form-control" id="indirizzoIP"
+							onblur="checkIndirizzoIP()" />
+						<span class="card-Header errore" id="ErroreIndirizzo" style="display: none">L'indirizzo non è un indirizzo IP valido</span>
 					</div>
 
 					<div class="form-group">
 						<label for="email">Porta:</label> <input name="porta" type="text"
-							class="form-control" id="porta" onblur="checkPorta()"/>
+							class="form-control" id="porta" onblur="checkPorta()" />
+						<span class="card-Header errore" id="ErrorePorta" style="display: none">Deve essere un numero intero</span>
+							
 					</div>
 
 					<div class="form-group">
-						<input name="inviaDati" type="submit" value="Registrati"
-							class="btn btn-primary btn-block" id="registratiButton" />
+							<input
+								name="inviaDati" type="submit" value="Registrati"
+								class="btn btn-primary btn-block" id="registratiButton" />
 					</div>
 
 				</div>

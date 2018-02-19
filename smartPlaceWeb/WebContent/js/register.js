@@ -4,11 +4,12 @@ function checkAllFirstForm() {
 	var emailColor = $("#emailBox").css('background');
 	var nomeColor = $("#nomeBox").css('background');
 	var cognomeColor = $("#cognomeBox").css('background');
-	var passwordColor = $("#confermaPasswordBox").css('background');
+	var passwordColor=$("#passwordBox").css('background');
+	var confermaPasswordColor = $("#confermaPasswordBox").css('background');
 	var dataColor = $("#dataBox").css('background');
 	if (emailColor == green_color && nomeColor == green_color
-			&& cognomeColor == green_color && passwordColor == green_color
-			&& dataColor == green_color) {
+			&& cognomeColor == green_color && confermaPasswordColor == green_color
+			&& dataColor == green_color && passwordColor == green_color) {
 		$("#Avanti").prop("disabled", false);
 	}else{
 		$("#Avanti").prop("disabled", true);
@@ -28,7 +29,8 @@ function checkAllSecondForm(){
 }
 // Controlla che non sia già presente sul db questa email contattando la servlet
 function checkEmail() {
-	if ($("#emailBox").val() != "") {
+	var pattern=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (pattern.test($("#emailBox").val())) {
 		$.ajax({
 			url : 'iscriviUtente',
 			data : "email=" + $("#emailBox").val() + "&checkEmail=check",
@@ -53,7 +55,10 @@ function checkEmail() {
 			}
 		});
 	} else {
-		alert("inserisci un valore");
+		$("#emailBox").removeClass("validFormBox");
+		$("#emailBox").addClass("errorFormBox");
+		$("#erroreEmail").css('display', 'none');
+		checkAllFirstForm();
 	}
 }
 
@@ -61,12 +66,16 @@ function passwordOk() {
 	$("#ErrorePassword").css('display', 'none');
 	$("#passwordBox").removeClass("errorFormBox");
 	$("#passwordBox").addClass("validFormBox");
+	if($("#confermaPasswordBox").val() != "")
+		checkPassword();
+	checkAllFirstForm();
 }
 
 function errorePassword() {
 	$("#ErrorePassword").css('display', 'block');
 	$("#passwordBox").removeClass("validFormBox");
 	$("#passwordBox").addClass("errorFormBox");
+	checkAllFirstForm();
 }
 // controlla che la password rispetti i requisiti
 // contiene almeno un numero
@@ -116,9 +125,9 @@ function controllaRequisitiPassword() {
 
 // Controllo che le password inserite siano uguali
 function checkPassword() {
-	var green_color = "rgba(111, 214, 111, 0.75) none repeat scroll 0% 0% / auto padding-box border-box";
-	var passwordColor = $("#passwordBox").css('background');
-	if (green_color == passwordColor) {
+	//var green_color = "rgba(111, 214, 111, 0.75) none repeat scroll 0% 0% / auto padding-box border-box";
+	//var passwordColor = $("#passwordBox").css('background');
+	//if (green_color == passwordColor) {
 		if ($("#passwordBox").val() != ""
 				&& $("#confermaPasswordBox").val() != "") {
 			if ($("#passwordBox").val() == $("#confermaPasswordBox").val()) {
@@ -149,9 +158,10 @@ function checkPassword() {
 				$("#confermaPasswordBox").removeClass("validFormBox");
 				$("#confermaPasswordBox").addClass("errorFormBox");
 				$("#ErroreConfermaPassword").css('display','block');
+				checkAllFirstForm();
 			}
 		}
-	}
+	//}
 }
 
 // controlla che il nome non contenga numeri

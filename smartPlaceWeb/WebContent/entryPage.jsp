@@ -94,7 +94,6 @@
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="aboutUS.html">About</a></li>
 				</ul>
-
 			</c:if>
 
 
@@ -212,9 +211,6 @@
 
 	<script
 		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-	
-	<!-- Custom js for entryPage -->
-	<script src="js/entryPage.js"></script>
 	
 </body>
 

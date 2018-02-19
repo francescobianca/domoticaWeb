@@ -245,7 +245,6 @@
 	</div>
 
 
-
 	<!-- Categoria Luci -->
 	<div class="portfolio-modal mfp-hide" id="categoria_luci">
 		<div class="portfolio-modal-dialog bg-white">
@@ -256,8 +255,8 @@
 				<h2 class="text-center text-uppercase text-secondary mb-0">Luci</h2>
 				<hr class="star-dark mb-5">
 				<div class="row">
-					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+					<div class="col-md-6 col-lg-6" >
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -268,21 +267,25 @@
 						<h3 class="text-center text-uppercase text-secondary mb-0">Bagno</h3>
 						
 						<c:if test="${luce_bagno.stato == 0}">
-						<label class="switch"> <input type="checkbox" unchecked id="luce_bagno">
+						<label class="switch"> <input type="checkbox" unchecked id="luce_bagno" class="checkbox-luci">
 							<span class="slider round"></span>
 						</label>
 						</c:if>
 						<c:if test="${luce_bagno.stato == 1}">
-						<label class="switch"> <input type="checkbox" checked id="luce_bagno">
+						<label class="switch"> <input type="checkbox" checked id="luce_bagno" class="checkbox-luci">
 							<span class="slider round"></span>
 						</label>
 						</c:if>
-						<h2>${luce_bagno.stato}</h2>
-
-
+						<c:if test="${luce_bagno==null}">
+							<label class="switch"> <input type="checkbox" unchecked id="luce_bagno" class="checkbox-luci"
+							disabled="true">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
+						
 					</div>
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -291,13 +294,26 @@
 							</div> <img class="img-fluid" src="images/cucina.png" alt="">
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Cucina</h3>
-						<label class="switch"> <input type="checkbox" checked id="luce_cucina">
+						<c:if test="${luce_cucina.stato == 0}">
+						<label class="switch"> <input type="checkbox" unchecked id="luce_cucina" class="checkbox-luci">
 							<span class="slider round"></span>
 						</label>
+						</c:if>
+						<c:if test="${luce_cucina.stato == 1}">
+						<label class="switch"> <input type="checkbox" checked id="luce_cucina" class="checkbox-luci">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
+						<c:if test="${luce_cucina==null}">
+							<label class="switch"> <input type="checkbox" unchecked id="luce_cucina" class="checkbox-luci"
+							disabled="true">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
 					</div>
 
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -307,14 +323,27 @@
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Camera
 							da letto</h3>
-						<label class="switch"> <input type="checkbox" checked id="luce_letto">
+						<c:if test="${luce_cameraLetto.stato == 0}">
+						<label class="switch"> <input type="checkbox" unchecked id="luce_cameraLetto" class="checkbox-luci">
 							<span class="slider round"></span>
 						</label>
+						</c:if>
+						<c:if test="${luce_cameraLetto.stato == 1}">
+						<label class="switch"> <input type="checkbox" checked id="luce_cameraLetto" class="checkbox-luci">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
+						<c:if test="${luce_cameraLetto==null}">
+							<label class="switch"> <input type="checkbox" unchecked id="luce_cameraLetto" class="checkbox-luci"
+							disabled="true">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
 
 					</div>
 
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -323,9 +352,22 @@
 							</div> <img class="img-fluid" src="images/salotto.png" alt="">
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Salone</h3>
-						<label class="switch"> <input type="checkbox" checked id="luce_salone">
+						<c:if test="${luce_salone.stato == 0}">
+						<label class="switch"> <input type="checkbox" unchecked id="luce_salone" class="checkbox-luci">
 							<span class="slider round"></span>
 						</label>
+						</c:if>
+						<c:if test="${luce_salone.stato == 1}">
+						<label class="switch"> <input type="checkbox" checked id="luce_salone" class="checkbox-luci">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
+						<c:if test="${luce_salone==null}">
+							<label class="switch"> <input type="checkbox" unchecked id="luce_salone" class="checkbox-luci"
+							disabled="true">
+							<span class="slider round"></span>
+						</label>
+						</c:if>
 					</div>
 
 				</div>
@@ -379,7 +421,7 @@
 				<hr class="star-dark mb-5">
 				<div class="row">
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -388,15 +430,21 @@
 							</div> <img class="img-fluid" src="images/bagno.png" alt="">
 						</a>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_bagno">
-								70%</div>
+						
+						<c:if test="${finestra_bagno!=null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="${finestra_bagno.stato}"
+								aria-valuemin="0" aria-valuemax="180" style="width: ${100/180*finestra_bagno.stato}%" id="finestra_bagno"></div>
+						</c:if>					
+						<c:if test="${finestra_bagno==null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0"
+								aria-valuemin="0" aria-valuemax="180" style="width: 0%" id="finestra_bagno"></div>
+						</c:if>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Bagno</h3>
 
 					</div>
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -405,16 +453,21 @@
 							</div> <img class="img-fluid" src="images/cucina.png" alt="">
 						</a>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_cucina">
-								70%</div>
+						<c:if test="${finestra_cucina!=null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="${finestra_cucina.stato}"
+								aria-valuemin="0" aria-valuemax="180" style="width: ${100/180*finestra_cucina.stato}%" id="finestra_cucina"></div>
+						</c:if>					
+						<c:if test="${finestra_cucina==null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0"
+								aria-valuemin="0" aria-valuemax="180" style="width: 0%" id="finestra_cucina"></div>
+						</c:if>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Cucina</h3>
 
 					</div>
 
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -423,18 +476,24 @@
 							</div> <img class="img-fluid" src="images/letto.png" alt="">
 						</a>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_letto">
-								70%</div>
+						<c:if test="${finestra_cameraLetto!=null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="${finestra_cameraLetto.stato}"
+								aria-valuemin="0" aria-valuemax="180" style="width: ${100/180*finestra_cameraLetto.stato}%" id="finestra_cameraLetto"></div>
+						</c:if>					
+						<c:if test="${finestra_cameraLetto==null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0"
+								aria-valuemin="0" aria-valuemax="180" style="width: 0%" id="finestra_cameraLetto"></div>
+						</c:if>
+
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Camera
 							da letto</h3>
-
+				
 
 					</div>
 
 					<div class="col-md-6 col-lg-6">
-						<a class="portfolio-item d-block mx-auto">
+						<a class="d-block mx-auto">
 							<div
 								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 								<div
@@ -443,9 +502,14 @@
 							</div> <img class="img-fluid" src="images/salotto.png" alt="">
 						</a>
 						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="70"
-								aria-valuemin="0" aria-valuemax="180" style="width: 70%" id="finestra_salone">
-								70%</div>
+						<c:if test="${finestra_salone!=null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="${finestra_salone.stato}"
+								aria-valuemin="0" aria-valuemax="180" style="width: ${100/180*finestra_salone.stato}%" id="finestra_salone"></div>
+						</c:if>					
+						<c:if test="${finestra_salone==null}">
+							<div class="progress-bar" role="progressbar" aria-valuenow="0"
+								aria-valuemin="0" aria-valuemax="180" style="width: 0%" id="finestra_salone"></div>
+						</c:if>
 						</div>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Salone</h3>
 
@@ -533,6 +597,9 @@
 
 	<!-- Custom scripts for this template -->
 	<script src="startbootstrap-freelancer-gh-pages/js/freelancer.min.js"></script>
+	
+	<!-- JS usato per implementare le richieste ajax sui sensori-->
+	<script src="js/dashBoard.js"></script>
 
 	<script
 		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>

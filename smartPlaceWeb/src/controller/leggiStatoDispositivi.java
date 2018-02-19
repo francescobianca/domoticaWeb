@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +35,6 @@ public class leggiStatoDispositivi extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Okkk");
 		String email=(String) req.getSession().getAttribute("email");
 		String indirizzoArduino=findInfo(email);
 
@@ -55,67 +55,31 @@ public class leggiStatoDispositivi extends HttpServlet {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
-		
-	    req.setAttribute("luce_bagno",getSensore(set,"luce","bagno"));
-	    req.setAttribute("luce_cucina", getSensore(set,"luce","cucina"));
+			
+		ArrayList<Sensore> sensori=createList(set);
+		for(Sensore s:sensori){
+			req.setAttribute(s.getTipo()+"_"+s.getStanza(),s);
+		}
 		RequestDispatcher disp=req.getRequestDispatcher("dashboard.jsp");
 		disp.forward(req, resp);
 		
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.
-	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("Okkk");
-		String email=(String) req.getSession().getAttribute("email");
-		String indirizzoArduino=findInfo(email);
 
-		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
-		ResultSet set=null;
-		try {
-			String query = "select * from sensore where \"arduino_indirizzoIP\"=?";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, indirizzoArduino);
-			set = statement.executeQuery();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-		
-	    req.setAttribute("luce_bagno",getSensore(set,"luce","bagno"));
-	    req.setAttribute("luce_cucina", getSensore(set,"luce","cucina"));
-		RequestDispatcher disp=req.getRequestDispatcher("dashboard.jsp");
-		disp.forward(req, resp);
-		
-	}
-
-	private Sensore getSensore(ResultSet set, String tipo, String stanza) {
-		Sensore s = null;
+	private ArrayList<Sensore> createList(ResultSet set) {
+		ArrayList<Sensore> sensori=new ArrayList<>();
 		try {
 			while (set.next()) {
-				if (set.getString("tipo").equals(tipo) && set.getString("stanza").equals(stanza)) {
-					s = new Sensore(tipo, stanza);
-					s.setStato(set.getInt("stato"));
-					return s;
-				}
+				Sensore s = null;
+				s=new Sensore(set.getString("tipo"),set.getString("stanza"));
+				s.setStato(set.getInt("stato"));
+				sensori.add(s);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return s;
+		return sensori;
 	}
 
 	private String findInfo(String utente) {

@@ -39,7 +39,7 @@ public class AccendiLuci extends HttpServlet {
 
 			HttpSession session = req.getSession();
 
-			String utente = req.getParameter(""); // Devo vedere come passare l'utente della sessione
+			String utente = (String)session.getAttribute("email"); // Devo vedere come passare l'utente della sessione
 			findInfo(utente);
 
 			socket = new Socket(ip, porta);
@@ -85,7 +85,8 @@ public class AccendiLuci extends HttpServlet {
 			salvaStato(ip, stanza, stato);
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			resp.getWriter().print("errore");
+			resp.getWriter().flush();
 		}
 
 	}
@@ -95,6 +96,7 @@ public class AccendiLuci extends HttpServlet {
 		try {
 			String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
 			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, utente);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
 				this.ip = result.getString("indirizzoIP");

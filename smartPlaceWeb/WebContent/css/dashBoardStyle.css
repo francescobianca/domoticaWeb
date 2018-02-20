@@ -73,3 +73,96 @@ input:checked + .slider:before {
 .checkbox-luci{
 	
 }
+
+i#up{
+	padding-left: 48%;
+}
+
+i#down {
+	padding-left: 48%;
+	padding-bottom: 4%;
+}
+
+.portfolio {
+	padding-top: 10%;
+}
+
+label {
+	left:44%;
+}
+
+label#sicurezza{
+	left:0%;
+}
+
+.row {
+	padding-bottom: 4%;
+}
+
+
+/* Thermometer column and text */
+.thermometer{
+    margin:50px auto;
+    width:22px;
+    height:150px;
+    display:block;
+    font:bold 22px/152px helvetica, arial, sans-serif;
+    text-indent: 36px;
+    background: linear-gradient(top, #fff 0%, #fff 50%, #db3f02 50%, #db3f02 100%);
+    border-radius:22px 22px 0 0;
+    border:5px solid #4a1c03;
+    border-bottom:none;
+    position:relative;
+    box-shadow:inset 0 0 0 4px #fff;
+    color:#4a1c03;
+}
+
+/* Thermometer Bulb */
+.thermometer:before{
+    content:' ';
+    width:44px;
+    height:44px;
+    display:block;
+    position:absolute;
+    top:142px;
+    left:-16px;
+    z-index:-1; /* Place the bulb under the column */
+    background:#db3f02;
+    border-radius:44px;
+    border:5px solid #4a1c03;
+    box-shadow:inset 0 0 0 4px #fff;
+}
+
+/* This piece here connects the column with the bulb */
+.thermometer:after{
+    content:' ';
+    width:14px;
+    height:7px;
+    display:block;
+    position:absolute;
+    top:146px;
+    left:4px;
+    background:#db3f02;
+}
+
+div#humidity.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+div#text_humidity.centered {
+    position: absolute;
+    font-size: 26px;
+    font-style: italic;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img#humidity {
+	width: 350px;
+	height: auto;
+}
+
+

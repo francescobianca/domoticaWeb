@@ -19,36 +19,52 @@ import javax.servlet.http.HttpSession;
 import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
+//servlet usata per accendere/spegnere ventilatore
 @SuppressWarnings("serial")
 public class MonitoraTemperatura extends HttpServlet{
 
-	String ip = "";
-	int porta;
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		BufferedReader in = null;
 		PrintStream out = null;
 		Socket socket = null;
 
-		System.out.println("Sono nella servlet monitora web");
+		System.out.println("Sono nella servlet monitora temperatura web ");
 
 		try {
 
-			HttpSession session = req.getSession();
+			HttpSession session=req.getSession();
+			
+			String utente =(String) session.getAttribute("email");
 
-			String utente = req.getParameter(""); // Devo vedere come passare l'utente della sessione
-			findInfo(utente);
+			String ip="";
+			int porta=0;
 
-			socket = new Socket(ip, porta);
-			// Apre i canali di I/O
+			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+			try {
+				String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
+				PreparedStatement statement = connection.prepareStatement(query);
+				statement.setString(1, utente);
+				ResultSet result = statement.executeQuery();
+				if (result.next()) {
+					ip = result.getString("indirizzoIP");
+					porta = result.getInt("porta");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			connection.close();
+
+			// open a socket connection
+			socket = new Socket(ip,porta);
+			// Apre i canali I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream(), true);
 
 			String name = "";
-			String stanza = req.getParameter(""); //Da stabilire come viene passato il parametro.
-			String stato = req.getParameter(""); //Da stabilire come viene passato il parametro.
+			String stanza = req.getParameter("stanza");
+			String stato = req.getParameter("stato");
 
 			if (stanza.equals("casa")) {
 				if (stato.equals("1"))
@@ -68,32 +84,16 @@ public class MonitoraTemperatura extends HttpServlet{
 			in.close();
 			salvaStato(ip, stanza, stato);
 
+			resp.getOutputStream().print("ventilatoreSettato");
+			resp.getOutputStream().flush();
+			resp.getOutputStream().close();
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			resp.getOutputStream().print("errore");
+			resp.getOutputStream().flush();
+			resp.getOutputStream().close();
 		}
-	
-	}
-	
-	private void findInfo(String utente) {
-		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
-		try {
-			String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, utente);
-			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				this.ip = result.getString("indirizzoIP");
-				this.porta = result.getInt("porta");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
+
 	}
 
 	private void salvaStato(String indirizzoIP, String stanza, String stato) {
@@ -107,7 +107,6 @@ public class MonitoraTemperatura extends HttpServlet{
 			updateStatement.setString(4, "ventilatore");
 			updateStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {

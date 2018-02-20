@@ -38,59 +38,62 @@ public class LeggiTemperatura extends HttpServlet {
 
 			HttpSession session = req.getSession();
 
-			String utente = req.getParameter(""); // Devo vedere come passare l'utente della sessione
-			findInfo(utente);
+			String utente = (String) session.getAttribute("email");
+			String ip="";
+			int porta=0;
 
+			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+			try {
+				String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
+				PreparedStatement statement = connection.prepareStatement(query);
+				statement.setString(1, utente);
+				ResultSet result = statement.executeQuery();
+				if (result.next()) {
+					ip = result.getString("indirizzoIP");
+					porta = result.getInt("porta");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			connection.close();
+			
 			socket = new Socket(ip, porta);
 			// Apre i canali di I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream(), true);
 
-			String name = "";
-			String stanza = req.getParameter(""); // Da stabilire come viene passato il parametro.
-
-			if (stanza.equals("casa")) {
-				name = "9";
-			}
-
+			String stanza = req.getParameter("stanza");
+			String name="";
+			
+			if(stanza.equals("casa"))
+				name="9";
+			
 			// Invio nuovo stato da impostare al server di arduino
 			out.println("readData");
 			out.println(name);
 			out.flush();
-
+			
+			out.close();
+			in.close();
 			String s = in.readLine();
 
 			String[] date = s.split("/");
 			String temp = date[1];
-
-			out.close();
-			in.close();
-
+			Double fahrenheit=32.0+(Double.parseDouble(temp)*9/5);
+			
+			int scale = (int) Math.pow(10, 1);
+			Double fah=(double) Math.round(fahrenheit * scale) / scale;
+			
+			resp.getWriter().print(temp+"/");
+			resp.getWriter().print(""+fah);
+			resp.getWriter().flush();
+			resp.getWriter().close();
+			System.out.println(temp+"/"+fah);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			resp.getWriter().print("errore");
+			resp.getWriter().flush();
+			resp.getWriter().close();
 		}
 	}
-
-	private void findInfo(String utente) {
-		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
-		try {
-			String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, utente);
-			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				this.ip = result.getString("indirizzoIP");
-				this.porta = result.getInt("porta");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-	}
-
 }

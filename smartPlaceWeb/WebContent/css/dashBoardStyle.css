@@ -106,7 +106,7 @@ label#sicurezza{
     width:22px;
     height:150px;
     display:block;
-    font:bold 22px/152px helvetica, arial, sans-serif;
+    font:bold 14px/152px helvetica, arial, sans-serif;
     text-indent: 36px;
     background: linear-gradient(top, #fff 0%, #fff 50%, #db3f02 50%, #db3f02 100%);
     border-radius:22px 22px 0 0;
@@ -165,4 +165,7 @@ img#humidity {
 	height: auto;
 }
 
+.portfolio-item-caption {
+	
+}
 

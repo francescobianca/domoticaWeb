@@ -170,7 +170,7 @@
 		<div class="row">
 			<div class="col-md-4 mb-5 mb-lg-0">
 				<h4 class="text-uppercase mb-4">Location</h4>
-				<p class="lead mb-0">UniversitÃ  della Calabria, Via Pietro
+				<p class="lead mb-0">Universit&agrave; della Calabria, Via Pietro
 					Bucci, 87036 Arcavacata, Rende CS</p>
 			</div>
 			<div class="col-md-4 mb-5 mb-lg-0">
@@ -470,7 +470,7 @@
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
 							<div
-								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+								class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -503,7 +503,7 @@
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
 							<div
-								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+								class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -559,7 +559,7 @@
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
 							<div
-								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+								class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -600,7 +600,7 @@
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
 							<div
-								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+								class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -638,7 +638,7 @@
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
 							<div
-								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+								class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -677,7 +677,7 @@
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
 							<div
-								class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+								class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -736,7 +736,7 @@
 				href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container text-center">
-				<h2 class="text-center text-uppercase text-secondary mb-0">Umidita'</h2>
+				<h2 class="text-center text-uppercase text-secondary mb-0">Umidit&agrave;</h2>
 				<hr class="star-dark mb-5">
 				<div class="row justify-content-center">
 

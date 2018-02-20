@@ -1,5 +1,6 @@
 jQuery(document).ready(function() {
-	$(".checkbox-luci").on('change', function() {
+	
+	$(".checkbox-luci").on('click', function(event) {
 		var stato;
 		var statoPrecedente;
 		if ($(this).prop('checked')) {
@@ -18,21 +19,13 @@ jQuery(document).ready(function() {
 			cache : false,
 			error : function() {
 				alert('error');
+				event.preventDefault();
 			},
 			async : false
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				// caso in cui va male la modifica dello stato
-				// devo resettare lo stato precedente
-				console.log(statoPrecedente);
-				if (statoPrecedente == "0") {
-					$(this).prop('checked', false);
-					console.log("ri-non cecco");
-				} else {
-					$(this).prop('checked', true);
-					console.log("ri cecco");
-				}
+				$(this).prop('checked',statoPrecedente);
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
@@ -40,4 +33,3 @@ jQuery(document).ready(function() {
 	});
 
 });
-

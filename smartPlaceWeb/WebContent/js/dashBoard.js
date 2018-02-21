@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
-	
-	$("#cancello_left").on('click',function(event){
-		var stanza=$(this).prop('id').substring(12);
+
+	$("#cancello_left").on('click', function(event) {
+		var stanza = $(this).prop('id').substring(12);
 		$.ajax({
 			url : 'ApriCancello',
 			data : "stanza=casa&operation=down",
@@ -15,15 +15,15 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				
+
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
 		});
 	});
-	
-	$("#cancello_right").on('click',function(event){
-		var stanza=$(this).prop('id').substring(12);
+
+	$("#cancello_right").on('click', function(event) {
+		var stanza = $(this).prop('id').substring(12);
 		$.ajax({
 			url : 'ApriCancello',
 			data : "stanza=casa&operation=up",
@@ -37,14 +37,14 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				
+
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
 		});
 	});
-	
-	$("#ventilatore").on('change',function(event){
+
+	$("#ventilatore").on('change', function(event) {
 		var stato
 		var statoPrecedente;
 		if ($(this).prop('checked')) {
@@ -69,13 +69,13 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				$(this).prop('checked',statoPrecedente);
+				$(this).prop('checked', statoPrecedente);
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
 		});
 	});
-	
+
 	$(".checkbox-luci").on('change', function(event) {
 		var stato;
 		var statoPrecedente;
@@ -101,15 +101,16 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				$(this).prop('checked',statoPrecedente);
+				$(this).prop('checked', statoPrecedente);
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
 		});
 	});
-	
-	$(".apri-finestra").on('click',function(){
-		var stanza=$(this).prop('id').substring(12);
+
+	$(".apri-finestra").on('click', function() {
+		var stanza = $(this).prop('id').substring(12);
+
 		$.ajax({
 			url : 'ApriFinestre',
 			data : "stanza=" + stanza + "&stato=up",
@@ -123,15 +124,22 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				
+
 			} else {
 				// caso in cui va bene la modifica dello stato
+				var value = $("#finestra_" + stanza).attr('aria-valuenow');
+				var newValue = parseInt(risposta);
+				$("#finestra_" + stanza).attr('aria-valuenow', newValue);
+				var css = 100 / 180 * newValue;
+				var a = css + '%';
+				$("#finestra_" + stanza).css('width', a);
+				console.log($("#finestra_" + stanza).attr('aria-valuenow'));
 			}
 		});
 	});
-	
-	$(".chiudi-finestra").on('click',function(){
-		var stanza=$(this).prop('id').substring(14);
+
+	$(".chiudi-finestra").on('click', function() {
+		var stanza = $(this).prop('id').substring(14);
 		$.ajax({
 			url : 'ApriFinestre',
 			data : "stanza=" + stanza + "&stato=down",
@@ -145,17 +153,23 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				
+
 			} else {
 				// caso in cui va bene la modifica dello stato
+				var value = $("#finestra_" + stanza).attr('aria-valuenow');
+				var newValue = parseInt(risposta);
+				$("#finestra_" + stanza).attr('aria-valuenow', newValue);
+				var css = 100 / 180 * newValue;
+				var a = css + '%';
+				$("#finestra_" + stanza).css('width', a);
+				console.log($("#finestra_" + stanza).attr('aria-valuenow'));
 			}
 		});
 	});
 
 });
 
-
-function leggiTemperatura(){
+function leggiTemperatura() {
 	$.ajax({
 		url : 'LeggiTemperatura',
 		data : "stanza=casa",
@@ -169,16 +183,16 @@ function leggiTemperatura(){
 
 	}).done(function(risposta) {
 		if (risposta != "errore") {
-			var fields=risposta.split("/");
-			var celsius=fields[0];
-			var fahrenheit=fields[1];
+			var fields = risposta.split("/");
+			var celsius = fields[0];
+			var fahrenheit = fields[1];
 			$("#celsius").text(celsius);
 			$("#fahrenheit").text(fahrenheit);
-		} 
+		}
 	});
 }
 
-function leggiUmidita(){
+function leggiUmidita() {
 	$.ajax({
 		url : 'LeggiUmidita',
 		data : "stanza=casa",
@@ -193,6 +207,6 @@ function leggiUmidita(){
 	}).done(function(risposta) {
 		if (risposta != "errore") {
 			$("#umidita").text(risposta);
-		} 
+		}
 	});
 }

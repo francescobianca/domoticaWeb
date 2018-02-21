@@ -525,12 +525,12 @@
 									aria-valuenow="${cancello_casa.stato}" aria-valuemin="0"
 									aria-valuemax="180"
 									style="width: ${100/180*cancello_casa.stato}%"
-									id="finestra_cucina"></div>
+									id="cancello"></div>
 							</c:if>
 							<c:if test="${cancello_casa==null}">
 								<div class="progress-bar" role="progressbar" aria-valuenow="0"
 									aria-valuemin="0" aria-valuemax="180" style="width: 0%"
-									id="finestra_cucina"></div>
+									id="cancello"></div>
 							</c:if>
 
 						</div>

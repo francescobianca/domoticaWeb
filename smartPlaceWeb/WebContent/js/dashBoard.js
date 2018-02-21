@@ -15,7 +15,14 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-
+				var field=risposta.split("-");
+				var value = $("#cancello").attr('aria-valuenow');
+				var newValue = parseInt(field[1]);
+				$("#cancello").attr('aria-valuenow', newValue);
+				var css = 100 / 180 * newValue;
+				var a = css + '%';
+				$("#cancello").css('width', a);
+				console.log($("#cancello").attr('aria-valuenow'));
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
@@ -37,7 +44,14 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-
+				var field=risposta.split("-");
+				var value = $("#cancello").attr('aria-valuenow');
+				var newValue = parseInt(field[1]);
+				$("#cancello").attr('aria-valuenow', newValue);
+				var css = 100 / 180 * newValue;
+				var a = css + '%';
+				$("#cancello").css('width', a);
+				console.log($("#cancello").attr('aria-valuenow'));
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}

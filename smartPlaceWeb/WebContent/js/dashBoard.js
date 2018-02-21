@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 				var value = $("#cancello").attr('aria-valuenow');
 				var newValue = parseInt(field[1]);
 				$("#cancello").attr('aria-valuenow', newValue);
-				var css = 100 / 180 * newValue;
+				var css = 100 / 60 * newValue;
 				var a = css + '%';
 				$("#cancello").css('width', a);
 				console.log($("#cancello").attr('aria-valuenow'));
@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
 				var value = $("#cancello").attr('aria-valuenow');
 				var newValue = parseInt(field[1]);
 				$("#cancello").attr('aria-valuenow', newValue);
-				var css = 100 / 180 * newValue;
+				var css = 100 / 60 * newValue;
 				var a = css + '%';
 				$("#cancello").css('width', a);
 				console.log($("#cancello").attr('aria-valuenow'));

@@ -61,18 +61,21 @@ jQuery(document).ready(function() {
 	$("#ventilatore").on('click', function(event) {
 		var stato
 		var statoPrecedente;
+		var s;
 		if ($(this).prop('checked')) {
-			stato = "1";
-			statoPrecedente = "0";
+			stato = true;
+			statoPrecedente = false;
+			s="1";
 		} else {
-			stato = "0";
-			statoPrecedente = "1"
+			stato = false;
+			statoPrecedente = true;
+			s="0"
 		}
 		console.log(statoPrecedente);
 		var a=$(this);
 		$.ajax({
 			url : 'MonitoraTemperatura',
-			data : "stanza=casa&stato=" + stato,
+			data : "stanza=casa&stato=" + s,
 			type : 'POST',
 			cache : false,
 			error : function() {
@@ -112,7 +115,7 @@ jQuery(document).ready(function() {
 		console.log(statoPrecedente)
 		$.ajax({
 			url : 'AccendiLuci',
-			data : "stanza=" + stanza + "&stato=" + stato,
+			data : "stanza=" + stanza + "&stato=" + s,
 			type : 'POST',
 			cache : false,
 			error : function() {

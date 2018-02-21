@@ -283,17 +283,17 @@
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Ventilatore</h3>
 						<c:if test="${ventilatore_casa.stato == 0}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="ventilatore"> <span class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${ventilatore_casa.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked
+							<label class="switch"> <input type="checkbox" checked="checked"
 								id="ventilatore"> <span class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${ventilatore_casa==null}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="venitlatore" disabled="true"> <span
 								class="slider round"></span>
 							</label>
@@ -398,19 +398,19 @@
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Cucina</h3>
 						<c:if test="${luce_cucina.stato == 0}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_cucina" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_cucina.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked
+							<label class="switch"> <input type="checkbox" checked="checked"
 								id="luce_cucina" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_cucina==null}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox" 
 								id="luce_cucina" class="checkbox-luci" disabled="true">
 								<span class="slider round"></span>
 							</label>
@@ -429,19 +429,19 @@
 						<h3 class="text-center text-uppercase text-secondary mb-0">Camera
 							da letto</h3>
 						<c:if test="${luce_cameraLetto.stato == 0}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_cameraLetto" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_cameraLetto.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked
+							<label class="switch"> <input type="checkbox" checked="checked"
 								id="luce_cameraLetto" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_cameraLetto==null}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_cameraLetto" class="checkbox-luci" disabled="true">
 								<span class="slider round"></span>
 							</label>
@@ -460,19 +460,19 @@
 						</a>
 						<h3 class="text-center text-uppercase text-secondary mb-0">Salone</h3>
 						<c:if test="${luce_salone.stato == 0}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_salone" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_salone.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked
+							<label class="switch"> <input type="checkbox" checked="checked"
 								id="luce_salone" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_salone==null}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_salone" class="checkbox-luci" disabled="true">
 								<span class="slider round"></span>
 							</label>

@@ -249,57 +249,324 @@
 
 					<div class="select">
 						<select name="slct" id="slct">
-							<option>Choose an option</option>
-							<option value="1">Pure CSS</option>
-							<option value="2">No JS</option>
-							<option value="3">Nice!</option>
+							<option>Cosa desideri fare?</option>
+							<option value="1">Nuova attivit&agrave; periodica</option>
+							<option value="2">Elimina attivit&agrave; periodica</option>
+							<option value="3">Nuova regola</option>
+							<option value="3">Elimina regola</option>
 						</select>
 					</div>
+				</div>
 
+				<!-- Sezione programma attività -->
+				<div class="container" id="nuovaActivity" style="display: none;">
+					<div class="row">
+
+						<!-- Sezione nome activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeActivity" for="nomeActivity">Inserisci il
+								nome dell'attività:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeActivity" type="text" class="form-control"
+									id="nomeActivityBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoInizio" for="giornoInizio">Scegli giorno
+								di inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoInizio" type="date" class="form-control"
+									id="giornoInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoFine" for="giornoFine">Scegli giorno di
+								fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoFine" type="date" class="form-control"
+									id="giornoFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraInizio" for="oraInizio">Scegli ora di
+								inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraInizio" type="time" class="form-control"
+									id="oraInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraFine" type="time" class="form-control"
+									id="oraFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Seleziona il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Ventilatore</option>
+										<option value="2">Riscaldamenti</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
+				
+				<!-- Sezione programma regola -->
+				<div class="container" id="nuovaRegola" style="display: none;">
+					<div class="row">
+
+						<!-- Sezione nome regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeRegola" for="nomeRegola">Inserisci il
+								nome della regola:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeRegola" type="text" class="form-control"
+									id="nomeRegolaBox" />
+							</div>
+						</div>
+						
+						<!-- Sezione verso regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="versoRegola" for="versoRegola">Quando la temperatura è:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Maggiore (&gt;)</option>
+										<option value="2">Minore (&lt;)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Sezione valore regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="valoreRegola" for="valoreRegola">Inserisci il
+								valore:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="valoreRegola" type="text" class="form-control"
+									id="valoreRegolaBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Accendi il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Ventilatore</option>
+										<option value="2">Riscaldamenti</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
 
 				</div>
 
 			</div>
 
-			<!-- <div class="container text-center">
+			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
 						<hr class="star-dark mb-5">
-						<a
-							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
-							href="#"> <i class="fa fa-close"></i> Close
-						</a>
 					</div>
 				</div>
-			</div> -->
+			</div>
+
 		</div>
+
 	</div>
 
 
 	<!-- Categoria Luci -->
 	<div class="portfolio-modal mfp-hide" id="categoria_luci">
+		
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
-				<h2 class="text-center text-uppercase text-secondary mb-0">Luci</h2>
+				<h2 class="text-center text-secondary text-uppercase mb-0">Luci</h2>
 				<hr class="star-dark mb-5">
 
+				<div class="row justify-content-center">
+
+					<div class="select">
+						<select name="slct" id="slct">
+							<option>Cosa desideri fare?</option>
+							<option value="1">Nuova attivit&agrave; periodica</option>
+							<option value="2">Elimina attivit&agrave; periodica</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="container" id="nuovaActivity" style="display: none;">
+					<!-- style="display: none;" Devo inserirlo dopo -->
+					<div class="row">
+
+						<!-- Sezione nome activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeActivity" for="nomeActivity">Inserisci il
+								nome dell'attività:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeActivity" type="text" class="form-control"
+									id="nomeActivityBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoInizio" for="giornoInizio">Scegli giorno
+								di inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoInizio" type="date" class="form-control"
+									id="giornoInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoFine" for="giornoFine">Scegli giorno di
+								fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoFine" type="date" class="form-control"
+									id="giornoFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraInizio" for="oraInizio">Scegli ora di
+								inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraInizio" type="time" class="form-control"
+									id="oraInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraFine" type="time" class="form-control"
+									id="oraFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Seleziona il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Luce bagno</option>
+										<option value="2">Luce salone</option>
+										<option value="3">Luce cucina</option>
+										<option value="4">Luce camera letto</option>
+ 									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
+
 			</div>
+
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
 						<hr class="star-dark mb-5">
-						<a
-							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
-							href="#"> <i class="fa fa-close"></i> Close
-						</a>
 					</div>
 				</div>
 			</div>
 
 		</div>
+		
+		
 	</div>
 
 	<!-- Categoria cancello-->
@@ -309,18 +576,119 @@
 				href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
-				<h2 class="text-center text-uppercase text-secondary mb-0">Ingressi</h2>
+				<h2 class="text-center text-secondary text-uppercase mb-0">Ingressi</h2>
 				<hr class="star-dark mb-5">
 
+				<div class="row justify-content-center">
+
+					<div class="select">
+						<select name="slct" id="slct">
+							<option>Cosa desideri fare?</option>
+							<option value="1">Nuova attivit&agrave; periodica</option>
+							<option value="2">Elimina attivit&agrave; periodica</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="container" id="nuovaActivity" style="display: none;">
+					<!-- style="display: none;" Devo inserirlo dopo -->
+					<div class="row">
+
+						<!-- Sezione nome activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeActivity" for="nomeActivity">Inserisci il
+								nome dell'attività:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeActivity" type="text" class="form-control"
+									id="nomeActivityBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoInizio" for="giornoInizio">Scegli giorno
+								di inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoInizio" type="date" class="form-control"
+									id="giornoInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoFine" for="giornoFine">Scegli giorno di
+								fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoFine" type="date" class="form-control"
+									id="giornoFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraInizio" for="oraInizio">Scegli ora di
+								inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraInizio" type="time" class="form-control"
+									id="oraInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraFine" type="time" class="form-control"
+									id="oraFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Seleziona il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Cancello</option>
+										<option value="2">Garage</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
+
 			</div>
+
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
 						<hr class="star-dark mb-5">
-						<a
-							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
-							href="#"> <i class="fa fa-close"></i> Close
-						</a>
 					</div>
 				</div>
 			</div>
@@ -330,55 +698,335 @@
 
 	<!-- Categoria finestre -->
 	<div class="portfolio-modal mfp-hide" id="categoria_finestre">
+		
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
-				<h2 class="text-center text-uppercase text-secondary mb-0">Finestre</h2>
+				<h2 class="text-center text-secondary text-uppercase mb-0">Finestre</h2>
 				<hr class="star-dark mb-5">
 
+				<div class="row justify-content-center">
+
+					<div class="select">
+						<select name="slct" id="slct">
+							<option>Cosa desideri fare?</option>
+							<option value="1">Nuova attivit&agrave; periodica</option>
+							<option value="2">Elimina attivit&agrave; periodica</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="container" id="nuovaActivity" style="display: none;">
+					<!-- style="display: none;" Devo inserirlo dopo -->
+					<div class="row">
+
+						<!-- Sezione nome activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeActivity" for="nomeActivity">Inserisci il
+								nome dell'attività:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeActivity" type="text" class="form-control"
+									id="nomeActivityBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoInizio" for="giornoInizio">Scegli giorno
+								di inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoInizio" type="date" class="form-control"
+									id="giornoInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoFine" for="giornoFine">Scegli giorno di
+								fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoFine" type="date" class="form-control"
+									id="giornoFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraInizio" for="oraInizio">Scegli ora di
+								inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraInizio" type="time" class="form-control"
+									id="oraInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraFine" type="time" class="form-control"
+									id="oraFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Seleziona il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Finestra bagno</option>
+										<option value="2">Finestra salone</option>
+										<option value="3">Finestra cucina</option>
+										<option value="4">Finestra camera letto</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
+
 			</div>
+
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
 						<hr class="star-dark mb-5">
-						<a
-							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
-							href="#"> <i class="fa fa-close"></i> Close
-						</a>
 					</div>
 				</div>
 			</div>
 
 		</div>
+		
 	</div>
 
 
 	<!-- Categoria umidita  -->
 	<div class="portfolio-modal mfp-hide" id="categoria_umidita">
+		
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
-			<div class="container text-center">
-				<h2 class="text-center text-uppercase text-secondary mb-0">Umidit&agrave;</h2>
+			<div class="container">
+				<h2 class="text-center text-secondary text-uppercase mb-0">Umidit&agrave;</h2>
 				<hr class="star-dark mb-5">
 
+				<div class="row justify-content-center">
+
+					<div class="select">
+						<select name="slct" id="slct">
+							<option>Cosa desideri fare?</option>
+							<option value="1">Nuova attivit&agrave; periodica</option>
+							<option value="2">Elimina attivit&agrave; periodica</option>
+							<option value="3">Nuova regola</option>
+							<option value="3">Elimina regola</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="container" id="nuovaActivity" style="display: none;">
+					
+					<div class="row">
+
+						<!-- Sezione nome activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeActivity" for="nomeActivity">Inserisci il
+								nome dell'attività:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeActivity" type="text" class="form-control"
+									id="nomeActivityBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoInizio" for="giornoInizio">Scegli giorno
+								di inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoInizio" type="date" class="form-control"
+									id="giornoInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoFine" for="giornoFine">Scegli giorno di
+								fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoFine" type="date" class="form-control"
+									id="giornoFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraInizio" for="oraInizio">Scegli ora di
+								inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraInizio" type="time" class="form-control"
+									id="oraInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraFine" type="time" class="form-control"
+									id="oraFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Seleziona il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Deumidificatore</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
+				
+				<!-- Sezione programma regola -->
+				<div class="container" id="nuovaRegola" style="display: none;">
+					<div class="row">
+
+						<!-- Sezione nome regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeRegola" for="nomeRegola">Inserisci il
+								nome della regola:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeRegola" type="text" class="form-control"
+									id="nomeRegolaBox" />
+							</div>
+						</div>
+						
+						<!-- Sezione verso regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="versoRegola" for="versoRegola">Quando l'umidit&agrave; è:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Maggiore (&gt;)</option>
+										<option value="2">Minore (&lt;)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Sezione valore regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="valoreRegola" for="valoreRegola">Inserisci il
+								valore:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="valoreRegola" type="text" class="form-control"
+									id="valoreRegolaBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo regola -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Accendi il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Deumidificatore</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
 
 			</div>
+
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
 						<hr class="star-dark mb-5">
-						<a
-							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
-							href="#"> <i class="fa fa-close"></i> Close
-						</a>
 					</div>
 				</div>
 			</div>
+
 		</div>
+		
+		
 	</div>
 
 
@@ -388,24 +1036,123 @@
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
-
-			<div class="container text-center">
-				<h2 class="text-center text-uppercase text-secondary mb-0">Sicurezza</h2>
+			<div class="container">
+				<h2 class="text-center text-secondary text-uppercase mb-0">Sicurezza</h2>
 				<hr class="star-dark mb-5">
 
+				<div class="row justify-content-center">
+
+					<div class="select">
+						<select name="slct" id="slct">
+							<option>Cosa desideri fare?</option>
+							<option value="1">Nuova attivit&agrave; periodica</option>
+							<option value="2">Elimina attivit&agrave; periodica</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="container" id="nuovaActivity" style="display: none;">
+					<!-- style="display: none;" Devo inserirlo dopo -->
+					<div class="row">
+
+						<!-- Sezione nome activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="nomeActivity" for="nomeActivity">Inserisci il
+								nome dell'attività:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="nomeActivity" type="text" class="form-control"
+									id="nomeActivityBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoInizio" for="giornoInizio">Scegli giorno
+								di inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoInizio" type="date" class="form-control"
+									id="giornoInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione giorno fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="giornoFine" for="giornoFine">Scegli giorno di
+								fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="giornoFine" type="date" class="form-control"
+									id="giornoFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora inizio activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraInizio" for="oraInizio">Scegli ora di
+								inizio:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraInizio" type="time" class="form-control"
+									id="oraInizioBox" />
+							</div>
+						</div>
+
+						<!-- Sezione ora fine activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<input name="oraFine" type="time" class="form-control"
+									id="oraFineBox" />
+							</div>
+						</div>
+
+						<!-- Sezione dispositivo activity -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Seleziona il
+								dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<div class="select">
+									<select name="slct" id="slct">
+										<option value="1">Allarme</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia" />
+					</div>
+
+				</div>
 
 			</div>
+
 			<div class="container text-center">
 				<div class="row">
 					<div class="col-lg-8 mx-auto">
 						<hr class="star-dark mb-5">
-						<a
-							class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss"
-							href="#"> <i class="fa fa-close"></i> Close
-						</a>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 

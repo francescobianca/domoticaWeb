@@ -247,13 +247,13 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select">
+					<div class="select" onclick="newActionTemperatura()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
 							<option value="2">Elimina attivit&agrave; periodica</option>
 							<option value="3">Nuova regola</option>
-							<option value="3">Elimina regola</option>
+							<option value="4">Elimina regola</option>
 						</select>
 					</div>
 				</div>
@@ -450,7 +450,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select">
+					<div class="select"  onclick="newActionLuci()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -581,7 +581,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select">
+					<div class="select"  onclick="newActionCancello()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -709,7 +709,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select">
+					<div class="select"  onclick="newActionFinestre()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -841,13 +841,13 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select">
+					<div class="select"  onclick="newActionUmidita()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
 							<option value="2">Elimina attivit&agrave; periodica</option>
 							<option value="3">Nuova regola</option>
-							<option value="3">Elimina regola</option>
+							<option value="4">Elimina regola</option>
 						</select>
 					</div>
 				</div>
@@ -1042,7 +1042,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select">
+					<div class="select"  onclick="newActionSicurezza()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>

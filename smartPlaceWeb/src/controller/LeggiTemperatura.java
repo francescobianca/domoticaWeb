@@ -22,9 +22,6 @@ import persistence.PersistenceException;
 @SuppressWarnings("serial")
 public class LeggiTemperatura extends HttpServlet {
 
-	String ip = "";
-	int porta;
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -65,6 +62,8 @@ public class LeggiTemperatura extends HttpServlet {
 			String stanza = req.getParameter("stanza");
 			String name="";
 			
+			System.out.println(stanza);
+			
 			if(stanza.equals("casa"))
 				name="9";
 			
@@ -73,8 +72,7 @@ public class LeggiTemperatura extends HttpServlet {
 			out.println(name);
 			out.flush();
 			
-			out.close();
-			in.close();
+			
 			String s = in.readLine();
 
 			String[] date = s.split("/");
@@ -83,6 +81,9 @@ public class LeggiTemperatura extends HttpServlet {
 			
 			int scale = (int) Math.pow(10, 1);
 			Double fah=(double) Math.round(fahrenheit * scale) / scale;
+			
+			out.close();
+			in.close();
 			
 			resp.getWriter().print(temp+"/");
 			resp.getWriter().print(""+fah);

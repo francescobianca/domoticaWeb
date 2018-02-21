@@ -55,15 +55,15 @@ public class AccendiLuci extends HttpServlet {
 				e.printStackTrace();
 			}
 			connection.close();
-			
+						
 			socket = new Socket(ip, porta);
 			// Apre i canali di I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream(), true);
 
 			String name = "";
-			String stanza = req.getParameter(""); //Da stabilire come viene passato il parametro.
-			String stato = req.getParameter(""); //Da stabilire come viene passato il parametro.
+			String stanza = req.getParameter("stanza"); //Da stabilire come viene passato il parametro.
+			String stato = req.getParameter("stato"); //Da stabilire come viene passato il parametro.
 
 			if (stanza.equals("bagno")) {
 				if (stato.equals("1"))

@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 		var stanza=$(this).prop('id').substring(12);
 		$.ajax({
 			url : 'ApriCancello',
-			data : "stanza=casa&operation=up",
+			data : "stanza=casa&operation=down",
 			type : 'POST',
 			cache : false,
 			error : function() {
@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
 		var stanza=$(this).prop('id').substring(12);
 		$.ajax({
 			url : 'ApriCancello',
-			data : "stanza=casa&operation=down",
+			data : "stanza=casa&operation=up",
 			type : 'POST',
 			cache : false,
 			error : function() {
@@ -131,7 +131,7 @@ jQuery(document).ready(function() {
 	});
 	
 	$(".chiudi-finestra").on('click',function(){
-		var stanza=$(this).prop('id').substring(12);
+		var stanza=$(this).prop('id').substring(14);
 		$.ajax({
 			url : 'ApriFinestre',
 			data : "stanza=" + stanza + "&stato=down",
@@ -179,7 +179,6 @@ function leggiTemperatura(){
 }
 
 function leggiUmidita(){
-	console.log("aaa");
 	$.ajax({
 		url : 'LeggiUmidita',
 		data : "stanza=casa",

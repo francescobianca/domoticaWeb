@@ -63,9 +63,12 @@ public class ApriFinestre extends HttpServlet {
 			out = new PrintStream(socket.getOutputStream(), true);
 
 			String name = "";
-			String stanza = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String stato = req.getParameter(""); // Da stabilire come viene passato il parametro.
+			String stanza = req.getParameter("stanza"); // Da stabilire come viene passato il parametro.
+			String stato = req.getParameter("stato"); // Da stabilire come viene passato il parametro.
 
+			System.out.println(stanza);
+			System.out.println(stato);
+			
 			if (stanza.equals("bagno")) {
 				if (stato.equals("up"))
 					name = "7";
@@ -74,11 +77,9 @@ public class ApriFinestre extends HttpServlet {
 			}
 
 			// Invio nuovo stato da impostare al server di arduino
-			out.println("setta led");
+			out.println("apriFinestre");
 			out.println(name);
 			out.flush();
-
-			System.out.println(in.readLine());
 
 			out.close();
 			in.close();

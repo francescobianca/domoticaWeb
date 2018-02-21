@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
 			async : false
 
 		}).done(function(risposta) {
-			if (risposta != "ok") {
+			if (risposta != "errore") {
 				var field=risposta.split("-");
 				var value = $("#cancello").attr('aria-valuenow');
 				var newValue = parseInt(field[1]);
@@ -43,7 +43,7 @@ jQuery(document).ready(function() {
 			async : false
 
 		}).done(function(risposta) {
-			if (risposta != "ok") {
+			if (risposta != "errore") {
 				var field=risposta.split("-");
 				var value = $("#cancello").attr('aria-valuenow');
 				var newValue = parseInt(field[1]);
@@ -137,7 +137,7 @@ jQuery(document).ready(function() {
 			async : false
 
 		}).done(function(risposta) {
-			if (risposta != "ok") {
+			if (risposta != "errore") {
 				// caso in cui va bene la modifica dello stato
 				var value = $("#finestra_" + stanza).attr('aria-valuenow');
 				var newValue = parseInt(risposta);
@@ -166,7 +166,7 @@ jQuery(document).ready(function() {
 			async : false
 
 		}).done(function(risposta) {
-			if (risposta != "ok") {
+			if (risposta != "errore") {
 				// caso in cui va bene la modifica dello stato
 				var value = $("#finestra_" + stanza).attr('aria-valuenow');
 				var newValue = parseInt(risposta);

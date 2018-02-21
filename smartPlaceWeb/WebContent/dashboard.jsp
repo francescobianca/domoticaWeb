@@ -818,11 +818,9 @@
 							<div class="container" id="humidity">
 								<img id="humidity" class="img-fluid"
 									src="images/sfondoHumidity.png" alt="">
-<<<<<<< HEAD
-								<div class="centered" id="text_humidity">Valore umidita%</div>
-=======
+
 								<div class="centered" id="text_humidity"><span id="umidita">Valore umidita</span>%</div>
->>>>>>> branch 'master' of https://github.com/francescobianca/domoticaWeb.git
+
 							</div>
 						</a>
 					</div>
@@ -840,13 +838,7 @@
 								</div>
 							</div> <img class="img-fluid" src="images/deumidificatore.png" alt="">
 							<h3 class="text-center text-uppercase text-secondary mb-0">Deumidificatore</h3>
-<<<<<<< HEAD
-							<label class="switch" id="sicurezza"> <input
-								type="checkbox" unchecked id="deumidificatore"
-								class="checkbox-deumidificatore" disabled="true"> <span
-								class="slider round"></span>
-						</label>
-=======
+
 							<c:if test="${deumidificatore_casa.stato == 0}">
 								<label class="switch label-left"> <input type="checkbox" unchecked
 									id="deumidificatore"> <span class="slider round"></span>
@@ -861,7 +853,6 @@
 									<span class="slider round"></span>
 								</label>
 							</c:if>
->>>>>>> branch 'master' of https://github.com/francescobianca/domoticaWeb.git
 
 						</a>
 					</div>

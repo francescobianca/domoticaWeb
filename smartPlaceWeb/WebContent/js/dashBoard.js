@@ -58,7 +58,7 @@ jQuery(document).ready(function() {
 		});
 	});
 
-	$("#ventilatore").on('change', function(event) {
+	$("#ventilatore").on('click', function(event) {
 		var stato
 		var statoPrecedente;
 		if ($(this).prop('checked')) {
@@ -69,7 +69,7 @@ jQuery(document).ready(function() {
 			statoPrecedente = "1"
 		}
 		console.log(statoPrecedente);
-		var stanza = $(this).prop('id').substring(5);
+		var a=$(this);
 		$.ajax({
 			url : 'MonitoraTemperatura',
 			data : "stanza=casa&stato=" + stato,
@@ -83,14 +83,14 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				$(this).prop('checked', statoPrecedente);
+				a.prop('checked', statoPrecedente);
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}
 		});
 	});
 
-	$(".checkbox-luci").on('change', function(event) {
+	$(".checkbox-luci").on('click', function(event) {
 		var stato;
 		var statoPrecedente;
 		if ($(this).prop('checked')) {
@@ -100,7 +100,7 @@ jQuery(document).ready(function() {
 			stato = "0";
 			statoPrecedente = "1"
 		}
-		console.log(statoPrecedente);
+		var a=$(this);
 		var stanza = $(this).prop('id').substring(5);
 		$.ajax({
 			url : 'AccendiLuci',
@@ -115,7 +115,7 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-				$(this).prop('checked', statoPrecedente);
+				a.prop('checked', statoPrecedente);
 			} else {
 				// caso in cui va bene la modifica dello stato
 			}

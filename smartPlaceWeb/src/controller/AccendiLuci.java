@@ -55,7 +55,8 @@ public class AccendiLuci extends HttpServlet {
 				e.printStackTrace();
 			}
 			connection.close();
-						
+			
+			
 			socket = new Socket(ip, porta);
 			// Apre i canali di I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -64,7 +65,7 @@ public class AccendiLuci extends HttpServlet {
 			String name = "";
 			String stanza = req.getParameter("stanza"); //Da stabilire come viene passato il parametro.
 			String stato = req.getParameter("stato"); //Da stabilire come viene passato il parametro.
-
+			System.out.println(stato);
 			if (stanza.equals("bagno")) {
 				if (stato.equals("1"))
 					name = "1";
@@ -86,18 +87,21 @@ public class AccendiLuci extends HttpServlet {
 				else if (stato.equals("0"))
 					name = "d";
 			}
-
+			
 			// Invio nuovo stato da impostare al server di arduino
 			out.println("setta led");
 			out.println(name);
 			out.flush();
-
+			
 			System.out.println(in.readLine());
 
 			out.close();
 			in.close();
 			salvaStato(ip, stanza, stato);
 
+			resp.getWriter().print("ok");
+			resp.getWriter().flush();
+			
 		} catch (Exception e) {
 			resp.getWriter().print("errore");
 			resp.getWriter().flush();

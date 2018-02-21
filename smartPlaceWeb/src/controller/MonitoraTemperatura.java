@@ -84,7 +84,7 @@ public class MonitoraTemperatura extends HttpServlet{
 			in.close();
 			salvaStato(ip, stanza, stato);
 
-			resp.getOutputStream().print("ventilatoreSettato");
+			resp.getOutputStream().print("ok");
 			resp.getOutputStream().flush();
 			resp.getOutputStream().close();
 

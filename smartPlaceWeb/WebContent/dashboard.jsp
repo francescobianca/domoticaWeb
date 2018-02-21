@@ -368,19 +368,19 @@
 						<h3 class="text-center text-uppercase text-secondary mb-0">Bagno</h3>
 
 						<c:if test="${luce_bagno.stato == 0}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_bagno" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_bagno.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked
+							<label class="switch"> <input type="checkbox" checked="checked"
 								id="luce_bagno" class="checkbox-luci"> <span
 								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_bagno==null}">
-							<label class="switch"> <input type="checkbox" unchecked
+							<label class="switch"> <input type="checkbox"
 								id="luce_bagno" class="checkbox-luci" disabled="true"> <span
 								class="slider round"></span>
 							</label>

@@ -93,15 +93,23 @@ jQuery(document).ready(function() {
 	$(".checkbox-luci").on('click', function(event) {
 		var stato;
 		var statoPrecedente;
+		var s;
+		console.log($(this).prop('checked'));
 		if ($(this).prop('checked')) {
-			stato = "1";
-			statoPrecedente = "0";
+			stato = true;
+			s="1";
+			console.log("checked");
+			statoPrecedente = false;
 		} else {
-			stato = "0";
-			statoPrecedente = "1"
+			console.log("unchecked");
+			stato = false;
+			s="0";
+			statoPrecedente = true;
 		}
 		var a=$(this);
 		var stanza = $(this).prop('id').substring(5);
+		console.log(stato)
+		console.log(statoPrecedente)
 		$.ajax({
 			url : 'AccendiLuci',
 			data : "stanza=" + stanza + "&stato=" + stato,
@@ -115,6 +123,7 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
+				console.log(statoPrecedente)
 				a.prop('checked', statoPrecedente);
 			} else {
 				// caso in cui va bene la modifica dello stato

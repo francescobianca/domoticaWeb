@@ -124,8 +124,6 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-
-			} else {
 				// caso in cui va bene la modifica dello stato
 				var value = $("#finestra_" + stanza).attr('aria-valuenow');
 				var newValue = parseInt(risposta);
@@ -134,6 +132,8 @@ jQuery(document).ready(function() {
 				var a = css + '%';
 				$("#finestra_" + stanza).css('width', a);
 				console.log($("#finestra_" + stanza).attr('aria-valuenow'));
+			} else {
+				
 			}
 		});
 	});
@@ -153,8 +153,6 @@ jQuery(document).ready(function() {
 
 		}).done(function(risposta) {
 			if (risposta != "ok") {
-
-			} else {
 				// caso in cui va bene la modifica dello stato
 				var value = $("#finestra_" + stanza).attr('aria-valuenow');
 				var newValue = parseInt(risposta);
@@ -163,6 +161,8 @@ jQuery(document).ready(function() {
 				var a = css + '%';
 				$("#finestra_" + stanza).css('width', a);
 				console.log($("#finestra_" + stanza).attr('aria-valuenow'));
+			} else {
+				
 			}
 		});
 	});

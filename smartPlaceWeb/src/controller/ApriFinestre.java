@@ -22,10 +22,6 @@ import persistence.PersistenceException;
 @SuppressWarnings("serial")
 public class ApriFinestre extends HttpServlet {
 
-	String ip = "";
-	int porta;
-	int value = 0;
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -39,9 +35,28 @@ public class ApriFinestre extends HttpServlet {
 
 			HttpSession session = req.getSession();
 
-			String utente = req.getParameter(""); // Devo vedere come passare l'utente della sessione
-			findInfo(utente);
-
+			String utente = (String)session.getAttribute("email");
+			String ip="";
+			int porta=0;
+			
+			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+			try {
+				String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
+				PreparedStatement statement = connection.prepareStatement(query);
+				statement.setString(1, utente);
+				ResultSet result = statement.executeQuery();
+				if (result.next()) {
+					ip = result.getString("indirizzoIP");
+					porta = result.getInt("porta");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			connection.close();
+			
+			System.err.println(ip);
+			System.err.println(porta);
+			
 			socket = new Socket(ip, porta);
 			// Apre i canali di I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -67,36 +82,19 @@ public class ApriFinestre extends HttpServlet {
 
 			out.close();
 			in.close();
-			salvaStato(ip, stanza, stato);
-
+			
+			int newValue=salvaStato(ip, stanza, stato);
+			resp.getWriter().print(newValue);
+			resp.getWriter().flush();
 		} catch (Exception e) {
+			resp.getWriter().print("errore");
+			resp.getWriter().flush();
 			System.out.println(e.getMessage());
 		}
 	}
 
-	private void findInfo(String utente) {
-		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
-		try {
-			String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, utente);
-			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				this.ip = result.getString("indirizzoIP");
-				this.porta = result.getInt("porta");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
-	}
-
-	private void salvaStato(String indirizzoIP, String stanza, String stato) {
+	private int salvaStato(String indirizzoIP, String stanza, String stato) {
+		int value=0;
 		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 		try {
 			String query = "select stato from sensore where \"arduino_indirizzoIP\" = ? and stanza = ? and tipo = ?";
@@ -135,6 +133,7 @@ public class ApriFinestre extends HttpServlet {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+		return value;
 	}
 
 }

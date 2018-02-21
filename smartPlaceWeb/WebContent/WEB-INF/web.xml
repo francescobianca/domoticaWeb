@@ -60,6 +60,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>ApriCancello</servlet-name>
+		<servlet-class>controller.ApriCancello</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApriCancello</servlet-name>
+		<url-pattern>/ApriCancello</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>EliminaAttività</servlet-name>
 		<servlet-class>controller.EliminaAttivita</servlet-class>
 	</servlet>
@@ -123,12 +132,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>LeggiUmidità</servlet-name>
+		<servlet-name>LeggiUmidita</servlet-name>
 		<servlet-class>controller.LeggiUmidita</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>LeggiUmidità</servlet-name>
-		<url-pattern>/LeggiUmidità</url-pattern>
+		<servlet-name>LeggiUmidita</servlet-name>
+		<url-pattern>/LeggiUmidita</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

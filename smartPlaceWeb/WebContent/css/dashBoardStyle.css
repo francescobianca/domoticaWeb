@@ -80,12 +80,20 @@ input:checked + .slider:before {
 	
 }
 
-i#up{
-	padding-left: 48%;
+.apri-finestra{
+	
 }
 
-i#down {
-	padding-left: 48%;
+.chiudi-finestra{
+	
+}
+
+.up-finestra{
+	padding-left: 46%;
+}
+
+.down-finestra{
+	padding-left: 46%;
 	padding-bottom: 4%;
 }
 
@@ -97,7 +105,7 @@ label {
 	left:44%;
 }
 
-label#sicurezza{
+.label-left{
 	left:0%;
 }
 

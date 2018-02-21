@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +22,6 @@ import persistence.PersistenceException;
 @SuppressWarnings("serial")
 public class AccendiLuci extends HttpServlet {
 
-	String ip = "";
-	int porta;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,9 +36,26 @@ public class AccendiLuci extends HttpServlet {
 
 			HttpSession session = req.getSession();
 
-			String utente = (String)session.getAttribute("email"); // Devo vedere come passare l'utente della sessione
-			findInfo(utente);
+			String utente = (String)session.getAttribute("email");
+			String ip="";
+			int porta=0;;
+		
+			Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
+			try {
+				String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
+				PreparedStatement statement = connection.prepareStatement(query);
+				statement.setString(1, utente);
+				ResultSet result = statement.executeQuery();
+				if (result.next()) {
+					ip = result.getString("indirizzoIP");
+					porta = result.getInt("porta");
+				}
 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			connection.close();
+			
 			socket = new Socket(ip, porta);
 			// Apre i canali di I/O
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -89,29 +103,6 @@ public class AccendiLuci extends HttpServlet {
 			resp.getWriter().flush();
 		}
 
-	}
-
-	private void findInfo(String utente) {
-		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
-		try {
-			String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
-			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, utente);
-			ResultSet result = statement.executeQuery();
-			if (result.next()) {
-				this.ip = result.getString("indirizzoIP");
-				this.porta = result.getInt("porta");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				throw new PersistenceException(e.getMessage());
-			}
-		}
 	}
 
 	private void salvaStato(String indirizzoIP, String stanza, String stato) {

@@ -134,7 +134,7 @@ function init() {
 											'click',
 											function() {
 												infowindow
-														.setContent("Sede CryptoBet dove potrai giocare le tue scommesse!");
+														.setContent("Sede SmartPlace");
 												infowindow.open(mappa, this);
 											});
 

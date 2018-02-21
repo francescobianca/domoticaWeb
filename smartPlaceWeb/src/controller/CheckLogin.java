@@ -32,6 +32,8 @@ public class CheckLogin extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("sono in post login");
+		
 		HttpSession session = req.getSession();
 		session.setAttribute("email", null);
 		PrintWriter out = resp.getWriter();

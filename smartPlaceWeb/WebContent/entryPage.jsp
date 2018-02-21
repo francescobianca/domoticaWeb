@@ -84,10 +84,12 @@
 					${utente.nome} ${utente.cognome}</a>
 
 				<ul class="navbar-nav ml-auto">
-
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="leggiStatoDispositivi">DashBoard</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="programmaActivity.jsp">Programma Attivit&agrave;</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="checkLogin">Logout</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a

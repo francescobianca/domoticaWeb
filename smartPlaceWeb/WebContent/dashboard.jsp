@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,7 +55,10 @@
 		id="mainNav">
 	<div class="container">
 
-		<img id="logo" alt="Brand" src="images/Logo.png">
+<!-- 
+		<a href="entryPage.jsp"> <img id="logo" alt="Brand"
+			src="images/Logo.png">
+		</a> -->
 
 
 		<button
@@ -65,6 +69,11 @@
 			Menu <i class="fa fa-bars"></i>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
+
+			<a style="color: white" id="utente"
+				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
+				${nome} ${cognome}</a>
+
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
@@ -72,6 +81,11 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="#contact">Contact</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+					href="programmaActivity.jsp">Programma Attivit&agrave;</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a href="checklogin"> <img id="logout"
+					class="img-fluid" src="images/logout2.png" alt=""></a></li>
 			</ul>
 		</div>
 	</div>
@@ -170,8 +184,8 @@
 		<div class="row">
 			<div class="col-md-4 mb-5 mb-lg-0">
 				<h4 class="text-uppercase mb-4">Location</h4>
-				<p class="lead mb-0">Universit&agrave; della Calabria, Via Pietro
-					Bucci, 87036 Arcavacata, Rende CS</p>
+				<p class="lead mb-0">Universit&agrave; della Calabria, Via
+					Pietro Bucci, 87036 Arcavacata, Rende CS</p>
 			</div>
 			<div class="col-md-4 mb-5 mb-lg-0">
 				<h4 class="text-uppercase mb-4">Around the Web</h4>
@@ -469,8 +483,7 @@
 
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
-							<div
-								class="portfolio-item-caption d-flex h-100 w-100">
+							<div class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -502,8 +515,7 @@
 
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
-							<div
-								class="portfolio-item-caption d-flex h-100 w-100">
+							<div class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -558,8 +570,7 @@
 				<div class="row">
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
-							<div
-								class="portfolio-item-caption d-flex h-100 w-100">
+							<div class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -599,8 +610,7 @@
 
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
-							<div
-								class="portfolio-item-caption d-flex h-100 w-100">
+							<div class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -637,8 +647,7 @@
 
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
-							<div
-								class="portfolio-item-caption d-flex h-100 w-100">
+							<div class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -676,8 +685,7 @@
 
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">
-							<div
-								class="portfolio-item-caption d-flex h-100 w-100">
+							<div class="portfolio-item-caption d-flex h-100 w-100">
 								<div
 									class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 								</div>
@@ -750,7 +758,8 @@
 							</div>
 
 							<div class="container" id="humidity">
-								<img id="humidity" class="img-fluid" src="images/sfondoHumidity.png" alt="">
+								<img id="humidity" class="img-fluid"
+									src="images/sfondoHumidity.png" alt="">
 								<div class="centered" id="text_humidity">Valore umidita%</div>
 							</div>
 						</a>
@@ -770,8 +779,9 @@
 							</div> <img class="img-fluid" src="images/deumidificatore.png" alt="">
 							<h3 class="text-center text-uppercase text-secondary mb-0">Deumidificatore</h3>
 							<label class="switch" id="sicurezza"> <input
-								type="checkbox" unchecked id="deumidificatore" class="checkbox-deumidificatore"
-								disabled="true"> <span class="slider round"></span>
+								type="checkbox" unchecked id="deumidificatore"
+								class="checkbox-deumidificatore" disabled="true"> <span
+								class="slider round"></span>
 						</label>
 
 						</a>

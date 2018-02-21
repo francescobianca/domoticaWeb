@@ -15,9 +15,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Arduino;
 import model.Sensore;
+import model.Utente;
 import persistence.DatabaseManager;
 import persistence.PersistenceException;
 
@@ -60,6 +62,9 @@ public class leggiStatoDispositivi extends HttpServlet {
 		for(Sensore s:sensori){
 			req.setAttribute(s.getTipo()+"_"+s.getStanza(),s);
 		}
+		
+		HttpSession session = req.getSession();
+
 		RequestDispatcher disp=req.getRequestDispatcher("dashboard.jsp");
 		disp.forward(req, resp);
 		

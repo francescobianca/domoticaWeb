@@ -30,14 +30,13 @@ public class CheckFacebookLogin extends HttpServlet {
 		String email = req.getParameter("email");
 		String nome = req.getParameter("nome");
 		String cognome = req.getParameter("cognome");
-		String birthday = req.getParameter("birthday");
 		
 		UtenteDao dao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 		UtenteCredenziali utente = dao.findByPrimaryKeyCredential(email);
 
 		if (utente == null) {
 			@SuppressWarnings("deprecation")
-			Utente utenteFacebook = new Utente(email, nome, cognome, new Date(birthday));
+			Utente utenteFacebook = new Utente(email, nome, cognome, new Date());
 			/*
 			 * L'utente non è ancora registrato con l'email che ha inserito
 			 * bisogna quindi registrare questo utente e poi farlo entrare.

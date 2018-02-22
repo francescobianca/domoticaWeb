@@ -80,7 +80,7 @@
 					href="#portfolio">Programma Attivit&agrave;</a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-					href="#calendar">Calendario</a></li>	
+					href="#calendar">Calendario</a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="#contact">Contact</a></li>
@@ -181,24 +181,25 @@
 		</div>
 	</div>
 	</section>
-	
+
 	<!-- About Section -->
-    <section class="bg-primary text-white mb-0" id="about">
-      <div class="container">
-        <h2 class="text-center text-uppercase text-white">Calendario attivit&agrave;</h2>
-    
-        
-      </div>
-    </section>
-	
+	<section class="bg-primary text-white mb-0" id="about">
+	<div class="container">
+		<h2 class="text-center text-uppercase text-white">Calendario
+			attivit&agrave;</h2>
+
+
+	</div>
+	</section>
+
 	<!-- Calendar section -->
-	 <section class="portfolio" id="calendar">
-      <div class="container">
-    
-        <div id='calendar'></div>
-        
-      </div>
-    </section>
+	<section class="portfolio" id="calendar">
+	<div class="container">
+
+		<div id='calendar'></div>
+
+	</div>
+	</section>
 
 	<!-- Footer -->
 	<footer class="footer text-center" id="contact">
@@ -295,7 +296,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBox" />
+									id="nomeActivityBoxTemperatura" />
 							</div>
 						</div>
 
@@ -307,8 +308,12 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoInizio" type="date" class="form-control"
-									id="giornoInizioBox" />
+								<input name="giornoInizio" type="date"
+									class="form-control giornoInizioBox"
+									id="giornoInizioBoxTemperatura" /> <span
+									id="giornoInizioBoxErroreTemperatura"
+									class="card-Header errore" style="display: none">La data
+									non è valida</span>
 							</div>
 						</div>
 
@@ -321,7 +326,11 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBox" />
+									id="giornoFineBoxTemperatura" /> <span
+									id="giornoFineBoxErroreTemperatura" class="card-Header errore"
+									style="display: none">La data di fine deve essere
+									successiva a quella di inizio</span>
+
 							</div>
 						</div>
 
@@ -334,7 +343,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBox" />
+									id="oraInizioBoxTemperatura" />
 							</div>
 						</div>
 
@@ -346,7 +355,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBox" />
+									id="oraFineBoxTemperatura" />
 							</div>
 						</div>
 
@@ -359,7 +368,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectDeviceActivityBoxTemperatura">
 										<option value="1">Ventilatore</option>
 										<option value="2">Riscaldamenti</option>
 									</select>
@@ -370,19 +379,20 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							class="btn btn-primary" id="Invia"
+							onclick="registraAttivita('Temperatura')" />
 					</div>
 
 				</div>
-				
+
 				<!-- Sezione programma regola -->
 				<div class="container" id="nuovaRegola" style="display: none;">
 					<div class="row">
 
 						<!-- Sezione nome regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="nomeRegola" for="nomeRegola">Inserisci il
-								nome della regola:</label>
+							<label id="nomeRegola" for="nomeRegola">Inserisci il nome
+								della regola:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -391,10 +401,11 @@
 									id="nomeRegolaBox" />
 							</div>
 						</div>
-						
+
 						<!-- Sezione verso regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="versoRegola" for="versoRegola">Quando la temperatura è:</label>
+							<label id="versoRegola" for="versoRegola">Quando la
+								temperatura è:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -407,7 +418,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Sezione valore regola -->
 						<div class="col-md-6 col-lg-6">
 							<label id="valoreRegola" for="valoreRegola">Inserisci il
@@ -463,7 +474,7 @@
 
 	<!-- Categoria Luci -->
 	<div class="portfolio-modal mfp-hide" id="categoria_luci">
-		
+
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -474,7 +485,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionLuci()">
+					<div class="select" onclick="newActionLuci()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -496,7 +507,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBox" />
+									id="nomeActivityBoxLuce" />
 							</div>
 						</div>
 
@@ -508,8 +519,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoInizio" type="date" class="form-control"
-									id="giornoInizioBox" />
+								<input name="giornoInizio" type="date"
+									class="form-control giornoInizioBox" id="giornoInizioBoxLuce" />
+								<span id="giornoInizioBoxErroreLuce" class="card-Header errore"
+									style="display: none">La data non è valida</span>
+
 							</div>
 						</div>
 
@@ -522,7 +536,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBox" />
+									id="giornoFineBoxLuce" />
 							</div>
 						</div>
 
@@ -535,7 +549,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBox" />
+									id="oraInizioBoxLuce" />
 							</div>
 						</div>
 
@@ -547,7 +561,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBox" />
+									id="oraFineBoxLuce" />
 							</div>
 						</div>
 
@@ -560,12 +574,12 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
-										<option value="1">Luce bagno</option>
-										<option value="2">Luce salone</option>
-										<option value="3">Luce cucina</option>
-										<option value="4">Luce camera letto</option>
- 									</select>
+									<select name="slct" id="selectDeviceActivityBoxLuce">
+										<option value="1">Bagno</option>
+										<option value="2">Salone</option>
+										<option value="3">Cucina</option>
+										<option value="4">Camera letto</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -573,7 +587,8 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							onclick="registraAttivita('Luce')" class="btn btn-primary"
+							id="Invia" />
 					</div>
 
 				</div>
@@ -589,8 +604,8 @@
 			</div>
 
 		</div>
-		
-		
+
+
 	</div>
 
 	<!-- Categoria cancello-->
@@ -605,7 +620,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionCancello()">
+					<div class="select" onclick="newActionCancello()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -627,7 +642,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBox" />
+									id="nomeActivityBoxCancello" />
 							</div>
 						</div>
 
@@ -639,8 +654,12 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoInizio" type="date" class="form-control"
-									id="giornoInizioBox" />
+								<input name="giornoInizio" type="date"
+									class="form-control giornoInizioBox"
+									id="giornoInizioBoxCancello" /> <span
+									id="giornoInizioBoxErroreCancello" class="card-Header errore"
+									style="display: none">La data non è valida</span>
+
 							</div>
 						</div>
 
@@ -653,7 +672,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBox" />
+									id="giornoFineBoxCancello" />
 							</div>
 						</div>
 
@@ -666,7 +685,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBox" />
+									id="oraInizioBoxCancello" />
 							</div>
 						</div>
 
@@ -678,7 +697,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBox" />
+									id="oraFineBoxCancello" />
 							</div>
 						</div>
 
@@ -691,7 +710,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectDeviceActivityBoxCancello">
 										<option value="1">Cancello</option>
 										<option value="2">Garage</option>
 									</select>
@@ -702,7 +721,8 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							onclick="registraAttivita('Cancello')" class="btn btn-primary"
+							id="Invia" />
 					</div>
 
 				</div>
@@ -722,7 +742,7 @@
 
 	<!-- Categoria finestre -->
 	<div class="portfolio-modal mfp-hide" id="categoria_finestre">
-		
+
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -733,7 +753,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionFinestre()">
+					<div class="select" onclick="newActionFinestre()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -755,7 +775,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBox" />
+									id="nomeActivityBoxFinestra" />
 							</div>
 						</div>
 
@@ -767,8 +787,12 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoInizio" type="date" class="form-control"
-									id="giornoInizioBox" />
+								<input name="giornoInizio" type="date"
+									class="form-control giornoInizioBox"
+									id="giornoInizioBoxFinestra" /> <span
+									id="giornoInizioBoxErroreFinestra" class="card-Header errore"
+									style="display: none">La data non è valida</span>
+
 							</div>
 						</div>
 
@@ -781,7 +805,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBox" />
+									id="giornoFineBoxFinestra" />
 							</div>
 						</div>
 
@@ -794,7 +818,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBox" />
+									id="oraInizioBoxFinestra" />
 							</div>
 						</div>
 
@@ -806,7 +830,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBox" />
+									id="oraFineBoxFinestra" />
 							</div>
 						</div>
 
@@ -819,7 +843,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectDeviceActivityBoxFinestra">
 										<option value="1">Finestra bagno</option>
 										<option value="2">Finestra salone</option>
 										<option value="3">Finestra cucina</option>
@@ -832,7 +856,8 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							onclick="registraAttivita('Finestra')" class="btn btn-primary"
+							id="Invia" />
 					</div>
 
 				</div>
@@ -848,13 +873,13 @@
 			</div>
 
 		</div>
-		
+
 	</div>
 
 
 	<!-- Categoria umidita  -->
 	<div class="portfolio-modal mfp-hide" id="categoria_umidita">
-		
+
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -865,7 +890,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionUmidita()">
+					<div class="select" onclick="newActionUmidita()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -877,7 +902,7 @@
 				</div>
 
 				<div class="container" id="nuovaActivity" style="display: none;">
-					
+
 					<div class="row">
 
 						<!-- Sezione nome activity -->
@@ -889,7 +914,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBox" />
+									id="nomeActivityBoxUmidita" />
 							</div>
 						</div>
 
@@ -901,8 +926,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoInizio" type="date" class="form-control"
-									id="giornoInizioBox" />
+								<input name="giornoInizio" type="date"
+									class="form-control giornoInizioBox"
+									id="giornoInizioBoxUmidita" /> <span
+									id="giornoInizioBoxErroreUmidita" class="card-Header errore"
+									style="display: none">La data non è valida</span>
 							</div>
 						</div>
 
@@ -915,7 +943,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBox" />
+									id="giornoFineBoxUmidita" />
 							</div>
 						</div>
 
@@ -928,7 +956,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBox" />
+									id="oraInizioBoxUmidita" />
 							</div>
 						</div>
 
@@ -940,7 +968,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBox" />
+									id="oraFineBoxUmidita" />
 							</div>
 						</div>
 
@@ -953,7 +981,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selelctDeviceActivityBoxUmidita">
 										<option value="1">Deumidificatore</option>
 									</select>
 								</div>
@@ -963,19 +991,20 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							onclick="registraAttivita('Umidita')" class="btn btn-primary"
+							id="Invia" />
 					</div>
 
 				</div>
-				
+
 				<!-- Sezione programma regola -->
 				<div class="container" id="nuovaRegola" style="display: none;">
 					<div class="row">
 
 						<!-- Sezione nome regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="nomeRegola" for="nomeRegola">Inserisci il
-								nome della regola:</label>
+							<label id="nomeRegola" for="nomeRegola">Inserisci il nome
+								della regola:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -984,10 +1013,11 @@
 									id="nomeRegolaBox" />
 							</div>
 						</div>
-						
+
 						<!-- Sezione verso regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="versoRegola" for="versoRegola">Quando l'umidit&agrave; è:</label>
+							<label id="versoRegola" for="versoRegola">Quando
+								l'umidit&agrave; è:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -1000,7 +1030,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Sezione valore regola -->
 						<div class="col-md-6 col-lg-6">
 							<label id="valoreRegola" for="valoreRegola">Inserisci il
@@ -1049,8 +1079,8 @@
 			</div>
 
 		</div>
-		
-		
+
+
 	</div>
 
 
@@ -1066,7 +1096,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionSicurezza()">
+					<div class="select" onclick="newActionSicurezza()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -1088,7 +1118,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBox" />
+									id="nomeActivityBoxSicurezza" />
 							</div>
 						</div>
 
@@ -1100,8 +1130,12 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoInizio" type="date" class="form-control"
-									id="giornoInizioBox" />
+								<input name="giornoInizio" type="date"
+									class="form-control giornoInizioBox"
+									id="giornoInizioBoxSicurezza" /> <span
+									id="giornoInizioBoxErroreSicurezza"
+									class="card-Header errore" style="display: none">La data
+									non è valida</span>
 							</div>
 						</div>
 
@@ -1114,7 +1148,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBox" />
+									id="giornoFineBoxSicurezza" />
 							</div>
 						</div>
 
@@ -1127,7 +1161,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBox" />
+									id="oraInizioBoxSicurezza" />
 							</div>
 						</div>
 
@@ -1139,7 +1173,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBox" />
+									id="oraFineBoxSicurezza" />
 							</div>
 						</div>
 
@@ -1152,7 +1186,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectDeviceActivityBoxSicurezza">
 										<option value="1">Allarme</option>
 									</select>
 								</div>
@@ -1162,7 +1196,8 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							onclick="registraAttivita('Sicurezza')" class="btn btn-primary"
+							id="Invia" />
 					</div>
 
 				</div>
@@ -1205,7 +1240,7 @@
 
 	<!-- Custom scripts for this page -->
 	<script src="js/activity.js"></script>
-	
+
 	<!-- Script for calendar -->
 	<script src="fullcalendar-3.8.2/lib/jquery.min.js"></script>
 	<script src="fullcalendar-3.8.2/lib/moment.min.js"></script>

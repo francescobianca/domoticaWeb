@@ -27,8 +27,6 @@ import persistence.dao.UtenteDao;
 @SuppressWarnings("serial")
 public class PianificaAttivita extends HttpServlet {
 
-	String ip = "";
-	int porta;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,19 +36,19 @@ public class PianificaAttivita extends HttpServlet {
 		try {
 
 			HttpSession session = req.getSession();
-			String utente = req.getParameter(""); // Da stabilire come viene passato il parametro.
+			String utente =(String) session.getAttribute("email");
 
-			findInfo(utente);
+			String ip=findInfo(utente);
 
-			String nome = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String giornoInizio = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String giornoFine = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String oraInizio = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String oraFine = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String sensore = req.getParameter(""); // Da stabilire come viene passato il parametro.
-			String stanza = req.getParameter(""); // Da stabilire come viene passato il parametro.
+			String nome = req.getParameter("nome"); // Da stabilire come viene passato il parametro.
+			String giornoInizio = req.getParameter("giornoInizio"); // Da stabilire come viene passato il parametro.
+			String giornoFine = req.getParameter("giornoFine"); // Da stabilire come viene passato il parametro.
+			String oraInizio = req.getParameter("oraInizio"); // Da stabilire come viene passato il parametro.
+			String oraFine = req.getParameter("oraFine"); // Da stabilire come viene passato il parametro.
+			String sensore = req.getParameter("tipo"); // Da stabilire come viene passato il parametro.
+			String stanza = req.getParameter("stanza"); // Da stabilire come viene passato il parametro.
 
-			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 			Date parsedDataInizio = format.parse(giornoInizio);
 			Date parsedDataFine = format.parse(giornoFine);
@@ -96,7 +94,8 @@ public class PianificaAttivita extends HttpServlet {
 
 	}
 
-	private void findInfo(String utente) {
+	private String findInfo(String utente) {
+		String ip="";
 		Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 		try {
 			String query = "select \"indirizzoIP\",porta from arduino where utenteArduino=?";
@@ -104,8 +103,7 @@ public class PianificaAttivita extends HttpServlet {
 			statement.setString(1, utente);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				this.ip = result.getString("indirizzoIP");
-				this.porta = result.getInt("porta");
+				ip = result.getString("indirizzoIP");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,6 +114,7 @@ public class PianificaAttivita extends HttpServlet {
 				throw new PersistenceException(e.getMessage());
 			}
 		}
+		return ip;
 	}
 
 }

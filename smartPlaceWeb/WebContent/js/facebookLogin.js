@@ -54,7 +54,7 @@ function buildProfile(user) {
 	
 	$.ajax({
 		url : 'checkFacebookLogin',
-		data : "email=" + email+ "&nome="+ name +"&cognome="+surname+"&birthday="+birthday,
+		data : "email=" + email+ "&nome="+ name +"&cognome="+surname,
 		type : 'POST',
 		cache : false,
 		error : function() {

@@ -4,6 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="google-signin-client_id"
+	content="653927480756-gfvi4taakmfo42otuh7bu1drq1aqpfv0.apps.googleusercontent.com">
 
 <title>SmartPlace</title>
 <!-- Bootstrap core CSS-->
@@ -73,13 +75,17 @@
 							onlogin="checkLoginState();">
 						</fb:login-button>
 					</div> -->
-	
+
 					<div class="form-group row justify-content-center">
 						<div class="fb-login-button" data-max-rows="1" data-size="large"
 							data-button-type="continue_with" data-show-faces="false"
 							data-auto-logout-link="false" data-use-continue-as="false"
 							scope="public_profile,email,user_birthday"
 							onlogin="checkLoginState();"></div>
+					</div>
+
+					<div class="form-group row justify-content-center">
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
 					</div>
 
 				</form>
@@ -105,7 +111,12 @@
 	<!-- Custom js for login -->
 	<script src="js/login.js"></script>
 
+	<!-- Custom js for facebook -->
 	<script src="js/facebookLogin.js"></script>
+
+	<!-- js for google -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="js/googleLogin.js"></script>
 
 </body>
 </html>

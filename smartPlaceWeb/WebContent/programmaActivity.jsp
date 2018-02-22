@@ -24,6 +24,7 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -70,7 +71,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<a style="color: white" id="utente"
+			<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
 				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 				${nome} ${cognome}</a>
 
@@ -80,15 +81,18 @@
 					href="#portfolio">Programma Attivit&agrave;</a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-					href="#calendar">Calendario</a></li>	
+					href="#calendar">Calendario</a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="#contact">Contact</a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="leggiStatoDispositivi">DashBoard</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a href="checklogin"> <img
-						id="logout" class="img-fluid" src="images/logout2.png" alt=""></a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+					href="Charts.jsp">Charts</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+						id="logout" class="img-fluid" src="images/logout2.png" alt="" style="padding-top: 20%"></a></li>
 			</ul>
 		</div>
 	</div>
@@ -181,24 +185,25 @@
 		</div>
 	</div>
 	</section>
-	
+
 	<!-- About Section -->
-    <section class="bg-primary text-white mb-0" id="about">
-      <div class="container">
-        <h2 class="text-center text-uppercase text-white">Calendario attivit&agrave;</h2>
-    
-        
-      </div>
-    </section>
-	
+	<section class="bg-primary text-white mb-0" id="about">
+	<div class="container">
+		<h2 class="text-center text-uppercase text-white">Calendario
+			attivit&agrave;</h2>
+
+
+	</div>
+	</section>
+
 	<!-- Calendar section -->
-	 <section class="portfolio" id="calendar">
-      <div class="container">
-    
-        <div id='calendar'></div>
-        
-      </div>
-    </section>
+	<section class="portfolio" id="calendar">
+	<div class="container">
+
+		<div id='calendar'></div>
+
+	</div>
+	</section>
 
 	<!-- Footer -->
 	<footer class="footer text-center" id="contact">
@@ -374,15 +379,15 @@
 					</div>
 
 				</div>
-				
+
 				<!-- Sezione programma regola -->
 				<div class="container" id="nuovaRegola" style="display: none;">
 					<div class="row">
 
 						<!-- Sezione nome regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="nomeRegola" for="nomeRegola">Inserisci il
-								nome della regola:</label>
+							<label id="nomeRegola" for="nomeRegola">Inserisci il nome
+								della regola:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -391,10 +396,11 @@
 									id="nomeRegolaBox" />
 							</div>
 						</div>
-						
+
 						<!-- Sezione verso regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="versoRegola" for="versoRegola">Quando la temperatura è:</label>
+							<label id="versoRegola" for="versoRegola">Quando la
+								temperatura è:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -407,7 +413,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Sezione valore regola -->
 						<div class="col-md-6 col-lg-6">
 							<label id="valoreRegola" for="valoreRegola">Inserisci il
@@ -463,7 +469,7 @@
 
 	<!-- Categoria Luci -->
 	<div class="portfolio-modal mfp-hide" id="categoria_luci">
-		
+
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -474,7 +480,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionLuci()">
+					<div class="select" onclick="newActionLuci()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -565,7 +571,7 @@
 										<option value="2">Luce salone</option>
 										<option value="3">Luce cucina</option>
 										<option value="4">Luce camera letto</option>
- 									</select>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -589,8 +595,8 @@
 			</div>
 
 		</div>
-		
-		
+
+
 	</div>
 
 	<!-- Categoria cancello-->
@@ -605,7 +611,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionCancello()">
+					<div class="select" onclick="newActionCancello()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -722,7 +728,7 @@
 
 	<!-- Categoria finestre -->
 	<div class="portfolio-modal mfp-hide" id="categoria_finestre">
-		
+
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -733,7 +739,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionFinestre()">
+					<div class="select" onclick="newActionFinestre()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -848,13 +854,13 @@
 			</div>
 
 		</div>
-		
+
 	</div>
 
 
 	<!-- Categoria umidita  -->
 	<div class="portfolio-modal mfp-hide" id="categoria_umidita">
-		
+
 		<div class="portfolio-modal-dialog bg-white">
 			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
 				href="#"> <i class="fa fa-3x fa-times"></i>
@@ -865,7 +871,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionUmidita()">
+					<div class="select" onclick="newActionUmidita()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -877,7 +883,7 @@
 				</div>
 
 				<div class="container" id="nuovaActivity" style="display: none;">
-					
+
 					<div class="row">
 
 						<!-- Sezione nome activity -->
@@ -967,15 +973,15 @@
 					</div>
 
 				</div>
-				
+
 				<!-- Sezione programma regola -->
 				<div class="container" id="nuovaRegola" style="display: none;">
 					<div class="row">
 
 						<!-- Sezione nome regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="nomeRegola" for="nomeRegola">Inserisci il
-								nome della regola:</label>
+							<label id="nomeRegola" for="nomeRegola">Inserisci il nome
+								della regola:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -984,10 +990,11 @@
 									id="nomeRegolaBox" />
 							</div>
 						</div>
-						
+
 						<!-- Sezione verso regola -->
 						<div class="col-md-6 col-lg-6">
-							<label id="versoRegola" for="versoRegola">Quando l'umidit&agrave; è:</label>
+							<label id="versoRegola" for="versoRegola">Quando
+								l'umidit&agrave; è:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
@@ -1000,7 +1007,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- Sezione valore regola -->
 						<div class="col-md-6 col-lg-6">
 							<label id="valoreRegola" for="valoreRegola">Inserisci il
@@ -1049,8 +1056,8 @@
 			</div>
 
 		</div>
-		
-		
+
+
 	</div>
 
 
@@ -1066,7 +1073,7 @@
 
 				<div class="row justify-content-center">
 
-					<div class="select"  onclick="newActionSicurezza()">
+					<div class="select" onclick="newActionSicurezza()">
 						<select name="slct" id="slct">
 							<option>Cosa desideri fare?</option>
 							<option value="1">Nuova attivit&agrave; periodica</option>
@@ -1205,7 +1212,7 @@
 
 	<!-- Custom scripts for this page -->
 	<script src="js/activity.js"></script>
-	
+
 	<!-- Script for calendar -->
 	<script src="fullcalendar-3.8.2/lib/jquery.min.js"></script>
 	<script src="fullcalendar-3.8.2/lib/moment.min.js"></script>

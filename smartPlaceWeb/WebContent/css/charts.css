@@ -1,0 +1,31 @@
+img#logo {
+	position: absolute;
+	right: 10px;
+	width: 150px;
+	height: auto;
+	top: -20%;
+}
+
+@media only screen and (min-device-width: 400px) {
+}
+
+img#logo {
+	position: absolute;
+	max-width: 100%;
+	height: auto;
+}
+
+}
+img#logout {
+	padding-top: 20%;
+}
+
+.portfolio {
+	padding-top: 10%;
+}
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}

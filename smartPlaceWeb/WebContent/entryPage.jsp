@@ -19,6 +19,7 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -79,9 +80,9 @@
 			</c:if>
 
 			<c:if test="${utente!=null}">
-				<a style="color:white" id="utente"
+				<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
-					${utente.nome} ${utente.cognome}</a>
+					${nome} ${cognome}</a>
 
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a

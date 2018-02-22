@@ -25,6 +25,7 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -55,7 +56,7 @@
 		id="mainNav">
 	<div class="container">
 
-<!-- 
+		<!-- 
 		<a href="entryPage.jsp"> <img id="logo" alt="Brand"
 			src="images/Logo.png">
 		</a> -->
@@ -70,7 +71,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<a style="color: white" id="utente"
+			<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
 				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 				${nome} ${cognome}</a>
 
@@ -84,8 +85,11 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="programmaActivity.jsp">Programma Attivit&agrave;</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a href="checklogin"> <img id="logout"
-					class="img-fluid" src="images/logout2.png" alt=""></a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+					href="Charts.jsp">Charts</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+						id="logout" class="img-fluid" src="images/logout2.png" alt=""></a></li>
 			</ul>
 		</div>
 	</div>
@@ -110,7 +114,8 @@
 				<a class="portfolio-item d-block mx-auto"
 					href="#categoria_temperatura">
 					<div
-						class="portfolio-item-caption d-flex position-absolute h-100 w-100" onclick="leggiTemperatura()">
+						class="portfolio-item-caption d-flex position-absolute h-100 w-100"
+						onclick="leggiTemperatura()">
 						<div
 							class="portfolio-item-caption-content my-auto w-100 text-center text-white">
 							<i class="fa fa-search-plus fa-3x"></i>
@@ -156,7 +161,8 @@
 					<div
 						class="portfolio-item-caption d-flex position-absolute h-100 w-100">
 						<div
-							class="portfolio-item-caption-content my-auto w-100 text-center text-white" onclick="leggiUmidita()">
+							class="portfolio-item-caption-content my-auto w-100 text-center text-white"
+							onclick="leggiUmidita()">
 							<i class="fa fa-search-plus fa-3x"></i>
 						</div>
 					</div> <img class="img-fluid" src="images/umidita.png" alt="">
@@ -288,8 +294,9 @@
 							</label>
 						</c:if>
 						<c:if test="${ventilatore_casa.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked="checked"
-								id="ventilatore"> <span class="slider round"></span>
+							<label class="switch"> <input type="checkbox"
+								checked="checked" id="ventilatore"> <span
+								class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${ventilatore_casa==null}">
@@ -374,9 +381,9 @@
 							</label>
 						</c:if>
 						<c:if test="${luce_bagno.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked="checked"
-								id="luce_bagno" class="checkbox-luci"> <span
-								class="slider round"></span>
+							<label class="switch"> <input type="checkbox"
+								checked="checked" id="luce_bagno" class="checkbox-luci">
+								<span class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_bagno==null}">
@@ -404,13 +411,13 @@
 							</label>
 						</c:if>
 						<c:if test="${luce_cucina.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked="checked"
-								id="luce_cucina" class="checkbox-luci"> <span
-								class="slider round"></span>
+							<label class="switch"> <input type="checkbox"
+								checked="checked" id="luce_cucina" class="checkbox-luci">
+								<span class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_cucina==null}">
-							<label class="switch"> <input type="checkbox" 
+							<label class="switch"> <input type="checkbox"
 								id="luce_cucina" class="checkbox-luci" disabled="true">
 								<span class="slider round"></span>
 							</label>
@@ -435,9 +442,9 @@
 							</label>
 						</c:if>
 						<c:if test="${luce_cameraLetto.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked="checked"
-								id="luce_cameraLetto" class="checkbox-luci"> <span
-								class="slider round"></span>
+							<label class="switch"> <input type="checkbox"
+								checked="checked" id="luce_cameraLetto" class="checkbox-luci">
+								<span class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_cameraLetto==null}">
@@ -466,9 +473,9 @@
 							</label>
 						</c:if>
 						<c:if test="${luce_salone.stato == 1}">
-							<label class="switch"> <input type="checkbox" checked="checked"
-								id="luce_salone" class="checkbox-luci"> <span
-								class="slider round"></span>
+							<label class="switch"> <input type="checkbox"
+								checked="checked" id="luce_salone" class="checkbox-luci">
+								<span class="slider round"></span>
 							</label>
 						</c:if>
 						<c:if test="${luce_salone==null}">
@@ -524,8 +531,7 @@
 								<div class="progress-bar" role="progressbar"
 									aria-valuenow="${cancello_casa.stato}" aria-valuemin="0"
 									aria-valuemax="60"
-									style="width: ${100/180*cancello_casa.stato}%"
-									id="cancello"></div>
+									style="width: ${100/180*cancello_casa.stato}%" id="cancello"></div>
 							</c:if>
 							<c:if test="${cancello_casa==null}">
 								<div class="progress-bar" role="progressbar" aria-valuenow="0"
@@ -819,7 +825,9 @@
 								<img id="humidity" class="img-fluid"
 									src="images/sfondoHumidity.png" alt="">
 
-								<div class="centered" id="text_humidity"><span id="umidita">Valore umidita</span>%</div>
+								<div class="centered" id="text_humidity">
+									<span id="umidita">Valore umidita</span>%
+								</div>
 
 							</div>
 						</a>
@@ -840,17 +848,19 @@
 							<h3 class="text-center text-uppercase text-secondary mb-0">Deumidificatore</h3>
 
 							<c:if test="${deumidificatore_casa.stato == 0}">
-								<label class="switch label-left"> <input type="checkbox" unchecked
-									id="deumidificatore"> <span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									unchecked id="deumidificatore"> <span
+									class="slider round"></span>
 								</label>
 							</c:if> <c:if test="${deumidificatore_casa.stato == 1}">
-								<label class="switch label-left"> <input type="checkbox" checked
-									id="deumidificatore"> <span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									checked id="deumidificatore"> <span
+									class="slider round"></span>
 								</label>
 							</c:if> <c:if test="${deumidificatore_casa==null}">
-								<label class="switch label-left"> <input type="checkbox" unchecked
-									id="deumidificatore" disabled="true">
-									<span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									unchecked id="deumidificatore" disabled="true"> <span
+									class="slider round"></span>
 								</label>
 							</c:if>
 
@@ -897,16 +907,16 @@
 							</div> <img class="img-fluid" src="images/alarm.png" alt="">
 							<h3 class="text-center text-uppercase text-secondary mb-0">Allarme</h3>
 							<c:if test="${allarme_casa.stato == 0}">
-								<label class="switch label-left"> <input type="checkbox" unchecked
-									id="allarme"> <span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									unchecked id="allarme"> <span class="slider round"></span>
 								</label>
 							</c:if> <c:if test="${allarme_casa.stato == 1}">
-								<label class="switch label-left"> <input type="checkbox" checked
-									id="allarme"> <span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									checked id="allarme"> <span class="slider round"></span>
 								</label>
 							</c:if> <c:if test="${allarme_casa==null}">
-								<label class="switch label-left"> <input type="checkbox" unchecked
-									id="allarme" disabled="true"> <span
+								<label class="switch label-left"> <input type="checkbox"
+									unchecked id="allarme" disabled="true"> <span
 									class="slider round"></span>
 								</label>
 							</c:if> </label>
@@ -926,16 +936,16 @@
 							</div> <img class="img-fluid" src="images/videocamera.png" alt="">
 							<h3 class="text-center text-uppercase text-secondary mb-0">VideoCamere</h3>
 							<c:if test="${videocamere_casa.stato == 0}">
-								<label class="switch label-left"> <input type="checkbox" unchecked
-									id="videocamere"> <span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									unchecked id="videocamere"> <span class="slider round"></span>
 								</label>
 							</c:if> <c:if test="${videocamere_casa.stato == 1}">
-								<label class="switch label-left"> <input type="checkbox" checked
-									id="videocamere"> <span class="slider round"></span>
+								<label class="switch label-left"> <input type="checkbox"
+									checked id="videocamere"> <span class="slider round"></span>
 								</label>
 							</c:if> <c:if test="${videocamere_casa==null}">
-								<label class="switch label-left"> <input type="checkbox" unchecked
-									id="videocamere" disabled="true"> <span
+								<label class="switch label-left"> <input type="checkbox"
+									unchecked id="videocamere" disabled="true"> <span
 									class="slider round"></span>
 								</label>
 							</c:if>

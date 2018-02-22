@@ -24,52 +24,59 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function statusChangeCallback(response) {
-	if (response.status === 'connected') {
-		console.log('Logged and authenticated');
-		testAPI();
-	} else {
-		console.log('Not authenticated');
+	if (login) {
+		if (response.status === 'connected') {
+			console.log('Logged and authenticated');
+			testAPI();
+		} else {
+			console.log('Not authenticated');
+		}
 	}
 }
 
+var login = false;
+
 function checkLoginState() {
+	login = true;
 	FB.getLoginStatus(function(response) {
 		statusChangeCallback(response);
 	});
 }
 
 function testAPI() {
-	FB.api('/me?fields=email,birthday,first_name,last_name',function(response){
-		if (response && !response.error) {
-			buildProfile(response);
-		}
-	})
+	FB.api('/me?fields=email,birthday,first_name,last_name',
+			function(response) {
+				if (response && !response.error) {
+					buildProfile(response);
+				}
+			})
 }
 
 function buildProfile(user) {
 	var email = user.email;
 	var name = user.first_name;
 	var surname = user.last_name;
-	var birthday = user.birthday; //data formato mm/gg/aaaa
-	
+	var birthday = user.birthday; // data formato mm/gg/aaaa
+
 	$.ajax({
 		url : 'alternativeCheckLogin',
-		data : "email=" + email+ "&nome="+ name +"&cognome="+surname+"&tipo=facebook",
+		data : "email=" + email + "&nome=" + name + "&cognome=" + surname
+				+ "&tipo=facebook",
 		type : 'POST',
 		cache : false,
 		error : function() {
 			alert('error');
 		},
 		async : false,
-		success: function(response){
-			document.location.replace('entryPage.jsp');	
+		success : function(response) {
+			document.location.replace('entryPage.jsp');
 		}
 	});
 }
 
-function logoutFacebook(){
+function logoutFacebook() {
 
-	FB.logout(function (response){
+	FB.logout(function(response) {
 		console.log(response)
 	});
 	$.ajax({
@@ -81,9 +88,8 @@ function logoutFacebook(){
 			alert('error');
 		},
 		async : false,
-		success: function(response){
-			document.location.replace('entryPage.jsp');	
+		success : function(response) {
+			document.location.replace('entryPage.jsp');
 		}
 	});
 }
-

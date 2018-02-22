@@ -69,7 +69,7 @@ function buildProfile(user) {
 		},
 		async : false,
 		success : function(response) {
-			document.location.replace('entryPage.jsp');
+			window.location.replace('entryPage.jsp');
 		}
 	});
 }
@@ -89,7 +89,7 @@ function logoutFacebook() {
 		},
 		async : false,
 		success : function(response) {
-			document.location.replace('entryPage.jsp');
+			window.location.replace('entryPage.jsp');
 		}
 	});
 }

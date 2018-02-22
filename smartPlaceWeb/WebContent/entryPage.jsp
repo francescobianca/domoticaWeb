@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="google-signin-client_id"
+	content="653927480756-gfvi4taakmfo42otuh7bu1drq1aqpfv0.apps.googleusercontent.com">
 <title>SmartPlace</title>
 
 <!-- Bootstrap core CSS -->
@@ -63,7 +65,7 @@
 			aria-label="Toggle navigation">
 			Menu <i class="fa fa-bars"></i>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
+		<div class="collapse navbar-collapse" id="navbarResponsive">	
 
 			<c:if test="${email==null}">
 
@@ -103,14 +105,15 @@
 								style="padding-top: 20%"></a></li>
 					</c:if>
 					<c:if test="${tipo=='facebook'}">
-						<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutFacebook()" href=""><img
-								id="logout" class="img-fluid" src="images/logout2.png" alt=""
+						<li class="nav-item mx-0 mx-lg-1"><a
+							onclick="logoutFacebook()" href=""><img id="logout"
+								class="img-fluid" src="images/logout2.png" alt=""
 								style="padding-top: 20%"></a></li>
 					</c:if>
 					<c:if test="${tipo=='google'}">
-						<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutGoogle()"></a><img 
-								id="logout" class="img-fluid" src="images/logout2.png" alt=""
-								style="padding-top: 20%"></a></li>
+						<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutGoogle()"
+							href=""><img id="logout" class="img-fluid"
+								src="images/logout2.png" alt="" style="padding-top: 20%"></a></li>
 					</c:if>
 				</ul>
 			</c:if>
@@ -230,7 +233,13 @@
 
 	<script
 		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+	<!-- js for facebook -->
 	<script src="js/facebookLogin.js"></script>
+	<!-- js for google -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="js/googleLogin.js"></script>
+
 </body>
 
 </html>

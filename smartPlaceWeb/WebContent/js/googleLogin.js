@@ -1,40 +1,42 @@
 function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  
-  var email = profile.getEmail();
-  var name = profile.getGivenName();
-  var surname = profile.getFamilyName();
-  
-  console.log(email);
-  console.log(name);
-  console.log(surname);
-  
-  $.ajax({
-		url : 'alternativeCheckLogin',
-		data : "email=" + email+ "&nome="+ name +"&cognome="+surname+"&tipo=google",
-		type : 'POST',
-		cache : false,
-		error : function() {
-			alert('error');
-		},
-		async : false
+	var profile = googleUser.getBasicProfile();
 
-	}).done(function(risposta) {
-		window.location.replace('entryPage.jsp');	
+	var email = profile.getEmail();
+	var name = profile.getGivenName();
+	var surname = profile.getFamilyName();
+
+	console.log(email);
+	console.log(name);
+	console.log(surname);
+
+	$.ajax(
+			{
+				url : 'alternativeCheckLogin',
+				data : "email=" + email + "&nome=" + name + "&cognome="
+						+ surname + "&tipo=google",
+				type : 'POST',
+				cache : false,
+				error : function() {
+					alert('error');
+				},
+				async : false
+
+			}).done(function(risposta) {
+		window.location.replace('entryPage.jsp');
 	});
-  
+
 }
 
-//SIGN OUT
+// SIGN OUT
 function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-  });
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function() {
+		console.log('User signed out.');
+	});
 }
 
-function logoutGoogle(){
-	//signOut();
+function logoutGoogle() {
+	signOut();
 	console.log("logout");
 	$.ajax({
 		url : 'checkLogin',
@@ -45,8 +47,8 @@ function logoutGoogle(){
 			alert('error');
 		},
 		async : false,
-		success: function(response){
-			window.location.replace('entryPage.jsp');	
+		success : function(response) {
+			window.location.replace('entryPage.jsp');
 		}
 	});
 }

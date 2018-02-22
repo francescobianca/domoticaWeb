@@ -57,6 +57,11 @@ public class AlternativeCheckLogin extends HttpServlet {
 		} else {
 			// Ha già  effettuato in precedenza un login con facebook quindi non
 			// c'è bisogno di salvarlo nel database.
+			System.out.println(email);
+			System.out.println(nome);
+			System.out.println(cognome);
+			System.out.println(tipo);
+			
 			session.setAttribute("email", email);
 			session.setAttribute("nome", nome);
 			session.setAttribute("cognome", cognome);

@@ -41,7 +41,10 @@
 	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
 	rel="stylesheet">
 
+<!-- style for calendar -->
+<link rel="stylesheet" href="fullcalendar-3.8.2/fullcalendar.css" />
 
+<!-- custom style for this page -->
 <link rel="stylesheet" href="css/activity.css">
 
 </head>
@@ -75,6 +78,9 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="#portfolio">Programma Attivit&agrave;</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+					href="#calendar">Calendario</a></li>	
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="#contact">Contact</a></li>
@@ -175,6 +181,24 @@
 		</div>
 	</div>
 	</section>
+	
+	<!-- About Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">Calendario attivit&agrave;</h2>
+    
+        
+      </div>
+    </section>
+	
+	<!-- Calendar section -->
+	 <section class="portfolio" id="calendar">
+      <div class="container">
+    
+        <div id='calendar'></div>
+        
+      </div>
+    </section>
 
 	<!-- Footer -->
 	<footer class="footer text-center" id="contact">
@@ -1181,6 +1205,12 @@
 
 	<!-- Custom scripts for this page -->
 	<script src="js/activity.js"></script>
+	
+	<!-- Script for calendar -->
+	<script src="fullcalendar-3.8.2/lib/jquery.min.js"></script>
+	<script src="fullcalendar-3.8.2/lib/moment.min.js"></script>
+	<script src="fullcalendar-3.8.2/fullcalendar.js"></script>
+	<script src="js/calendar.js"></script>
 
 </body>
 

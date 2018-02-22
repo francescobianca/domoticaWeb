@@ -34,7 +34,7 @@
 							<input name="email" value="${email}" type="text"
 								class="form-control" id="emailBox" onblur="checkEmail()" />
 							<span class="card-Header errore" id="ErroreEmail"
-							style="display: none">Indirizzo non registrato</span>
+								style="display: none">Indirizzo non registrato</span>
 						</c:if>
 						<c:if test="${email==null}">
 							<label for="email">Indirizzo email</label>
@@ -68,6 +68,20 @@
 							value="Login" class="btn btn-primary btn-block" />
 					</div>
 
+					<!--  <div class="form-group">
+						<fb:login-button scope="public_profile,email,user_birthday"
+							onlogin="checkLoginState();">
+						</fb:login-button>
+					</div> -->
+	
+					<div class="form-group row justify-content-center">
+						<div class="fb-login-button" data-max-rows="1" data-size="large"
+							data-button-type="continue_with" data-show-faces="false"
+							data-auto-logout-link="false" data-use-continue-as="false"
+							scope="public_profile,email,user_birthday"
+							onlogin="checkLoginState();"></div>
+					</div>
+
 				</form>
 				<div class="text-center">
 					<a class="d-block small mt-3" href="register.html">Registra un
@@ -90,5 +104,8 @@
 
 	<!-- Custom js for login -->
 	<script src="js/login.js"></script>
+
+	<script src="js/facebookLogin.js"></script>
+
 </body>
 </html>

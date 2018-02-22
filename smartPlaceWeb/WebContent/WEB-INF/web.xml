@@ -33,6 +33,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>CheckFacebookLogin</servlet-name>
+		<servlet-class>controller.CheckFacebookLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckFacebookLogin</servlet-name>
+		<url-pattern>/checkFacebookLogin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>leggiStatoDispositivi</servlet-name>
 		<servlet-class>controller.leggiStatoDispositivi</servlet-class>
 	</servlet>

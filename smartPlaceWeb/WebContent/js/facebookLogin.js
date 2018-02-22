@@ -26,6 +26,7 @@ window.fbAsyncInit = function() {
 function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		console.log('Logged and authenticated');
+		testAPI();
 	} else {
 		console.log('Not authenticated');
 	}
@@ -38,11 +39,31 @@ function checkLoginState() {
 }
 
 function testAPI() {
-	FB.api('/me?fields=name,email',function(response){
+	FB.api('/me?fields=email,birthday,first_name,last_name',function(response){
 		if (response && !response.error) {
-			
+			buildProfile(response);
 		}
-		
 	})
+}
+
+function buildProfile(user) {
+	var email = user.email;
+	var name = user.first_name;
+	var surname = user.last_name;
+	var birthday = user.birthday; //data formato mm/gg/aaaa
+	
+	$.ajax({
+		url : 'checkFacebookLogin',
+		data : "email=" + email+ "&nome="+ name +"&cognome="+surname+"&birthday="+birthday,
+		type : 'POST',
+		cache : false,
+		error : function() {
+			alert('error');
+		},
+		async : false
+
+	}).done(function(risposta) {
+		
+	});
 	
 }

@@ -47,7 +47,10 @@
 </head>
 
 <body id="page-top">
-
+	
+	<!-- Serve per il logout con google -->
+	<div class="g-signin2" style="display:none"></div>
+	
 	<!-- Navigation -->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase"

@@ -42,6 +42,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>CheckGoogleLogin</servlet-name>
+		<servlet-class>controller.CheckGoogleLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckGoogleLogin</servlet-name>
+		<url-pattern>/checkGoogleLogin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>leggiStatoDispositivi</servlet-name>
 		<servlet-class>controller.leggiStatoDispositivi</servlet-class>
 	</servlet>

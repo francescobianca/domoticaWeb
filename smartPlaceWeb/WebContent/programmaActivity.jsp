@@ -24,6 +24,7 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -70,7 +71,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<a style="color: white" id="utente"
+			<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
 				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 				${nome} ${cognome}</a>
 
@@ -87,8 +88,11 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="leggiStatoDispositivi">DashBoard</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a href="checklogin"> <img
-						id="logout" class="img-fluid" src="images/logout2.png" alt=""></a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+					href="Charts.jsp">Charts</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+						id="logout" class="img-fluid" src="images/logout2.png" alt="" style="padding-top: 20%"></a></li>
 			</ul>
 		</div>
 	</div>
@@ -579,7 +583,6 @@
 										<option value="2">Salone</option>
 										<option value="3">Cucina</option>
 										<option value="4">Camera letto</option>
-									</select>
 								</div>
 							</div>
 						</div>

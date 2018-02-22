@@ -16,7 +16,7 @@ import persistence.UtenteCredenziali;
 import persistence.dao.UtenteDao;
 
 @SuppressWarnings("serial")
-public class CheckFacebookLogin extends HttpServlet {
+public class AlternativeCheckLogin extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,29 +30,29 @@ public class CheckFacebookLogin extends HttpServlet {
 		String email = req.getParameter("email");
 		String nome = req.getParameter("nome");
 		String cognome = req.getParameter("cognome");
-		
+		String tipo=req.getParameter("tipo");
 		UtenteDao dao = DatabaseManager.getInstance().getDaoFactory().getUtenteDAO();
 		UtenteCredenziali utente = dao.findByPrimaryKeyCredential(email);
 
 		if (utente == null) {
 			@SuppressWarnings("deprecation")
-			Utente utenteFacebook = new Utente(email, nome, cognome, new Date());
+			Utente alternativeUser = new Utente(email, nome, cognome, new Date());
 			/*
 			 * L'utente non è ancora registrato con l'email che ha inserito
 			 * bisogna quindi registrare questo utente e poi farlo entrare.
 			 */
-
-			dao.save(utenteFacebook);
+			
+			dao.save(alternativeUser);
 			// L'utente è stato registrato per la prima volta tramite facebook e
 			// salvato nel database.
 			session.setAttribute("email", email);
 			session.setAttribute("nome", nome);
 			session.setAttribute("cognome", cognome);
-			
-			RequestDispatcher disp;
+			session.setAttribute("tipo",tipo);
+	/*		RequestDispatcher disp;
 			disp= req.getRequestDispatcher("entryPage.jsp");
-			req.setAttribute("utente", utenteFacebook);
-			disp.forward(req, resp);
+			req.setAttribute("utente", alternativeUser);
+			disp.forward(req, resp);*/
 			
 		} else {
 			// Ha già  effettuato in precedenza un login con facebook quindi non
@@ -60,11 +60,12 @@ public class CheckFacebookLogin extends HttpServlet {
 			session.setAttribute("email", email);
 			session.setAttribute("nome", nome);
 			session.setAttribute("cognome", cognome);
-			RequestDispatcher disp;
+			session.setAttribute("tipo",tipo);
+		/*	RequestDispatcher disp;
 			disp= req.getRequestDispatcher("entryPage.jsp");
-			Utente utenteFacebook = dao.findByPrimaryKey(email);
-			req.setAttribute("utente", utenteFacebook);
-			disp.forward(req, resp);
+			Utente alternativeUser = dao.findByPrimaryKey(email);
+			req.setAttribute("utente", alternativeUser);
+			disp.forward(req, resp);*/
 		}
 		
 	}

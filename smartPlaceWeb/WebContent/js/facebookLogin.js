@@ -53,17 +53,37 @@ function buildProfile(user) {
 	var birthday = user.birthday; //data formato mm/gg/aaaa
 	
 	$.ajax({
-		url : 'checkFacebookLogin',
-		data : "email=" + email+ "&nome="+ name +"&cognome="+surname,
+		url : 'alternativeCheckLogin',
+		data : "email=" + email+ "&nome="+ name +"&cognome="+surname+"&tipo=facebook",
 		type : 'POST',
 		cache : false,
 		error : function() {
 			alert('error');
 		},
-		async : false
-
-	}).done(function(risposta) {
-		
+		async : false,
+		success: function(response){
+			document.location.replace('entryPage.jsp');	
+		}
 	});
-	
 }
+
+function logoutFacebook(){
+
+	FB.logout(function (response){
+		console.log(response)
+	});
+	$.ajax({
+		url : 'checkLogin',
+		data : "",
+		type : 'GET',
+		cache : false,
+		error : function() {
+			alert('error');
+		},
+		async : false,
+		success: function(response){
+			document.location.replace('entryPage.jsp');	
+		}
+	});
+}
+

@@ -33,21 +33,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>CheckFacebookLogin</servlet-name>
-		<servlet-class>controller.CheckFacebookLogin</servlet-class>
+		<servlet-name>AlternativeCheckLogin</servlet-name>
+		<servlet-class>controller.AlternativeCheckLogin</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CheckFacebookLogin</servlet-name>
-		<url-pattern>/checkFacebookLogin</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>CheckGoogleLogin</servlet-name>
-		<servlet-class>controller.CheckGoogleLogin</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CheckGoogleLogin</servlet-name>
-		<url-pattern>/checkGoogleLogin</url-pattern>
+		<servlet-name>AlternativeCheckLogin</servlet-name>
+		<url-pattern>/alternativeCheckLogin</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

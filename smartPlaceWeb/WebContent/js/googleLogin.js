@@ -10,8 +10,8 @@ function onSignIn(googleUser) {
   console.log(surname);
   
   $.ajax({
-		url : 'checkGoogleLogin',
-		data : "email=" + email+ "&nome="+ name +"&cognome="+surname,
+		url : 'alternativeCheckLogin',
+		data : "email=" + email+ "&nome="+ name +"&cognome="+surname+"&tipo=google",
 		type : 'POST',
 		cache : false,
 		error : function() {
@@ -20,7 +20,7 @@ function onSignIn(googleUser) {
 		async : false
 
 	}).done(function(risposta) {
-		
+		$("html").html(risposta);
 	});
   
 }

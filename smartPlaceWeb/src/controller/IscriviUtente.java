@@ -128,6 +128,7 @@ public class IscriviUtente extends HttpServlet {
 				session.setAttribute("email", email);
 				session.setAttribute("nome", utente.getNome());
 				session.setAttribute("cognome", utente.getCognome());
+				session.setAttribute("tipo","normale");
 				RequestDispatcher disp;
 				disp= req.getRequestDispatcher("entryPage.jsp");
 				req.setAttribute("utente", utente);

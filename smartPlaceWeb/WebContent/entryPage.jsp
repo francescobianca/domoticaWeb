@@ -19,7 +19,8 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -63,7 +64,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<c:if test="${utente==null}">
+			<c:if test="${email==null}">
 
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item mx-0 mx-lg-1"><a
@@ -79,8 +80,9 @@
 
 			</c:if>
 
-			<c:if test="${utente!=null}">
-				<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
+			<c:if test="${email!=null}">
+				<a style="color: white; font-style: italic; font-family: 'roboto';"
+					id="utente"
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 					${nome} ${cognome}</a>
 
@@ -92,10 +94,23 @@
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="programmaActivity.jsp">Programma Attivit&agrave;</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
-						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="checkLogin">Logout</a></li>
-					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="aboutUS.html">About</a></li>
+					<c:if test="${tipo=='normale'}">
+						<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+								id="logout" class="img-fluid" src="images/logout2.png" alt=""
+								style="padding-top: 20%"></a></li>
+					</c:if>
+					<c:if test="${tipo=='facebook'}">
+						<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutFacebook()" href=""><img
+								id="logout" class="img-fluid" src="images/logout2.png" alt=""
+								style="padding-top: 20%"></a></li>
+					</c:if>
+					<c:if test="${tipo=='google'}">
+						<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutGoogle()"></a><img 
+								id="logout" class="img-fluid" src="images/logout2.png" alt=""
+								style="padding-top: 20%"></a></li>
+					</c:if>
 				</ul>
 			</c:if>
 
@@ -214,7 +229,7 @@
 
 	<script
 		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-	
+	<script src="js/facebookLogin.js"></script>
 </body>
 
 </html>

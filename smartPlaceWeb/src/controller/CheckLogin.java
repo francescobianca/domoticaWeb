@@ -24,7 +24,7 @@ public class CheckLogin extends HttpServlet{
 		session.removeAttribute("email");
 		session.removeAttribute("nome");
 		session.removeAttribute("cognome");
-		
+		session.removeAttribute("tipo");
 		RequestDispatcher disp;
 		disp= req.getRequestDispatcher("entryPage.jsp");
 		disp.forward(req, resp);
@@ -50,6 +50,7 @@ public class CheckLogin extends HttpServlet{
 				session.setAttribute("email", email);
 				session.setAttribute("nome", utente.getNome());
 				session.setAttribute("cognome", utente.getCognome());
+				session.setAttribute("tipo", "normale");
 				RequestDispatcher disp;
 				disp= req.getRequestDispatcher("entryPage.jsp");
 				req.setAttribute("utente", utente);

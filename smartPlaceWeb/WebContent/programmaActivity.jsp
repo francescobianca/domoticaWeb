@@ -24,7 +24,8 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -71,7 +72,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
+			<a style="color: white; font-style: italic; font-family: 'roboto';"
+				id="utente"
 				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 				${nome} ${cognome}</a>
 
@@ -92,7 +94,8 @@
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="Charts.jsp">Charts</a></li>
 				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
-						id="logout" class="img-fluid" src="images/logout2.png" alt="" style="padding-top: 20%"></a></li>
+						id="logout" class="img-fluid" src="images/logout2.png" alt=""
+						style="padding-top: 20%"></a></li>
 			</ul>
 		</div>
 	</div>
@@ -108,7 +111,7 @@
 
 	<!-- Portfolio Grid Section -->
 
-	<section class="portfolio" id="portfolio">
+	<section class="portfolio" id="portfolio" style="padding-top:10%">
 	<div class="container">
 		<h2 class="text-center text-uppercase text-secondary mb-0">Programma
 			Attivit&agrave;</h2>
@@ -267,8 +270,10 @@
 	<!-- Categoria temperatura-->
 	<div class="portfolio-modal mfp-hide" id="categoria_temperatura">
 		<div class="portfolio-modal-dialog bg-white">
-			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
-				href="#"> <i class="fa fa-3x fa-times"></i>
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonTemperatura" href="#"> <i
+				class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Temperatura</h2>
@@ -329,7 +334,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoFine" type="date" class="form-control"
+								<input name="giornoFine" type="date"
+									class="form-control giornoFineBox"
 									id="giornoFineBoxTemperatura" /> <span
 									id="giornoFineBoxErroreTemperatura" class="card-Header errore"
 									style="display: none">La data di fine deve essere
@@ -346,8 +352,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBoxTemperatura" />
+								<input name="oraInizio" type="time"
+									class="form-control oraInizioBox" id="oraInizioBoxTemperatura" />
 							</div>
 						</div>
 
@@ -358,8 +364,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBoxTemperatura" />
+								<input name="oraFine" type="time"
+									class="form-control oraFineBox" id="oraFineBoxTemperatura" /><span
+									id="oraFineBoxErroreTemperatura" class="card-Header errore"
+									style="display: none">L'ora di fine deve essere
+									succesiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -379,6 +388,28 @@
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxTemperatura">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxTemperatura">Attivit&agrave; salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteTemperatura">Il
+							sensore installato non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="attivitaIncoerenteTemperatura">L'attivit&agrave;
+							inserita non è coerente con quelle già create</span> <span
+							class="card-Header errore" style="display: none"
+							id="attivitaStessoNomeTemperatura">Esiste gi&agrave;
+							un'attivit&agrave; con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerTemperatura">Si &egrave; verificato un
+							errore durante il salvateggio dell'attivit&agrave;</span>
+
+
+
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
@@ -402,7 +433,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeRegola" type="text" class="form-control"
-									id="nomeRegolaBox" />
+									id="nomeRegolaBoxTemperatura" />
 							</div>
 						</div>
 
@@ -415,7 +446,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectCondizioneRegolaTemperatura">
 										<option value="1">Maggiore (&gt;)</option>
 										<option value="2">Minore (&lt;)</option>
 									</select>
@@ -432,7 +463,8 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="valoreRegola" type="text" class="form-control"
-									id="valoreRegolaBox" />
+									id="valoreRegolaBoxTemperatura"
+									onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 45' />
 							</div>
 						</div>
 
@@ -445,7 +477,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectDeviceRegolaTemperatura">
 										<option value="1">Ventilatore</option>
 										<option value="2">Riscaldamenti</option>
 									</select>
@@ -456,7 +488,7 @@
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							class="btn btn-primary" id="Invia" onclick="registraRegola('Temperatura')"/>
 					</div>
 
 				</div>
@@ -480,8 +512,9 @@
 	<div class="portfolio-modal mfp-hide" id="categoria_luci">
 
 		<div class="portfolio-modal-dialog bg-white">
-			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
-				href="#"> <i class="fa fa-3x fa-times"></i>
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonLuce" href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Luci</h2>
@@ -539,8 +572,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBoxLuce" />
+								<input name="giornoFine" type="date"
+									class="form-control giornoFineBox" id="giornoFineBoxLuce" /> <span
+									id="giornoFineBoxErroreLuce" class="card-Header errore"
+									style="display: none">La data di fine deve essere
+									successiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -552,8 +588,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBoxLuce" />
+								<input name="oraInizio" type="time"
+									class="form-control oraInizioBox" id="oraInizioBoxLuce" />
 							</div>
 						</div>
 
@@ -564,8 +600,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBoxLuce" />
+								<input name="oraFine" type="time"
+									class="form-control oraFineBox" id="oraFineBoxLuce" /><span
+									id="oraFineBoxErroreLuce" class="card-Header errore"
+									style="display: none">L'ora di fine deve essere
+									succesiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -583,9 +622,28 @@
 										<option value="2">Salone</option>
 										<option value="3">Cucina</option>
 										<option value="4">Camera letto</option>
+									</select>
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxLuce">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxLuce">Attivit&agrave; salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteLuce">Il sensore
+							installato non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
+							id="attivitaIncoerenteLuce">L'attivit&agrave; inserita non
+							è coerente con quelle già create</span> <span class="card-Header errore"
+							style="display: none" id="attivitaStessoNomeLuce">Esiste
+							gi&agrave; un'attivit&agrave; con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerLuce">Si &egrave; verificato un errore
+							durante il salvateggio dell'attivit&agrave;</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
@@ -614,8 +672,9 @@
 	<!-- Categoria cancello-->
 	<div class="portfolio-modal mfp-hide" id="categoria_cancello">
 		<div class="portfolio-modal-dialog bg-white">
-			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
-				href="#"> <i class="fa fa-3x fa-times"></i>
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonCancello" href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Ingressi</h2>
@@ -674,8 +733,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBoxCancello" />
+								<input name="giornoFine" type="date"
+									class="form-control giornoFineBox" id="giornoFineBoxCancello" /><span
+									id="giornoFineBoxErroreCancello" class="card-Header errore"
+									style="display: none">La data di fine deve essere
+									successiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -687,8 +749,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBoxCancello" />
+								<input name="oraInizio" type="time"
+									class="form-control oraInizioBox" id="oraInizioBoxCancello" />
 							</div>
 						</div>
 
@@ -699,8 +761,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBoxCancello" />
+								<input name="oraFine" type="time"
+									class="form-control oraFineBox" id="oraFineBoxCancello" /><span
+									id="oraFineBoxErroreCancello" class="card-Header errore"
+									style="display: none">L'ora di fine deve essere
+									succesiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -720,6 +785,25 @@
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxCancello">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxCancello">Attivit&agrave; salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteCancello">Il
+							sensore installato non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="attivitaIncoerenteCancello">L'attivit&agrave; inserita
+							non è coerente con quelle già create</span> <span
+							class="card-Header errore" style="display: none"
+							id="attivitaStessoNomeCancello">Esiste gi&agrave;
+							un'attivit&agrave; con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerCancello">Si &egrave; verificato un errore
+							durante il salvateggio dell'attivit&agrave;</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
@@ -747,8 +831,9 @@
 	<div class="portfolio-modal mfp-hide" id="categoria_finestre">
 
 		<div class="portfolio-modal-dialog bg-white">
-			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
-				href="#"> <i class="fa fa-3x fa-times"></i>
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonFinestra" href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Finestre</h2>
@@ -807,8 +892,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBoxFinestra" />
+								<input name="giornoFine" type="date"
+									class="form-control giornoFineBox" id="giornoFineBoxFinestra" /><span
+									id="giornoFineBoxErroreFinestra" class="card-Header errore"
+									style="display: none">La data di fine deve essere
+									successiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -820,8 +908,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBoxFinestra" />
+								<input name="oraInizio" type="time"
+									class="form-control oraInizioBox" id="oraInizioBoxFinestra" />
 							</div>
 						</div>
 
@@ -832,8 +920,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBoxFinestra" />
+								<input name="oraFine" type="time"
+									class="form-control oraFineBox" id="oraFineBoxFinestra" /><span
+									id="oraFineBoxErroreFinestra" class="card-Header errore"
+									style="display: none">L'ora di fine deve essere
+									succesiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -847,14 +938,33 @@
 							<div class="form-group">
 								<div class="select">
 									<select name="slct" id="selectDeviceActivityBoxFinestra">
-										<option value="1">Finestra bagno</option>
-										<option value="2">Finestra salone</option>
-										<option value="3">Finestra cucina</option>
-										<option value="4">Finestra camera letto</option>
+										<option value="1">Bagno</option>
+										<option value="2">Salone</option>
+										<option value="3">Cucina</option>
+										<option value="4">Camera letto</option>
 									</select>
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxFinestra">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxFinestra">Attivit&agrave; salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteFinestra">Il
+							sensore installato non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="attivitaIncoerenteFinestra">L'attivit&agrave; inserita
+							non è coerente con quelle già create</span> <span
+							class="card-Header errore" style="display: none"
+							id="attivitaStessoNomeFinestra">Esiste gi&agrave;
+							un'attivit&agrave; con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerFinestra">Si &egrave; verificato un errore
+							durante il salvateggio dell'attivit&agrave;</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
@@ -884,8 +994,9 @@
 	<div class="portfolio-modal mfp-hide" id="categoria_umidita">
 
 		<div class="portfolio-modal-dialog bg-white">
-			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
-				href="#"> <i class="fa fa-3x fa-times"></i>
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonUmidita" href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Umidit&agrave;</h2>
@@ -945,8 +1056,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBoxUmidita" />
+								<input name="giornoFine" type="date"
+									class="form-control giornoFineBox" id="giornoFineBoxUmidita" /><span
+									id="giornoFineBoxErroreUmidita" class="card-Header errore"
+									style="display: none">La data di fine deve essere
+									successiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -958,8 +1072,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBoxUmidita" />
+								<input name="oraInizio" type="time"
+									class="form-control oraInizioBox" id="oraInizioBoxUmidita" />
 							</div>
 						</div>
 
@@ -970,8 +1084,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBoxUmidita" />
+								<input name="oraFine" type="time"
+									class="form-control oraFineBox" id="oraFineBoxUmidita" /><span
+									id="oraFineBoxErroreUmidita" class="card-Header errore"
+									style="display: none">L'ora di fine deve essere
+									succesiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -984,12 +1101,31 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="selelctDeviceActivityBoxUmidita">
+									<select name="slct" id="selectDeviceActivityBoxUmidita">
 										<option value="1">Deumidificatore</option>
 									</select>
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxUmidita">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxUmidita">Attivit&agrave; salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteUmidita">Il
+							sensore installato non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="attivitaIncoerenteUmidita">L'attivit&agrave; inserita
+							non è coerente con quelle già create</span> <span
+							class="card-Header errore" style="display: none"
+							id="attivitaStessoNomeUmidita">Esiste gi&agrave;
+							un'attivit&agrave; con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerUmidita">Si &egrave; verificato un errore
+							durante il salvateggio dell'attivit&agrave;</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
@@ -1013,7 +1149,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="nomeRegola" type="text" class="form-control"
-									id="nomeRegolaBox" />
+									id="nomeRegolaBoxUmidita" />
 							</div>
 						</div>
 
@@ -1026,7 +1162,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="slct" id="selectCondizioneRegolaUmidita">
 										<option value="1">Maggiore (&gt;)</option>
 										<option value="2">Minore (&lt;)</option>
 									</select>
@@ -1043,7 +1179,7 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="valoreRegola" type="text" class="form-control"
-									id="valoreRegolaBox" />
+									id="valoreRegolaBoxUmidita" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 45'/>
 							</div>
 						</div>
 
@@ -1090,8 +1226,9 @@
 	<!--Categoria Sicurezza -->
 	<div class="portfolio-modal mfp-hide" id="categoria_sicurezza">
 		<div class="portfolio-modal-dialog bg-white">
-			<a class="close-button d-none d-md-block portfolio-modal-dismiss"
-				href="#"> <i class="fa fa-3x fa-times"></i>
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonSicurezza" href="#"> <i class="fa fa-3x fa-times"></i>
 			</a>
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Sicurezza</h2>
@@ -1136,9 +1273,8 @@
 								<input name="giornoInizio" type="date"
 									class="form-control giornoInizioBox"
 									id="giornoInizioBoxSicurezza" /> <span
-									id="giornoInizioBoxErroreSicurezza"
-									class="card-Header errore" style="display: none">La data
-									non è valida</span>
+									id="giornoInizioBoxErroreSicurezza" class="card-Header errore"
+									style="display: none">La data non è valida</span>
 							</div>
 						</div>
 
@@ -1150,8 +1286,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="giornoFine" type="date" class="form-control"
-									id="giornoFineBoxSicurezza" />
+								<input name="giornoFine" type="date"
+									class="form-control giornoFineBox" id="giornoFineBoxSicurezza" /><span
+									id="giornoFineBoxErroreSicurezza" class="card-Header errore"
+									style="display: none">La data di fine deve essere
+									successiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -1163,8 +1302,8 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraInizio" type="time" class="form-control"
-									id="oraInizioBoxSicurezza" />
+								<input name="oraInizio" type="time"
+									class="form-control oraInizioBox" id="oraInizioBoxSicurezza" />
 							</div>
 						</div>
 
@@ -1175,8 +1314,11 @@
 
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
-								<input name="oraFine" type="time" class="form-control"
-									id="oraFineBoxSicurezza" />
+								<input name="oraFine" type="time"
+									class="form-control oraFineBox" id="oraFineBoxSicurezza" /><span
+									id="oraFineBoxErroreSicurezza" class="card-Header errore"
+									style="display: none">L'ora di fine deve essere
+									succesiva a quella di inizio</span>
 							</div>
 						</div>
 
@@ -1195,6 +1337,25 @@
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxSicurezza">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxSicurezza">Attivit&agrave; salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteSicurezza">Il
+							sensore installato non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="attivitaIncoerenteSicurezza">L'attivit&agrave;
+							inserita non è coerente con quelle già create</span> <span
+							class="card-Header errore" style="display: none"
+							id="attivitaStessoNomeSicurezza">Esiste gi&agrave;
+							un'attivit&agrave; con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerSicurezza">Si &egrave; verificato un
+							errore durante il salvateggio dell'attivit&agrave;</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">

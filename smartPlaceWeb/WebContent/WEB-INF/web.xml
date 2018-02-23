@@ -159,12 +159,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>PianificaAttività</servlet-name>
+		<servlet-name>PianificaAttivita</servlet-name>
 		<servlet-class>controller.PianificaAttivita</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>PianificaAttività</servlet-name>
-		<url-pattern>/PianificaAttività</url-pattern>
+		<servlet-name>PianificaAttivita</servlet-name>
+		<url-pattern>/PianificaAttivita</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

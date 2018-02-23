@@ -1,128 +1,115 @@
-var MONTHS = [ "January", "February", "March", "April", "May", "June", "July",
-		"August", "September", "October", "November", "December" ];
-var config = {
-	type : 'line',
-	data : {
-		labels : [ "January", "February", "March", "April", "May", "June",
-				"July" ],
-		datasets : [
-				{
-					label : "My First dataset",
-					backgroundColor : window.chartColors.red,
-					borderColor : window.chartColors.red,
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ],
-					fill : false,
-				},
-				{
-					label : "My Second dataset",
-					fill : false,
-					backgroundColor : window.chartColors.blue,
-					borderColor : window.chartColors.blue,
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ],
-				} ]
-	},
-	options : {
-		responsive : true,
-		title : {
-			display : true,
-			text : 'Chart.js Line Chart'
-		},
-		tooltips : {
-			mode : 'index',
-			intersect : false,
-		},
-		hover : {
-			mode : 'nearest',
-			intersect : true
-		},
-		scales : {
-			xAxes : [ {
-				display : true,
-				scaleLabel : {
-					display : true,
-					labelString : 'Month'
-				}
-			} ],
-			yAxes : [ {
-				display : true,
-				scaleLabel : {
-					display : true,
-					labelString : 'Value'
-				}
-			} ]
-		}
-	}
-};
-
-window.onload = function() {
-	var ctx = document.getElementById("canvas").getContext("2d");
-	window.myLine = new Chart(ctx, config);
-};
-
-document.getElementById('randomizeData').addEventListener('click', function() {
-	config.data.datasets.forEach(function(dataset) {
-		dataset.data = dataset.data.map(function() {
-			return randomScalingFactor();
-		});
-
-	});
-
-	window.myLine.update();
-});
-
-var colorNames = Object.keys(window.chartColors);
-document.getElementById('addDataset').addEventListener(
-		'click',
+jQuery(document).ready(
 		function() {
-			var colorName = colorNames[config.data.datasets.length
-					% colorNames.length];
-			var newColor = window.chartColors[colorName];
-			var newDataset = {
-				label : 'Dataset ' + config.data.datasets.length,
-				backgroundColor : newColor,
-				borderColor : newColor,
-				data : [],
-				fill : false
-			};
 
-			for (var index = 0; index < config.data.labels.length; ++index) {
-				newDataset.data.push(randomScalingFactor());
-			}
+			$.ajax({
+				url : 'currentChart',
+				data : "",
+				dataType : 'json',
+				type : 'GET',
+				cache : false,
+				error : function() {
+					alert('error');
+				},
+				async : false
 
-			config.data.datasets.push(newDataset);
-			window.myLine.update();
+			}).done(
+					function(risposta) {
+							
+						var temperatura = risposta[0];
+						var umidita = risposta[1];
+
+						var oreMisurazioniTemp = [];
+						var valoreMisurazioniTemp = [];
+						
+						var oreMisurazioniUmid = [];
+						var valoreMisurazioniUmid = [];
+
+						var giorno = temperatura[0].giorno.split(" ", 3);
+
+						for (i in temperatura) {
+							var str = temperatura[i].ora;
+							var res = str.split(" ");
+
+							oreMisurazioniTemp.push(res[3]);
+							valoreMisurazioniTemp.push(temperatura[i].valore);
+						}
+						
+						for (i in umidita) {
+							var str = umidita[i].ora;
+							var res = str.split(" ");
+
+							oreMisurazioniUmid.push(res[3]);
+							valoreMisurazioniUmid.push(umidita[i].valore);
+						}
+						
+						
+
+						var ctx = document.getElementById("canvas");
+
+						var myChart = new Chart(ctx, {
+							type : 'line',
+							data : {
+								labels : oreMisurazioniTemp,
+								datasets : [ {
+									label : giorno,
+									data : valoreMisurazioniTemp,
+									backgroundColor : [
+										'rgba(255,69,0,0.3)',],
+									borderColor : [ 'rgba(178,34,34,1)',],
+									borderWidth : 1
+								} ]
+							},
+							options : {
+								scales : {
+									yAxes : [ {
+										ticks : {
+											beginAtZero : true
+										}
+									} ]
+								},
+								legend: {
+						            labels: {
+						                // This more specific font property overrides the global property
+						                fontColor: 'black',
+						                defaultFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+						            }
+						        }
+							}
+						});
+						
+						var ctx1 = document.getElementById("canvas1");
+
+						var myChart1 = new Chart(ctx1, {
+							type : 'line',
+							data : {
+								labels : oreMisurazioniUmid,
+								datasets : [ {
+									label : giorno,
+									data : valoreMisurazioniUmid,
+									backgroundColor : [
+											'rgba(0,191,255,0.2)',],
+									borderColor : [ 'rgba(0,0,205,1)', ],
+									borderWidth : 1
+								} ]
+							},
+							options : {
+								scales : {
+									yAxes : [ {
+										ticks : {
+											beginAtZero : true
+										}
+									} ]
+								},
+								legend: {
+						            labels: {
+						                // This more specific font property overrides the global property
+						                fontColor: 'black',
+						                defaultFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+						            }
+						        }
+							}
+						});
+
+					});
+
 		});
-
-document.getElementById('addData').addEventListener('click', function() {
-	if (config.data.datasets.length > 0) {
-		var month = MONTHS[config.data.labels.length % MONTHS.length];
-		config.data.labels.push(month);
-
-		config.data.datasets.forEach(function(dataset) {
-			dataset.data.push(randomScalingFactor());
-		});
-
-		window.myLine.update();
-	}
-});
-
-document.getElementById('removeDataset').addEventListener('click', function() {
-	config.data.datasets.splice(0, 1);
-	window.myLine.update();
-});
-
-document.getElementById('removeData').addEventListener('click', function() {
-	config.data.labels.splice(-1, 1); // remove the label first
-
-	config.data.datasets.forEach(function(dataset, datasetIndex) {
-		dataset.data.pop();
-	});
-
-	window.myLine.update();
-});

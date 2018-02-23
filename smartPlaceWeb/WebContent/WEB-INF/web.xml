@@ -51,6 +51,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>CurrentChart</servlet-name>
+		<servlet-class>controller.CurrentChart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CurrentChart</servlet-name>
+		<url-pattern>/currentChart</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AccendiLuci</servlet-name>
 		<servlet-class>controller.AccendiLuci</servlet-class>
 	</servlet>

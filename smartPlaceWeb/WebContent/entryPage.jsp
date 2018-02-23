@@ -65,7 +65,7 @@
 			aria-label="Toggle navigation">
 			Menu <i class="fa fa-bars"></i>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">	
+		<div class="collapse navbar-collapse" id="navbarResponsive">
 
 			<c:if test="${email==null}">
 
@@ -96,6 +96,9 @@
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="programmaActivity.jsp">Programma Attivit&agrave;</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a
+						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+						href="Charts.jsp">Charts</a></li>
 					<li class="nav-item mx-0 mx-lg-1"><a
 						class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 						href="aboutUS.html">About</a></li>

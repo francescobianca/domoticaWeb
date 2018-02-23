@@ -24,7 +24,8 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -68,7 +69,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
+			<a style="color: white; font-style: italic; font-family: 'roboto';"
+				id="utente"
 				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 				${nome} ${cognome}</a>
 
@@ -107,19 +109,16 @@
 		<h2 class="text-center text-uppercase text-secondary mb-0">Charts</h2>
 		<hr class="star-dark mb-5">
 
-		<div class="row justify-content-center">
+
+		<div class="row justify-content-center" style="padding-top: 5%">
+			<h3 class="text-center text-uppercase text-secondary mb-0">Temperatura</h3>
 			<canvas id="canvas"></canvas>
 		</div>
 
-		<br> <br>
-		<button id="randomizeData">Randomize Data</button>
-		<button id="addDataset">Add Dataset</button>
-		<button id="removeDataset">Remove Dataset</button>
-		<button id="addData">Add Data</button>
-		<button id="removeData">Remove Data</button>
-
-
-	</div>
+		<div class="row justify-content-center" style="padding-top: 10%">
+			<h3 class="text-center text-uppercase text-secondary mb-0">Umidit&agrave;</h3>
+			<canvas id="canvas1"></canvas>
+		</div>
 	</section>
 
 

@@ -114,6 +114,26 @@ div#nuovaRegola.container {
 	color: rgb(219, 55, 55)
 }
 
+.success{
+	color: rgb(0, 204, 122)
+}
+
 .giornoInizioBox{
+	
+}
+
+.giornoFineBox{
+	
+}
+
+.oraInizioBox{
+	
+}
+
+.oraFineBox{
+	
+}
+
+.closeButton{
 	
 }

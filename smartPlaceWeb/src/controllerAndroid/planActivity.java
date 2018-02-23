@@ -181,7 +181,7 @@ public class planActivity extends HttpServlet {
 
 			String query = "select * from attivitaperiodica where indirizzoIP = ? and tipo = ? and stanza = ? and "
 					+ " (( ? < giornoInizio and ? < giornoFine) or (? >= giornoInizio and ? <= giornoFine)"
-					+ "or (? >= giornoInizio and ? > giornoFine) or (? < giornoInizio and ? > giornoFine)) "
+					+ "or (? >= giornoInizio and giornoFine > ? and ? > giornoFine) or (? < giornoInizio and ? > giornoFine)) "
 					+ "and ((? >= orarioInizio) and (? <= orarioFine))";
 
 			// Se un'attività rientra in questa query è incongruente.
@@ -195,11 +195,12 @@ public class planActivity extends HttpServlet {
 			statement.setDate(6, new java.sql.Date(dataInizioLong));
 			statement.setDate(7, new java.sql.Date(dataFineLong));
 			statement.setDate(8, new java.sql.Date(dataInizioLong));
-			statement.setDate(9, new java.sql.Date(dataFineLong));
-			statement.setDate(10, new java.sql.Date(dataInizioLong));
-			statement.setDate(11, new java.sql.Date(dataFineLong));
-			statement.setTime(12, new java.sql.Time(orarioFineLong));
-			statement.setTime(13, new java.sql.Time(orarioInizioLong));
+			statement.setDate(9, new java.sql.Date(dataInizioLong));
+			statement.setDate(10, new java.sql.Date(dataFineLong));
+			statement.setDate(11, new java.sql.Date(dataInizioLong));
+			statement.setDate(12, new java.sql.Date(dataFineLong));
+			statement.setTime(13, new java.sql.Time(orarioFineLong));
+			statement.setTime(14, new java.sql.Time(orarioInizioLong));
 
 			System.out.println("sto eseguendo query incongruenze");
 

@@ -4,13 +4,14 @@ function newActionTemperatura() {
 	var selectedItem = element.options[element.selectedIndex].value;
 
 	if (selectedItem == 1) {
+		pulisciFormActivity("Temperatura");
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'block');
 	} else if (selectedItem == 2) {
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'none');
 	} else if (selectedItem == 3) {
-		pulisciFormActivity("Temperatura");
+		pulisciFormRegola("Temperatura");
 		$("#nuovaActivity").css('display', 'none');
 		$("#nuovaRegola").css('display', 'block');
 	} else if (selectedItem == 4) {
@@ -65,13 +66,14 @@ function newActionUmidita() {
 	var selectedItem = element.options[element.selectedIndex].value;
 
 	if (selectedItem == 1) {
+		pulisciFormActivity("Umidita")
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'block');
 	} else if (selectedItem == 2) {
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'none');
 	} else if (selectedItem == 3) {
-		pulisciFormActivity("Umidita");
+		pulisciFormRegola("Umidita");
 		$("#nuovaActivity").css('display', 'none');
 		$("#nuovaRegola").css('display', 'block');
 	} else if (selectedItem == 4) {
@@ -94,6 +96,23 @@ function newActionSicurezza() {
 
 }
 
+function pulisciFormRegola(categoria){
+	$("#nomeRegolaBox" + categoria).val("");
+	$("#valoreRegolaBox" + categoria).val("");
+	$("#completaFormBoxRegola" + categoria).css('display','none');
+	$("#salvaFormBoxRegola" + categoria).css('display','none');
+	$("#sensoreNonEsisteRegola" + categoria).css('display','none');
+	$("#regolaStessoNome" + categoria).css('display','none');
+	$("#erroreServerRegola" + categoria).css('display','none');
+}
+
+function pulisciMessaggiErroreRegola(categoria){
+	$("#completaFormBoxRegola" + categoria).css('display','none');
+	$("#sensoreNonEsisteRegola" + categoria).css('display','none');
+	$("#regolaStessoNome" + categoria).css('display','none');
+	$("#erroreServerRegola" + categoria).css('display','none');
+}
+
 function pulisciFormActivity(categoria) {
 	$("#nomeActivityBox" + categoria).val("");
 	$("#giornoInizioBox" + categoria).val("");
@@ -105,17 +124,18 @@ function pulisciFormActivity(categoria) {
 	$("#oraFineBoxErrore" + categoria).css('display', 'none');
 	$("#completaFormBox" + categoria).css('display', 'none');
 	$("#salvaFormBox" + categoria).css('display', 'none');
-	$("#sensoreNonEsiste"+categoria).css('display','none');
-	$("#attivitaIncoerente"+categoria).css('display','none');
-	$("#attivitaStessoNome"+categoria).css('display','none');
-	$("#erroreServer"+categoria).css('display','none');
+	$("#sensoreNonEsiste" + categoria).css('display', 'none');
+	$("#attivitaIncoerente" + categoria).css('display', 'none');
+	$("#attivitaStessoNome" + categoria).css('display', 'none');
+	$("#erroreServer" + categoria).css('display', 'none');
 }
 
-function pulisciMessaggiErrore(categoria){
-	$("#sensoreNonEsiste"+categoria).css('display','none');
-	$("#attivitaIncoerente"+categoria).css('display','none');
-	$("#attivitaStessoNome"+categoria).css('display','none');
-	$("#erroreServer"+categoria).css('display','none');
+function pulisciMessaggiErrore(categoria) {
+	$("#completaFormBox" + categoria).css('display', 'none');
+	$("#sensoreNonEsiste" + categoria).css('display', 'none');
+	$("#attivitaIncoerente" + categoria).css('display', 'none');
+	$("#attivitaStessoNome" + categoria).css('display', 'none');
+	$("#erroreServer" + categoria).css('display', 'none');
 }
 
 function registraAttivita(categoria) {
@@ -146,13 +166,79 @@ function registraAttivita(categoria) {
 			stanza = "casa";
 		}
 		$.ajax(
+						{
+							url : 'PianificaAttivita',
+							data : "nome=" + nomeAttivita.val()
+									+ "&giornoInizio=" + giornoInizio.val()
+									+ "&giornoFine=" + giornoFine.val()
+									+ "&oraInizio=" + oraInizio.val()
+									+ "&oraFine=" + oraFine.val() + "&tipo="
+									+ tipo + "&stanza=" + stanza,
+							type : 'POST',
+							cache : false,
+							error : function() {
+								alert('error');
+							},
+							async : false
+
+						})
+				.done(
+						function(risposta) {
+							if (risposta != "errore") {
+								console.log(risposta)
+								// caso in cui salvo l'attività correttamente
+								if (risposta == "salvata") {
+									pulisciForm(categoria);
+									$("#salvaFormBox" + categoria).css(
+											'display', 'block');
+									console.log("ok")
+									setTimeout(function() {
+										$("#salvaFormBox" + categoria).css(
+												'display', 'none');
+									}, 4000);
+								} else if (risposta == "sensoreNonEsiste") {
+									pulisciMessaggiErrore(categoria);
+									$("#sensoreNonEsiste" + categoria).css(
+											'display', 'block');
+								} else if (risposta == "attivitaIncoerente") {
+									pulisciMessaggiErrore(categoria);
+									$("#attivitaIncoerente" + categoria).css(
+											'display', 'block');
+								} else if (risposta == "attivitaGiaPresenteConLoStessoNome") {
+									pulisciMessaggiErrore(categoria);
+									$("#attivitaStessoNome" + categoria).css(
+											'display', 'block');
+								}
+							} else {
+								pulisciMessaggiErrore(categoria);
+								$("#erroreServer" + categoria).css('display',
+										'block');
+							}
+						});
+	} else {
+		$("#completaFormBox" + categoria).css('display', 'block');
+	}
+}
+
+function registraRegola(categoria) {
+	if ($("#nomeRegolaBox" + categoria).val() != ""
+			&& $("#valoreRegolaBox" + categoria).val() != ""){
+		var nomeRegola=$("#nomeRegolaBox"+categoria);
+		var valoreRegola=$("#valoreRegolaBox"+categoria);
+		var condizione = $("#selectCondizioneRegola" + categoria + " option:selected").text().toLowerCase();
+		condizione=condizione.substring(0, condizione.length - 4);
+		var sensore=$("#selectDeviceRegola" + categoria + " option:selected").text().toLowerCase();
+		console.log(nomeRegola.val());
+		console.log(valoreRegola.val());
+		console.log(condizione);
+		console.log(sensore);
+		$.ajax(
 				{
-					url : 'PianificaAttivita',
-					data : "nome=" + nomeAttivita.val() + "&giornoInizio="
-							+ giornoInizio.val() + "&giornoFine="
-							+ giornoFine.val() + "&oraInizio="
-							+ oraInizio.val() + "&oraFine=" + oraFine.val()
-							+ "&tipo=" + tipo + "&stanza=" + stanza,
+					url : 'PianificaRegola',
+					data : "nome=" + nomeRegola.val()
+							+ "&valore=" + valoreRegola.val()
+							+ "&sensore=" + sensore
+							+ "&condizione=" + condizione,
 					type : 'POST',
 					cache : false,
 					error : function() {
@@ -160,39 +246,39 @@ function registraAttivita(categoria) {
 					},
 					async : false
 
-				}).done(function(risposta) {
+				})
+		.done(
+				function(risposta) {
 					if (risposta != "errore") {
 						console.log(risposta)
 						// caso in cui salvo l'attività correttamente
 						if (risposta == "salvata") {
-							pulisciFormActivity(categoria);
-							$("#salvaFormBox" + categoria).css('display', 'block');
+							pulisciFormRegola(categoria);
+							$("#salvaFormBoxRegola" + categoria).css(
+									'display', 'block');
 							console.log("ok")
-							setTimeout(function(){
-								$("#salvaFormBox"+categoria).css('display','none');
-							},4000);
-						}else if(risposta=="sensoreNonEsiste"){
-							pulisciMessaggiErrore(categoria);
-							$("#sensoreNonEsiste"+categoria).css('display','block');
-						}else if(risposta=="attivitaIncoerente"){
-							pulisciMessaggiErrore(categoria);
-							$("#attivitaIncoerente"+categoria).css('display','block');
-						}else if(risposta=="attivitaGiaPresenteConLoStessoNome"){
-							pulisciMessaggiErrore(categoria);
-							$("#attivitaStessoNome"+categoria).css('display','block');
+							setTimeout(function() {
+								$("#salvaFormBoxRegola" + categoria).css(
+										'display', 'none');
+							}, 4000);
+						} else if (risposta == "sensoreNonEsiste") {
+							pulisciMessaggiErroreRegola(categoria);
+							$("#sensoreNonEsisteRegola" + categoria).css(
+									'display', 'block');
+						}else if (risposta == "regolaGiaPresenteConLoStessoNome") {
+							pulisciMessaggiErroreRegola(categoria);
+							$("#regolaStessoNome" + categoria).css(
+									'display', 'block');
 						}
 					} else {
-						pulisciMessaggiErrore(categoria);
-						$("#erroreServer"+categoria).css('display','block');
+						pulisciMessaggiErroreRegola(categoria);
+						$("#erroreServerRegola" + categoria).css('display',
+								'block');
 					}
-		});
-	} else {
-		$("#completaFormBox" + categoria).css('display', 'block');
+				});
+	}else{
+		$("#completaFormBoxRegola" + categoria).css('display', 'block');
 	}
-}
-
-function registraRegola(categoria) {
-	//completare
 }
 
 jQuery(document).ready(function() {
@@ -284,6 +370,7 @@ jQuery(document).ready(function() {
 		var id = $(this).prop('id');
 		var categoria = id.substring(11);
 		pulisciFormActivity(categoria);
+		pulisciFormRegola(categoria);
 	});
 
 })

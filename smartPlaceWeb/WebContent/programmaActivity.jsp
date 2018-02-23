@@ -485,6 +485,22 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxRegolaTemperatura">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxRegolaTemperatura">Regola salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteRegolaTemperatura">Il
+							sensore scelto non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="regolaStessoNomeTemperatura">Esiste gi&agrave;
+							una regola con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerRegolaTemperatura">Si &egrave; verificato un
+							errore durante il salvateggio della regola</span>
+					</div>
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
@@ -1192,17 +1208,29 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<div class="select">
-									<select name="slct" id="slct">
+									<select name="selct" id="selectDeviceRegolaUmidita">
 										<option value="1">Deumidificatore</option>
 									</select>
 								</div>
 							</div>
 						</div>
 					</div>
+					
+					<div class="row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxRegolaUmidita">Completa la form</span> <span
+							class="card-Header success" style="display: none"
+							id="salvaFormBoxRegolaUmidita">Regola salvata correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteRegolaUmidita">Il sensore scelto non &egrave; ancora installato nell'abitazione</span>
+						<span class="card-Header errore" style="display: none"
+							id="regolaStessoNomeUmidita">Esiste gi&agrave; una regola con lo stesso nome</span> <span
+							class="card-Header errore" style="display: none"
+							id="erroreServerRegolaUmidita">Si &egrave; verificato un errore durante il salvateggio della regola</span>
+					</div>
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" />
+							class="btn btn-primary" id="Invia" onclick="registraRegola('Umidita')" />
 					</div>
 
 				</div>

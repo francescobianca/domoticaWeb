@@ -177,6 +177,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>PianificaRegola</servlet-name>
+		<servlet-class>controller.PianificaRegola</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PianificaRegola</servlet-name>
+		<url-pattern>/PianificaRegola</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>TutteAttività</servlet-name>
 		<servlet-class>controller.TutteAttivita</servlet-class>
 	</servlet>

@@ -193,6 +193,15 @@
 		<servlet-name>TutteAttività</servlet-name>
 		<url-pattern>/TutteAttività</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiAttivita</servlet-name>
+		<servlet-class>controller.LeggiAttivita</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiAttivita</servlet-name>
+		<url-pattern>/LeggiAttivita</url-pattern>
+	</servlet-mapping>
 
 	<!-- Android Servlet -->
 

@@ -60,6 +60,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>OttieniGrafici</servlet-name>
+		<servlet-class>controller.OttieniGrafici</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OttieniGrafici</servlet-name>
+		<url-pattern>/ottieniGrafici</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AccendiLuci</servlet-name>
 		<servlet-class>controller.AccendiLuci</servlet-class>
 	</servlet>

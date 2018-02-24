@@ -112,12 +112,68 @@
 
 		<div class="row justify-content-center" style="padding-top: 5%">
 			<h3 class="text-center text-uppercase text-secondary mb-0">Temperatura</h3>
-			<canvas id="canvas"></canvas>
+
+			<canvas id="canvasTemperatura" style="display:block"></canvas>
+
+			<canvas id="canvasNuovoPeriodoTemperatura" style="display:none"></canvas>
+
+			<div class="row" style="padding-top: 3%">
+
+				<div class="col-md-6 col-lg-6">
+					<a class="portfolio-item d-block mx-auto"
+						href="#nuovoPeriodoTemperatura"> <label class="labelStyle"
+						id="chartTemperature" for="chartTemperature"> Cambia il
+							periodo di riferimento:</label>
+					</a>
+				</div>
+
+				<div class="col-md-6 col-lg-6">
+					<div class="form-group">
+						<div class="select">
+							<select name="slct" id="selectChartTemperatura" onclick="kindChart('Temperatura')">
+								<option>Seleziona il tipo di grafico</option>
+								<option value="1">Line chart</option>
+								<option value="2">Bar chart</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
 		</div>
 
 		<div class="row justify-content-center" style="padding-top: 10%">
 			<h3 class="text-center text-uppercase text-secondary mb-0">Umidit&agrave;</h3>
-			<canvas id="canvas1"></canvas>
+
+			<canvas id="canvasUmidita" style="display:block"></canvas>
+
+			<canvas id="canvasNuovoPeriodoUmidita" style="display:none"></canvas>
+
+			<div class="row" style="padding-top: 3%">
+
+				<div class="col-md-6 col-lg-6">
+					<a class="portfolio-item d-block mx-auto"
+						href="#nuovoPeriodoUmidita"> <label class="labelStyle"
+						id="chartHumidity" for="chartTemperature"> Cambia il
+							periodo di riferimento:</label>
+					</a>
+				</div>
+
+				<div class="col-md-6 col-lg-6">
+					<div class="form-group">
+						<div class="select">
+							<select name="slct" id="selectChartUmidita" onclick="kindChart('Umidita')">
+								<option>Seleziona il tipo di grafico</option>
+								<option value="1">Line chart</option>
+								<option value="2">Bar chart</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
 		</div>
 	</section>
 
@@ -173,11 +229,125 @@
 		</div>
 	</div>
 
+
+
 	<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 	<div class="scroll-to-top d-lg-none position-fixed ">
 		<a class="js-scroll-trigger d-block text-center text-white rounded"
 			href="#page-top"> <i class="fa fa-chevron-up"></i>
 		</a>
+	</div>
+
+
+	<!-- Nuovo periodo grafico temperatura -->
+	<div class="portfolio-modal mfp-hide" id="nuovoPeriodoTemperatura">
+		<div class="portfolio-modal-dialog bg-white" style="min-height: 50vh;">
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonTemperatura" href="#"> <i
+				class="fa fa-3x fa-times"></i>
+			</a>
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-6 col-lg-6">
+						<label class="labelStyle" id="giornoInizio" for="giornoInizio"
+							style="height: 1.5em;">Scegli giorno di inizio:</label>
+					</div>
+
+					<div class="col-md-6 col-lg-6">
+						<div class="form-group">
+							<input name="giornoInizio" type="date"
+								class="form-control giornoInizioBox"
+								id="giornoInizioBoxTemperatura" />
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6" style="padding-top: 5%;">
+						<label class="labelStyle" id="giornoFine" for="giornoFine"
+							style="height: 1.5em;">Scegli giorno di fine:</label>
+					</div>
+
+					<div class="col-md-6 col-lg-6" style="padding-top: 5%;">
+						<div class="form-group">
+							<input name="giornoFine" type="date"
+								class="form-control giornoFineBox" id="giornoFineBoxTemperatura" />
+							<span id="giornoFineBoxErroreTemperatura"
+								class="card-Header errore" style="display: none">La data
+								di fine deve essere successiva a quella di inizio</span>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxTemperatura">Completa la form</span>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia"
+							onclick="cambiaPeriodo('Temperatura')" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Nuovo periodo grafico umidita -->
+	<div class="portfolio-modal mfp-hide" id="nuovoPeriodoUmidita">
+		<div class="portfolio-modal-dialog bg-white" style="min-height: 50vh;">
+			<a
+				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+				id="closeButtonUmidita" href="#"> <i class="fa fa-3x fa-times"></i>
+			</a>
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-6 col-lg-6">
+						<label class="labelStyle" id="giornoInizio" for="giornoInizio"
+							style="height: 1.5em;">Scegli giorno di inizio:</label>
+					</div>
+
+					<div class="col-md-6 col-lg-6">
+						<div class="form-group">
+							<input name="giornoInizio" type="date"
+								class="form-control giornoInizioBox" id="giornoInizioBoxUmidita" />
+							<span id="giornoInizioBoxErroreUmidita"
+								class="card-Header errore" style="display: none">La data
+								non è valida</span>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-6" style="padding-top: 5%;">
+						<label class="labelStyle" id="giornoFine" for="giornoFine"
+							style="height: 1.5em;">Scegli giorno di fine:</label>
+					</div>
+
+					<div class="col-md-6 col-lg-6" style="padding-top: 5%;">
+						<div class="form-group">
+							<input name="giornoFine" type="date"
+								class="form-control giornoFineBox" id="giornoFineBoxUmidita" />
+							<span id="giornoFineBoxErroreUmidita" class="card-Header errore"
+								style="display: none">La data di fine deve essere
+								successiva a quella di inizio</span>
+						</div>
+					</div>
+
+					<div class="container row justify-content-center">
+						<span class="card-Header errore" style="display: none"
+							id="completaFormBoxUmidita">Completa la form</span>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="inviaDati" type="button" value="Invia"
+							class="btn btn-primary" id="Invia"
+							onclick="cambiaPeriodo('Umidita')" />
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</div>
 
 

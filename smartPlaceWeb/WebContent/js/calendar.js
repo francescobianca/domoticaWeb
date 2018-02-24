@@ -1,16 +1,4 @@
 $(document).ready(function() {
-
-    // page is now ready, initialize the calendar...
-	/*
-	 * var event={id:1 , title: 'New event', start: new Date() };
-	 * 
-	 * $('#calendar').fullCalendar({ // put your options and callbacks here
-	 * header: { center: 'month,basicWeek,basicDay' }, // buttons for switching
-	 * between views
-	 *  })
-	 * 
-	 * $('#calendar').fullCalendar( 'renderEvent', event, true);
-	 */
     
     $.ajax({
     		url: 'LeggiAttivita',
@@ -30,18 +18,32 @@ $(document).ready(function() {
     		var giornoInizio=fields[2];
     		var meseInizio=getMese(fields[1]);
     		var dInizio=new Date();
+    		var fieldsOraInizio=risposta[i].orarioInizio.split(" ");
+    		var oraInizio=fieldsOraInizio[3].split(":");
+    		dInizio.setHours(oraInizio[0]);
+    		dInizio.setMinutes(oraInizio[1]);
+    		dInizio.setSeconds(oraInizio[2]);
+    		
     		var fieldsFine=risposta[i].giornoFine.split(" ");
     		var annoFine=fieldsFine[5];
     		var giornoFine=fieldsFine[2];
     		var meseFine=getMese(fieldsFine[1]);
     		var dFine=new Date();
+    	/*	var fieldsOraFine=risposta[i].orarioFine.split(" ");
+    		var OraFine=fieldsOraFine[3].split(":");
+    		dFine.setHours(oraFine[0]);
+    		dFine.setMinutes(oraFine[1]);
+    		dFine.setSeconds(oraFine[2]);*/
     		dInizio.setFullYear(annoInizio,meseInizio,giornoInizio);
     		dFine.setFullYear(annoFine,meseFine,giornoFine);
+    		var eventColor=getColor(risposta[i].sensore.tipo);
+    		console.log(eventColor)
     		var event={
     				id: risposta[i].id,
     				title: risposta[i].nome,
     				start: dInizio,
-    				end: dFine
+    				end: dFine,
+    				backgroundColor: eventColor
     				}
     		events.push(event);
     	}
@@ -49,8 +51,8 @@ $(document).ready(function() {
     	        // put your options and callbacks here
     	       header: { center: 'month,basicWeek,basicDay' }, // buttons for
 			   navLinks: true,
-    	       editable: true,
     	       eventLimit: true,
+    	       displayEventEnd: true,
 			   events: events
     	});
     });    
@@ -99,4 +101,25 @@ function getMese(mese){
     	m=0;
 	}
 	return m;
+}
+
+function getColor(tipo){
+	var colore;
+	switch(tipo){
+	case "ventilatore":
+		colore='rgb(255, 117, 26)';
+		break;
+	case "luce":
+		colore='rgb(230, 230, 0)';
+		break;
+	case "finestra":
+		colore='rgb(77, 184, 255)';
+		break;
+	case "cancello":
+		colore="rgb(77, 255, 77)";
+		break;
+	default :
+		colore="";
+	}
+	return colore;
 }

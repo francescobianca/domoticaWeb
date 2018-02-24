@@ -397,7 +397,7 @@
 							id="salvaFormBoxTemperatura">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteTemperatura">Il
-							sensore installato non &egrave; ancora installato nell'abitazione</span>
+							sensore scelto non &egrave; ancora installato nell'abitazione</span>
 						<span class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteTemperatura">L'attivit&agrave;
 							inserita non è coerente con quelle già create</span> <span
@@ -651,7 +651,7 @@
 							id="salvaFormBoxLuce">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteLuce">Il sensore
-							installato non &egrave; ancora installato nell'abitazione</span> <span
+							scelto non &egrave; ancora installato nell'abitazione</span> <span
 							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteLuce">L'attivit&agrave; inserita non
 							è coerente con quelle già create</span> <span class="card-Header errore"
@@ -810,7 +810,7 @@
 							id="salvaFormBoxCancello">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteCancello">Il
-							sensore installato non &egrave; ancora installato nell'abitazione</span>
+							sensore scelto non &egrave; ancora installato nell'abitazione</span>
 						<span class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteCancello">L'attivit&agrave; inserita
 							non è coerente con quelle già create</span> <span
@@ -971,7 +971,7 @@
 							id="salvaFormBoxFinestra">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteFinestra">Il
-							sensore installato non &egrave; ancora installato nell'abitazione</span>
+							sensore scelto non &egrave; ancora installato nell'abitazione</span>
 						<span class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteFinestra">L'attivit&agrave; inserita
 							non è coerente con quelle già create</span> <span
@@ -1132,7 +1132,7 @@
 							id="salvaFormBoxUmidita">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteUmidita">Il
-							sensore installato non &egrave; ancora installato nell'abitazione</span>
+							sensore scelto non &egrave; ancora installato nell'abitazione</span>
 						<span class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteUmidita">L'attivit&agrave; inserita
 							non è coerente con quelle già create</span> <span
@@ -1374,7 +1374,7 @@
 							id="salvaFormBoxSicurezza">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteSicurezza">Il
-							sensore installato non &egrave; ancora installato nell'abitazione</span>
+							sensore scelto non &egrave; ancora installato nell'abitazione</span>
 						<span class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteSicurezza">L'attivit&agrave;
 							inserita non è coerente con quelle già create</span> <span

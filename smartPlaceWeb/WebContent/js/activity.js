@@ -188,7 +188,7 @@ function registraAttivita(categoria) {
 								console.log(risposta)
 								// caso in cui salvo l'attività correttamente
 								if (risposta == "salvata") {
-									pulisciForm(categoria);
+									pulisciFormActivity(categoria);
 									$("#salvaFormBox" + categoria).css(
 											'display', 'block');
 									console.log("ok")

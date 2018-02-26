@@ -21,13 +21,12 @@ class PostgresDAOFactory extends DAOFactory {
 			// DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
 
 			// dbLocale
-			// dataSource = new
-			// DataSource("jdbc:postgresql://localhost:5432/SmartPlaceWeb",
-			// "postgres", "postgres");
+			//dataSource = new DataSource("jdbc:postgresql://localhost:5432/SmartPlaceWeb","postgres", "postgres");
 
 			// dbRemoto
-			dataSource = new DataSource("jdbc:postgresql://horton.elephantsql.com:5432/ujtfnsly", "ujtfnsly",
-					"DWAmZEEJVN30mmsTZlofqtOko7kgeuLd");
+			dataSource = new DataSource("jdbc:postgresql://packy.db.elephantsql.com:5432/hvkahtzn", "hvkahtzn",
+					"Lk4jd8cKUMF4Jox30NF5R4I5cWERb6vh");
+			
 
 		} catch (Exception e) {
 			System.err.println("PostgresDAOFactory.class: failed to load MySQL JDBC driver\n" + e);

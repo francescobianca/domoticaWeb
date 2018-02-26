@@ -90,12 +90,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>EliminaAttività</servlet-name>
+		<servlet-name>EliminaAttivita</servlet-name>
 		<servlet-class>controller.EliminaAttivita</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>EliminaAttività</servlet-name>
-		<url-pattern>/EliminaAttività</url-pattern>
+		<servlet-name>EliminaAttivita</servlet-name>
+		<url-pattern>/EliminaAttivita</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

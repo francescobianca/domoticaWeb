@@ -3,7 +3,6 @@ function newActionTemperatura() {
 	var element = document.getElementById("slct");
 	var selectedItem = element.options[element.selectedIndex].value;
 
-	console.log(selectedItem)
 	if (selectedItem == 1) {
 		pulisciFormActivity("Temperatura");
 		$("#nuovaRegola").css('display', 'none');
@@ -15,6 +14,7 @@ function newActionTemperatura() {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
 		$("#eliminaRegola").css('display', 'none');
+		leggiActivity('Temperatura');
 	} else if (selectedItem == 3) {
 		pulisciFormRegola("Temperatura");
 		$("#nuovaActivity").css('display', 'none');
@@ -41,6 +41,7 @@ function newActionLuci() {
 	} else if (selectedItem == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+		leggiActivity('Luce');
 	}
 
 }
@@ -56,6 +57,7 @@ function newActionCancello() {
 	} else if (selectedItem == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+		leggiActivity('Cancello');
 	}
 
 }
@@ -71,6 +73,7 @@ function newActionFinestre() {
 	} else if (selectedItem == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+		leggiActivity('Finestra');
 	}
 
 }
@@ -91,6 +94,7 @@ function newActionUmidita() {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
 		$("#eliminaRegola").css('display', 'none');
+		leggiActivity('Umidità');
 	} else if (selectedItem == 3) {
 		pulisciFormRegola("Umidita");
 		$("#nuovaActivity").css('display', 'none');
@@ -117,9 +121,130 @@ function newActionSicurezza() {
 	} else if (selectedItem == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+		leggiActivity('Sicurezza');
 	}
 
 }
+
+var activityList = new Array();
+
+function leggiActivity(categoria) {
+
+	activityList = new Array();
+
+	var element = $("#slctActivity" + categoria);
+
+	$.ajax({
+		url : 'LeggiAttivita',
+		data : "tipo=" + categoria.toLowerCase(),
+		dataType : 'json',
+		type : 'POST',
+		cache : false,
+		error : function() {
+			alert('error');
+		},
+		async : false
+	}).done(function(risposta) {
+
+		for (i in risposta) {
+			var fields = risposta[i].giornoInizio.split(" ");
+			var annoInizio = fields[5];
+			var giornoInizio = fields[2];
+			var meseInizio = getMese(fields[1]);
+			var dInizio = "";
+			var fieldsOraInizio = risposta[i].orarioInizio.split(" ");
+			var oraInizio = fieldsOraInizio[3].split(":");
+
+			var fieldsFine = risposta[i].giornoFine.split(" ");
+			var annoFine = fieldsFine[5];
+			var giornoFine = fieldsFine[2];
+			var meseFine = getMese(fieldsFine[1]);
+			var dFine = new Date();
+
+			var fieldsOraFine = risposta[i].orarioFine.split(" ");
+			var oraFine = fieldsOraFine[3].split(":");
+
+			dInizio = giornoInizio + "-" + meseInizio + "-" + annoInizio;
+			dFine = giornoFine + "-" + meseFine + "-" + annoFine;
+
+			var inizio = oraInizio[0] + ":" + oraInizio[1];
+			var fine = oraFine[0] + ":" + oraFine[1];
+
+			var tipo = risposta[i].sensore.tipo;
+			var stanza = risposta[i].sensore.stanza;
+
+			var device = tipo + " " + stanza;
+
+			var attivita = {
+				id : risposta[i].id,
+				title : risposta[i].nome,
+				dataInizio : dInizio,
+				dataFine : dFine,
+				oraInizio : inizio,
+				oraFine : fine,
+				device : device
+			}
+			activityList.push(attivita);
+		}
+
+		$.each(activityList, function(index, value) {
+
+			element.append($('<option/>', {
+				value : activityList[index].id,
+				text : activityList[index].title
+			}));
+		});
+
+	});
+
+}
+
+function getMese(mese) {
+	var m;
+	switch (mese) {
+	case "Jan":
+		m = 0;
+		break;
+	case "Feb":
+		m = 1;
+		break;
+	case "Mar":
+		m = 2;
+		break;
+	case "Apr":
+		m = 3;
+		break;
+	case "May":
+		m = 4;
+		break;
+	case "Jun":
+		m = 5;
+		break;
+	case "Jul":
+		m = 6;
+		break;
+	case "Aug":
+		m = 7;
+		break;
+	case "Sep":
+		m = 8;
+		break;
+	case "Oct":
+		m = 9;
+		break;
+	case "Nov":
+		m = 10;
+		break;
+	case "Dec":
+		m = 11;
+		break;
+	default:
+		m = 0;
+	}
+	return m;
+}
+
+var selectedItem = ""; // Elemento che poi vogliamo andare ad eliminare
 
 function pulisciFormRegola(categoria) {
 	$("#nomeRegolaBox" + categoria).val("");
@@ -310,6 +435,34 @@ function registraRegola(categoria) {
 	}
 }
 
+function eliminaAttivita(categoria){
+	$.ajax(
+			{
+				url : 'EliminaAttivita',
+				data : "id=" + selectedItem,
+				type : 'POST',
+				cache : false,
+				error : function() {
+					alert('error');
+				},
+				async : false
+
+			}).done(function(risposta) {
+				if(risposta=="eliminata"){
+					$("#attivitaEliminata"+categoria).css('display','block');
+					setTimeout(function(){
+						$("#attivitaEliminata"+categoria).css('display','none');
+					},4000);
+					$("#containerEliminaActivity" + categoria).css('display', 'none');
+					$('#slctActivity'+categoria).find('option').remove().end()
+				    	.append('<option value="-1">Quale attivit&agrave; eliminare?</option>');
+					leggiActivity(categoria);
+					
+				}
+			});
+	
+}
+
 jQuery(document).ready(function() {
 
 	// funzione che controlla che il giorno di inizio è successivo al giorno
@@ -400,6 +553,29 @@ jQuery(document).ready(function() {
 		var categoria = id.substring(11);
 		pulisciFormActivity(categoria);
 		pulisciFormRegola(categoria);
+	});
+
+	$(".deleteBoxActivity").on('change', function() {
+		selectedItem = $(this).val();
+		var id = $(this).prop('id');
+		var categoria = id.substring(12);
+		console.log(selectedItem);
+		if (selectedItem != -1) {
+			$("#containerEliminaActivity" + categoria).css('display', 'block');
+			for (i in activityList) {
+				if (activityList[i].id == selectedItem){
+					$("#giornoInizioText"+categoria).text(activityList[i].dataInizio);
+					$("#giornoFineText"+categoria).text(activityList[i].dataFine);
+					$("#oraInizioText"+categoria).text(activityList[i].oraInizio);
+					$("#oraFineText"+categoria).text(activityList[i].oraFine);
+					$("#dispositivoText"+categoria).text(activityList[i].device);
+				}
+			}
+
+		} else {
+			$("#containerEliminaActivity" + categoria).css('display', 'none');
+		}
+
 	});
 
 })

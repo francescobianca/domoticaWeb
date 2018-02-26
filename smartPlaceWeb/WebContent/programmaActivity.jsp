@@ -532,15 +532,15 @@
 
 					<div class="row justify-content-center">
 						<div class="select">
-							<select name="slct" id="slct">
-								<option>Quale attivit&agrave; eliminare?</option>
-								<option value="1">Activity 1</option>
+							<select class="deleteBoxActivity" name="slct"
+								id="slctActivityTemperatura">
+								<option value=-1>Quale attivit&agrave; eliminare?</option>
 							</select>
 						</div>
 					</div>
 
-					<div id="containerEliminaActivity" class="row container"
-						style="padding-top: 2%; padding-left: 18%;">
+					<div id="containerEliminaActivityTemperatura" class="row container"
+						style="padding-top: 2%; padding-left: 18%; display: none;">
 
 						<!-- Sezione giorno inizio -->
 						<div class="col-md-6 col-lg-6">
@@ -549,7 +549,7 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="giornoInizioText" for="giornoInizio"
+							<label id="giornoInizioTextTemperatura" for="giornoInizio"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
@@ -559,17 +559,17 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="giornoFineText" for="giornoFine"
+							<label id="giornoFineTextTemperatura" for="giornoFine"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
 						<!-- Sezione ora inizio -->
 						<div class="col-md-6 col-lg-6">
-							<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+							<label id="oraInizio" for="oraInizio">Ora di inizio:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="oraInizioText" for="oraInizio"
+							<label id="oraInizioTextTemperatura" for="oraInizio"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
@@ -579,7 +579,7 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="oraFineText" for="oraFine"
+							<label id="oraFineTextTemperatura" for="oraFine"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
@@ -589,10 +589,23 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="dispositivoText" for="dispositivo"
+							<label id="dispositivoTextTemperatura" for="dispositivo"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
+
+					</div>
+
+					<div class="container row justify-content-center">
+						<span class="card-Header success" style="display: none"
+							id="attivitaEliminataTemperatura">Attivit&agrave;
+							eliminata correttamente</span>
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="eliminaDati" type="button" value="Elimina"
+							class="btn btn-primary" id="Elimina"
+							onclick="eliminaAttivita('Temperatura')" />
 					</div>
 
 				</div>
@@ -643,6 +656,11 @@
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
+					</div>
+
+					<div class="container row justify-content-center" id="invia">
+						<input name="eliminaRegola" type="button" value="Elimina"
+							class="btn btn-primary" id="Elimina" />
 					</div>
 
 				</div>
@@ -813,15 +831,15 @@
 
 						<div class="row justify-content-center">
 							<div class="select">
-								<select name="slct" id="slct">
-									<option>Quale attivit&agrave; eliminare?</option>
-									<option value="1">Activity 1</option>
+								<select class="deleteBoxActivity" name="slct"
+									id="slctActivityLuce">
+									<option value=-1>Quale attivit&agrave; eliminare?</option>
 								</select>
 							</div>
 						</div>
 
-						<div id="containerEliminaActivity" class="row container"
-							style="padding-top: 2%; padding-left: 18%;">
+						<div id="containerEliminaActivityLuce" class="row container"
+							style="padding-top: 2%; padding-left: 18%; display: none;">
 
 							<!-- Sezione giorno inizio -->
 							<div class="col-md-6 col-lg-6">
@@ -830,7 +848,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoInizioText" for="giornoInizio"
+								<label id="giornoInizioTextLuce" for="giornoInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -840,17 +858,17 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoFineText" for="giornoFine"
+								<label id="giornoFineTextLuce" for="giornoFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
 							<!-- Sezione ora inizio -->
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+								<label id="oraInizio" for="oraInizio">Ora di inizio:</label>
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizioText" for="oraInizio"
+								<label id="oraInizioTextLuce" for="oraInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -860,7 +878,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraFineText" for="oraFine"
+								<label id="oraFineTextLuce" for="oraFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -870,10 +888,22 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="dispositivoText" for="dispositivo"
+								<label id="dispositivoTextLuce" for="dispositivo"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
+						</div>
+
+						<div class="container row justify-content-center">
+							<span class="card-Header success" style="display: none"
+								id="attivitaEliminataLuce">Attivit&agrave;
+								eliminata correttamente</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="eliminaDati" type="button" value="Elimina"
+								class="btn btn-primary" id="Elimina"
+								onclick="eliminaAttivita('Luce')" />
 						</div>
 
 					</div>
@@ -1044,15 +1074,15 @@
 
 						<div class="row justify-content-center">
 							<div class="select">
-								<select name="slct" id="slct">
-									<option>Quale attivit&agrave; eliminare?</option>
-									<option value="1">Activity 1</option>
+								<select class="deleteBoxActivity" name="slct"
+									id="slctActivityCancello">
+									<option value=-1>Quale attivit&agrave; eliminare?</option>
 								</select>
 							</div>
 						</div>
 
-						<div id="containerEliminaActivity" class="row container"
-							style="padding-top: 2%; padding-left: 18%;">
+						<div id="containerEliminaActivityCancello" class="row container"
+							style="padding-top: 2%; padding-left: 18%; display: none;">
 
 							<!-- Sezione giorno inizio -->
 							<div class="col-md-6 col-lg-6">
@@ -1061,7 +1091,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoInizioText" for="giornoInizio"
+								<label id="giornoInizioTextCancello" for="giornoInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1071,17 +1101,17 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoFineText" for="giornoFine"
+								<label id="giornoFineTextCancello" for="giornoFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
 							<!-- Sezione ora inizio -->
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+								<label id="oraInizio" for="oraInizio">Ora di inizio:</label>
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizioText" for="oraInizio"
+								<label id="oraInizioTextCancello" for="oraInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1091,7 +1121,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraFineText" for="oraFine"
+								<label id="oraFineTextCancello" for="oraFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1101,10 +1131,22 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="dispositivoText" for="dispositivo"
+								<label id="dispositivoTextCancello" for="dispositivo"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
+						</div>
+
+						<div class="container row justify-content-center">
+							<span class="card-Header success" style="display: none"
+								id="attivitaEliminataCancello">Attivit&agrave;
+								eliminata correttamente</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="eliminaDati" type="button" value="Elimina"
+								class="btn btn-primary" id="Elimina"
+								onclick="eliminaAttivita('Cancello')" />
 						</div>
 
 					</div>
@@ -1277,15 +1319,15 @@
 
 						<div class="row justify-content-center">
 							<div class="select">
-								<select name="slct" id="slct">
-									<option>Quale attivit&agrave; eliminare?</option>
-									<option value="1">Activity 1</option>
+								<select class="deleteBoxActivity" name="slct"
+									id="slctActivityFinestra">
+									<option value=-1>Quale attivit&agrave; eliminare?</option>
 								</select>
 							</div>
 						</div>
 
-						<div id="containerEliminaActivity" class="row container"
-							style="padding-top: 2%; padding-left: 18%;">
+						<div id="containerEliminaActivityFinestra" class="row container"
+							style="padding-top: 2%; padding-left: 18%; display: none;">
 
 							<!-- Sezione giorno inizio -->
 							<div class="col-md-6 col-lg-6">
@@ -1295,7 +1337,7 @@
 
 							<div class="col-md-6 col-lg-6">
 								<div class="form-group">
-									<label id="giornoInizioText" for="giornoInizio"
+									<label id="giornoInizioTextFinestra" for="giornoInizio"
 										style="background-color: #DCDCDC; color: black;">Text</label>
 								</div>
 							</div>
@@ -1306,17 +1348,17 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoFineText" for="giornoFine"
+								<label id="giornoFineTextFinestra" for="giornoFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
 							<!-- Sezione ora inizio -->
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+								<label id="oraInizio" for="oraInizio">Ora di inizio:</label>
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizioText" for="oraInizio"
+								<label id="oraInizioTextFinestra" for="oraInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1326,7 +1368,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraFineText" for="oraFine"
+								<label id="oraFineTextFinestra" for="oraFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1336,10 +1378,22 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="dispositivoText" for="dispositivo"
+								<label id="dispositivoTextFinestra" for="dispositivo"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
+						</div>
+
+						<div class="container row justify-content-center">
+							<span class="card-Header success" style="display: none"
+								id="attivitaEliminataFinestra">Attivit&agrave;
+								eliminata correttamente</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="eliminaDati" type="button" value="Elimina"
+								class="btn btn-primary" id="Elimina"
+								onclick="eliminaAttivita('Finestra')" />
 						</div>
 
 					</div>
@@ -1601,15 +1655,15 @@
 
 						<div class="row justify-content-center">
 							<div class="select">
-								<select name="slct" id="slct">
-									<option>Quale attivit&agrave; eliminare?</option>
-									<option value="1">Activity 1</option>
+								<select class="deleteBoxActivity" name="slct"
+									id="slctActivityUmidità">
+									<option value=-1>Quale attivit&agrave; eliminare?</option>
 								</select>
 							</div>
 						</div>
 
-						<div id="containerEliminaActivity" class="row container"
-							style="padding-top: 2%; padding-left: 18%;">
+						<div id="containerEliminaActivityUmidità" class="row container"
+							style="padding-top: 2%; padding-left: 18%; display: none;">
 
 							<!-- Sezione giorno inizio -->
 							<div class="col-md-6 col-lg-6">
@@ -1618,7 +1672,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoInizioText" for="giornoInizio"
+								<label id="giornoInizioTextUmidità" for="giornoInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1628,17 +1682,17 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoFineText" for="giornoFine"
+								<label id="giornoFineTextUmidità" for="giornoFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
 							<!-- Sezione ora inizio -->
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+								<label id="oraInizio" for="oraInizio">Ora di inizio:</label>
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizioText" for="oraInizio"
+								<label id="oraInizioTextUmidità" for="oraInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1648,7 +1702,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraFineText" for="oraFine"
+								<label id="oraFineTextUmidità" for="oraFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1658,10 +1712,22 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="dispositivoText" for="dispositivo"
+								<label id="dispositivoTextUmidità" for="dispositivo"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
+						</div>
+
+						<div class="container row justify-content-center">
+							<span class="card-Header success" style="display: none"
+								id="attivitaEliminataUmidità">Attivit&agrave;
+								eliminata correttamente</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="eliminaDati" type="button" value="Elimina"
+								class="btn btn-primary" id="Elimina"
+								onclick="eliminaAttivita('Umidità')" />
 						</div>
 
 					</div>
@@ -1712,6 +1778,11 @@
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="eliminaRegola" type="button" value="Elimina"
+								class="btn btn-primary" id="Elimina" onclick="" />
 						</div>
 
 					</div>
@@ -1884,15 +1955,15 @@
 
 						<div class="row justify-content-center">
 							<div class="select">
-								<select name="slct" id="slct">
-									<option>Quale attivit&agrave; eliminare?</option>
-									<option value="1">Activity 1</option>
+								<select class="deleteBoxActivity" name="slct"
+									id="slctActivitySicurezza">
+									<option value=-1>Quale attivit&agrave; eliminare?</option>
 								</select>
 							</div>
 						</div>
 
-						<div id="containerEliminaActivity" class="row container"
-							style="padding-top: 2%; padding-left: 18%;">
+						<div id="containerEliminaActivitySicurezza" class="row container"
+							style="padding-top: 2%; padding-left: 18%; display: none;">
 
 							<!-- Sezione giorno inizio -->
 							<div class="col-md-6 col-lg-6">
@@ -1901,7 +1972,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoInizioText" for="giornoInizio"
+								<label id="giornoInizioTextSicurezza" for="giornoInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1911,17 +1982,17 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="giornoFineText" for="giornoFine"
+								<label id="giornoFineTextSicurezza" for="giornoFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
 							<!-- Sezione ora inizio -->
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+								<label id="oraInizio" for="oraInizio">Ora di inizio:</label>
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraInizioText" for="oraInizio"
+								<label id="oraInizioTextSicurezza" for="oraInizio"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1931,7 +2002,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="oraFineText" for="oraFine"
+								<label id="oraFineTextSicurezza" for="oraFine"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1941,10 +2012,22 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="dispositivoText" for="dispositivo"
+								<label id="dispositivoTextSicurezza" for="dispositivo"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
+						</div>
+
+						<div class="container row justify-content-center">
+							<span class="card-Header success" style="display: none"
+								id="attivitaEliminataSicurezza">Attivit&agrave;
+								eliminata correttamente</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="eliminaDati" type="button" value="Elimina"
+								class="btn btn-primary" id="Elimina"
+								onclick="eliminaAttivita('Sicurezza')" />
 						</div>
 
 					</div>

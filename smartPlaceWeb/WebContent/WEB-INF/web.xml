@@ -99,48 +99,12 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>GraficoTemperatura</servlet-name>
-		<servlet-class>controller.GraficoTemperatura</servlet-class>
+		<servlet-name>EliminaRegola</servlet-name>
+		<servlet-class>controller.EliminaRegola</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>GraficoTemperatura</servlet-name>
-		<url-pattern>/GraficoTemperatura</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>GraficoUmidità</servlet-name>
-		<servlet-class>controller.GraficoUmidita</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>GraficoUmidità</servlet-name>
-		<url-pattern>/GraficoUmidità</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>LeggiStatoFinestre</servlet-name>
-		<servlet-class>controller.LeggiStatoFinestre</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LeggiStatoFinestre</servlet-name>
-		<url-pattern>/LeggiStatoFinestre</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>LeggiStatoLuci</servlet-name>
-		<servlet-class>controller.LeggiStatoLuci</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LeggiStatoLuci</servlet-name>
-		<url-pattern>/LeggiStatoLuci</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>LeggiStatoVentilatore</servlet-name>
-		<servlet-class>controller.LeggiStatoVentilatore</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LeggiStatoVentilatore</servlet-name>
-		<url-pattern>/LeggiStatoVentilatore</url-pattern>
+		<servlet-name>EliminaRegola</servlet-name>
+		<url-pattern>/EliminaRegola</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -189,21 +153,21 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>TutteAttività</servlet-name>
-		<servlet-class>controller.TutteAttivita</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TutteAttività</servlet-name>
-		<url-pattern>/TutteAttività</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>LeggiAttivita</servlet-name>
 		<servlet-class>controller.LeggiAttivita</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LeggiAttivita</servlet-name>
 		<url-pattern>/LeggiAttivita</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LeggiRegole</servlet-name>
+		<servlet-class>controller.LeggiRegole</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeggiRegole</servlet-name>
+		<url-pattern>/LeggiRegole</url-pattern>
 	</servlet-mapping>
 
 	<!-- Android Servlet -->

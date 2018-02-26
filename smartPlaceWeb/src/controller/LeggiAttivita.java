@@ -117,8 +117,7 @@ public class LeggiAttivita extends HttpServlet {
 					statement.setString(2, "ventilatore");
 					statement.setString(3, "riscaldamenti");
 					setAttivita = statement.executeQuery();
-				}
-				else {
+				} else {
 					String query = "select * from attivitaperiodica where utente = ? and tipo = ?";
 					PreparedStatement statement = connection.prepareStatement(query);
 					statement.setString(1, utente);
@@ -164,15 +163,18 @@ public class LeggiAttivita extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
-			String risposta = (new JSONArray(attivita).toString());
-			resp.setCharacterEncoding("UTF-8");
-			resp.setContentType("application/json");
-			resp.getWriter().print(risposta);
-			resp.getWriter().flush();
-			resp.getWriter().close();
-			return;
-
+			if (setAttivita != null) {
+				String risposta = (new JSONArray(attivita).toString());
+				resp.setCharacterEncoding("UTF-8");
+				resp.setContentType("application/json");
+				resp.getWriter().print(risposta);
+				resp.getWriter().flush();
+				resp.getWriter().close();
+			} else {
+				resp.getWriter().print("nessunaAttivitaMemorizzata");
+				resp.getWriter().flush();
+				resp.getWriter().close();
+			}
 		}
 	}
 

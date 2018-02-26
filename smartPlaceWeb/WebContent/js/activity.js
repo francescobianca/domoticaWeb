@@ -26,6 +26,7 @@ function newActionTemperatura() {
 		$("#nuovaRegola").css('display', 'none');
 		$("#eliminaActivity").css('display', 'none');
 		$("#eliminaRegola").css('display', 'block');
+		leggiRegole('Temperatura');
 	}
 
 }
@@ -106,6 +107,7 @@ function newActionUmidita() {
 		$("#nuovaRegola").css('display', 'none');
 		$("#eliminaActivity").css('display', 'none');
 		$("#eliminaRegola").css('display', 'block');
+		leggiRegole('Umidità');
 	}
 
 }
@@ -126,6 +128,7 @@ function newActionSicurezza() {
 
 }
 
+var regoleList = new Array();
 var activityList = new Array();
 
 function leggiActivity(categoria) {
@@ -145,58 +148,103 @@ function leggiActivity(categoria) {
 		},
 		async : false
 	}).done(function(risposta) {
+		if (risposta != "nessunaAttivitaMemorizzata") {
+			for (i in risposta) {
+				var fields = risposta[i].giornoInizio.split(" ");
+				var annoInizio = fields[5];
+				var giornoInizio = fields[2];
+				var meseInizio = getMese(fields[1]);
+				var dInizio = "";
+				var fieldsOraInizio = risposta[i].orarioInizio.split(" ");
+				var oraInizio = fieldsOraInizio[3].split(":");
 
-		for (i in risposta) {
-			var fields = risposta[i].giornoInizio.split(" ");
-			var annoInizio = fields[5];
-			var giornoInizio = fields[2];
-			var meseInizio = getMese(fields[1]);
-			var dInizio = "";
-			var fieldsOraInizio = risposta[i].orarioInizio.split(" ");
-			var oraInizio = fieldsOraInizio[3].split(":");
+				var fieldsFine = risposta[i].giornoFine.split(" ");
+				var annoFine = fieldsFine[5];
+				var giornoFine = fieldsFine[2];
+				var meseFine = getMese(fieldsFine[1]);
+				var dFine = new Date();
 
-			var fieldsFine = risposta[i].giornoFine.split(" ");
-			var annoFine = fieldsFine[5];
-			var giornoFine = fieldsFine[2];
-			var meseFine = getMese(fieldsFine[1]);
-			var dFine = new Date();
+				var fieldsOraFine = risposta[i].orarioFine.split(" ");
+				var oraFine = fieldsOraFine[3].split(":");
 
-			var fieldsOraFine = risposta[i].orarioFine.split(" ");
-			var oraFine = fieldsOraFine[3].split(":");
+				dInizio = giornoInizio + "-" + meseInizio + "-" + annoInizio;
+				dFine = giornoFine + "-" + meseFine + "-" + annoFine;
 
-			dInizio = giornoInizio + "-" + meseInizio + "-" + annoInizio;
-			dFine = giornoFine + "-" + meseFine + "-" + annoFine;
+				var inizio = oraInizio[0] + ":" + oraInizio[1];
+				var fine = oraFine[0] + ":" + oraFine[1];
 
-			var inizio = oraInizio[0] + ":" + oraInizio[1];
-			var fine = oraFine[0] + ":" + oraFine[1];
+				var tipo = risposta[i].sensore.tipo;
+				var stanza = risposta[i].sensore.stanza;
 
-			var tipo = risposta[i].sensore.tipo;
-			var stanza = risposta[i].sensore.stanza;
+				var device = tipo + " " + stanza;
 
-			var device = tipo + " " + stanza;
-
-			var attivita = {
-				id : risposta[i].id,
-				title : risposta[i].nome,
-				dataInizio : dInizio,
-				dataFine : dFine,
-				oraInizio : inizio,
-				oraFine : fine,
-				device : device
+				var attivita = {
+					id : risposta[i].id,
+					title : risposta[i].nome,
+					dataInizio : dInizio,
+					dataFine : dFine,
+					oraInizio : inizio,
+					oraFine : fine,
+					device : device
+				}
+				activityList.push(attivita);
 			}
-			activityList.push(attivita);
+
+			$.each(activityList, function(index, value) {
+
+				element.append($('<option/>', {
+					value : activityList[index].id,
+					text : activityList[index].title
+				}));
+			});
 		}
-
-		$.each(activityList, function(index, value) {
-
-			element.append($('<option/>', {
-				value : activityList[index].id,
-				text : activityList[index].title
-			}));
-		});
-
 	});
 
+}
+
+function leggiRegole(categoria) {
+	regoleList = new Array();
+
+	var element = $("#slctRegola" + categoria);
+	$.ajax({
+		url : 'LeggiRegole',
+		data : "tipo=" + categoria.toLowerCase(),
+		dataType : 'json',
+		type : 'POST',
+		cache : false,
+		error : function() {
+			alert('error');
+		},
+		async : false
+	}).done(function(risposta) {
+		console.log(risposta);
+		if (risposta != "nessunaRegolaMemorizzata") {
+			for (i in risposta) {
+				var id = risposta[i].id;
+				var nome = risposta[i].nome;
+				var condizione = risposta[i].condizione;
+				var valore = risposta[i].valoreMisurazione;
+				var device = risposta[i].sensore.tipo;
+				var regola = {
+					id : id,
+					title : nome,
+					condizione : condizione,
+					valore : valore,
+					device : device
+				}
+				console.log(regola);
+				regoleList.push(regola);
+			}
+
+			$.each(regoleList, function(index, value) {
+
+				element.append($('<option/>', {
+					value : regoleList[index].id,
+					text : regoleList[index].title
+				}));
+			});
+		}
+	});
 }
 
 function getMese(mese) {
@@ -244,7 +292,8 @@ function getMese(mese) {
 	return m;
 }
 
-var selectedItem = ""; // Elemento che poi vogliamo andare ad eliminare
+var selectedItem = "-1"; // Elemento che poi vogliamo andare ad eliminare
+var selectedItemRegola = "-1";
 
 function pulisciFormRegola(categoria) {
 	$("#nomeRegolaBox" + categoria).val("");
@@ -435,147 +484,260 @@ function registraRegola(categoria) {
 	}
 }
 
-function eliminaAttivita(categoria){
-	$.ajax(
-			{
-				url : 'EliminaAttivita',
-				data : "id=" + selectedItem,
-				type : 'POST',
-				cache : false,
-				error : function() {
-					alert('error');
-				},
-				async : false
+function eliminaAttivita(categoria) {
+	if (selectedItem != -1) {
+		$
+				.ajax({
+					url : 'EliminaAttivita',
+					data : "id=" + selectedItem,
+					type : 'POST',
+					cache : false,
+					error : function() {
+						alert('error');
+					},
+					async : false
 
-			}).done(function(risposta) {
-				if(risposta=="eliminata"){
-					$("#attivitaEliminata"+categoria).css('display','block');
-					setTimeout(function(){
-						$("#attivitaEliminata"+categoria).css('display','none');
-					},4000);
-					$("#containerEliminaActivity" + categoria).css('display', 'none');
-					$('#slctActivity'+categoria).find('option').remove().end()
-				    	.append('<option value="-1">Quale attivit&agrave; eliminare?</option>');
-					leggiActivity(categoria);
-					
-				}
-			});
-	
+				})
+				.done(
+						function(risposta) {
+							if (risposta == "eliminata") {
+								$("#attivitaEliminata" + categoria).css(
+										'display', 'block');
+								setTimeout(function() {
+									$("#attivitaEliminata" + categoria).css(
+											'display', 'none');
+								}, 4000);
+								$("#containerEliminaActivity" + categoria).css(
+										'display', 'none');
+								$('#slctActivity' + categoria)
+										.find('option')
+										.remove()
+										.end()
+										.append(
+												'<option value="-1">Quale attivit&agrave; eliminare?</option>');
+								leggiActivity(categoria);
+
+							}
+						});
+	}
 }
 
-jQuery(document).ready(function() {
+function eliminaRegola(categoria) {
+	if (selectedItemRegola != -1) {
+		$
+				.ajax({
+					url : 'EliminaRegola',
+					data : "id=" + selectedItemRegola,
+					type : 'POST',
+					cache : false,
+					error : function() {
+						alert('error');
+					},
+					async : false
 
-	// funzione che controlla che il giorno di inizio è successivo al giorno
-	// odierno
-	$(".giornoInizioBox").on('blur', function() {
-		var id = $(this).prop("id");
-		var categoria = id.substring(15);
-		var today = new Date();
-		var day = new Date($(this).val());
-		var endDay = new Date($("#giornoFineBox" + categoria).val());
-		day.setMinutes(today.getMinutes());
-		day.setHours(today.getHours());
-		day.setSeconds(today.getSeconds());
-		day.setMilliseconds(today.getMilliseconds());
-		if (day.getTime() < today.getTime()) {
-			$("#giornoInizioBoxErrore" + categoria).css('display', 'block');
-		} else {
-			$("#giornoInizioBoxErrore" + categoria).css('display', 'none');
-		}
-		if ($("#giornoFineBox" + categoria).val() != "") {
-			if (endDay.getTime() < day.getTime()) {
-				$("#giornoFineBoxErrore" + categoria).css('display', 'block');
-			} else {
-				$("#giornoFineBoxErrore" + categoria).css('display', 'none');
-			}
-		}
-	});
+				})
+				.done(
+						function(risposta) {
+							if (risposta == "eliminata") {
+								$("#regolaEliminata" + categoria).css(
+										'display', 'block');
+								setTimeout(function() {
+									$("#regolaEliminata" + categoria).css(
+											'display', 'none');
+								}, 4000);
+								$("#containerEliminaRegola" + categoria).css(
+										'display', 'none');
+								$('#slctRegola' + categoria)
+										.find('option')
+										.remove()
+										.end()
+										.append(
+												'<option value="-1">Quale attivit&agrave; eliminare?</option>');
+								leggiRegole(categoria);
 
-	// funzione che controlla che il giorno di fine è successivo a quello di
-	// inizio
-	$(".giornoFineBox").on('blur', function() {
-		var id = $(this).prop("id");
-		var categoria = id.substring(13);
-		var endDay = new Date($(this).val());
-		var day = new Date($("#giornoInizioBox" + categoria).val());
-		if (endDay.getTime() < day.getTime()) {
-			$("#giornoFineBoxErrore" + categoria).css('display', 'block');
-		} else {
-			$("#giornoFineBoxErrore" + categoria).css('display', 'none');
-		}
-	});
+							}
+						});
+	}
+}
 
-	// funzione che controlla che l'orario di fine è successivo a quello di
-	// inizio
-	$(".oraFineBox").on('blur', function() {
-		var id = $(this).prop('id');
-		var categoria = id.substring(10);
-		if ($("#oraInizioBox" + categoria).val() != "" && $(this).val() != "") {
-			var startHour = new Date();
-			var endHour = new Date(startHour);
-			var start = $("#oraInizioBox" + categoria).val().split(':');
-			startHour.setHours(start[0]);
-			startHour.setMinutes(start[1]);
-			var end = $(this).val().split(':');
-			endHour.setHours(end[0]);
-			endHour.setMinutes(end[1]);
-			if (endHour.getTime() <= startHour.getTime()) {
-				$("#oraFineBoxErrore" + categoria).css('display', 'block');
-			} else {
-				$("#oraFineBoxErrore" + categoria).css('display', 'none');
-			}
-		}
-	});
+jQuery(document).ready(
+		function() {
 
-	$(".oraInizioBox").on('blur', function() {
-		var id = $(this).prop('id');
-		var categoria = id.substring(12);
-		if ($("#oraFineBox" + categoria).val() != "" && $(this).val() != "") {
-			var startHour = new Date();
-			var endHour = new Date(startHour);
-			var end = $("#oraFineBox" + categoria).val().split(':');
-			endHour.setHours(end[0]);
-			endHour.setMinutes(end[1]);
-			var start = $(this).val().split(':');
-			startHour.setHours(start[0]);
-			startHour.setMinutes(start[1]);
-			if (endHour.getTime() <= startHour.getTime()) {
-				$("#oraFineBoxErrore" + categoria).css('display', 'block');
-			} else {
-				$("#oraFineBoxErrore" + categoria).css('display', 'none');
-			}
-		}
-	});
+			// funzione che controlla che il giorno di inizio è successivo al
+			// giorno
+			// odierno
+			$(".giornoInizioBox").on(
+					'blur',
+					function() {
+						var id = $(this).prop("id");
+						var categoria = id.substring(15);
+						var today = new Date();
+						var day = new Date($(this).val());
+						var endDay = new Date($("#giornoFineBox" + categoria)
+								.val());
+						day.setMinutes(today.getMinutes());
+						day.setHours(today.getHours());
+						day.setSeconds(today.getSeconds());
+						day.setMilliseconds(today.getMilliseconds());
+						if (day.getTime() < today.getTime()) {
+							$("#giornoInizioBoxErrore" + categoria).css(
+									'display', 'block');
+						} else {
+							$("#giornoInizioBoxErrore" + categoria).css(
+									'display', 'none');
+						}
+						if ($("#giornoFineBox" + categoria).val() != "") {
+							if (endDay.getTime() < day.getTime()) {
+								$("#giornoFineBoxErrore" + categoria).css(
+										'display', 'block');
+							} else {
+								$("#giornoFineBoxErrore" + categoria).css(
+										'display', 'none');
+							}
+						}
+					});
 
-	// funzione che pulisce le schermate
-	$(".closeButton").on('click', function() {
-		var id = $(this).prop('id');
-		var categoria = id.substring(11);
-		pulisciFormActivity(categoria);
-		pulisciFormRegola(categoria);
-	});
+			// funzione che controlla che il giorno di fine è successivo a
+			// quello di
+			// inizio
+			$(".giornoFineBox").on(
+					'blur',
+					function() {
+						var id = $(this).prop("id");
+						var categoria = id.substring(13);
+						var endDay = new Date($(this).val());
+						var day = new Date($("#giornoInizioBox" + categoria)
+								.val());
+						if (endDay.getTime() < day.getTime()) {
+							$("#giornoFineBoxErrore" + categoria).css(
+									'display', 'block');
+						} else {
+							$("#giornoFineBoxErrore" + categoria).css(
+									'display', 'none');
+						}
+					});
 
-	$(".deleteBoxActivity").on('change', function() {
-		selectedItem = $(this).val();
-		var id = $(this).prop('id');
-		var categoria = id.substring(12);
-		console.log(selectedItem);
-		if (selectedItem != -1) {
-			$("#containerEliminaActivity" + categoria).css('display', 'block');
-			for (i in activityList) {
-				if (activityList[i].id == selectedItem){
-					$("#giornoInizioText"+categoria).text(activityList[i].dataInizio);
-					$("#giornoFineText"+categoria).text(activityList[i].dataFine);
-					$("#oraInizioText"+categoria).text(activityList[i].oraInizio);
-					$("#oraFineText"+categoria).text(activityList[i].oraFine);
-					$("#dispositivoText"+categoria).text(activityList[i].device);
-				}
-			}
+			// funzione che controlla che l'orario di fine è successivo a quello
+			// di
+			// inizio
+			$(".oraFineBox").on(
+					'blur',
+					function() {
+						var id = $(this).prop('id');
+						var categoria = id.substring(10);
+						if ($("#oraInizioBox" + categoria).val() != ""
+								&& $(this).val() != "") {
+							var startHour = new Date();
+							var endHour = new Date(startHour);
+							var start = $("#oraInizioBox" + categoria).val()
+									.split(':');
+							startHour.setHours(start[0]);
+							startHour.setMinutes(start[1]);
+							var end = $(this).val().split(':');
+							endHour.setHours(end[0]);
+							endHour.setMinutes(end[1]);
+							if (endHour.getTime() <= startHour.getTime()) {
+								$("#oraFineBoxErrore" + categoria).css(
+										'display', 'block');
+							} else {
+								$("#oraFineBoxErrore" + categoria).css(
+										'display', 'none');
+							}
+						}
+					});
 
-		} else {
-			$("#containerEliminaActivity" + categoria).css('display', 'none');
-		}
+			$(".oraInizioBox").on(
+					'blur',
+					function() {
+						var id = $(this).prop('id');
+						var categoria = id.substring(12);
+						if ($("#oraFineBox" + categoria).val() != ""
+								&& $(this).val() != "") {
+							var startHour = new Date();
+							var endHour = new Date(startHour);
+							var end = $("#oraFineBox" + categoria).val().split(
+									':');
+							endHour.setHours(end[0]);
+							endHour.setMinutes(end[1]);
+							var start = $(this).val().split(':');
+							startHour.setHours(start[0]);
+							startHour.setMinutes(start[1]);
+							if (endHour.getTime() <= startHour.getTime()) {
+								$("#oraFineBoxErrore" + categoria).css(
+										'display', 'block');
+							} else {
+								$("#oraFineBoxErrore" + categoria).css(
+										'display', 'none');
+							}
+						}
+					});
 
-	});
+			// funzione che pulisce le schermate
+			$(".closeButton").on('click', function() {
+				var id = $(this).prop('id');
+				var categoria = id.substring(11);
+				pulisciFormActivity(categoria);
+				pulisciFormRegola(categoria);
+			});
 
-})
+			$(".deleteBoxActivity").on(
+					'change',
+					function() {
+						selectedItem = $(this).val();
+						var id = $(this).prop('id');
+						var categoria = id.substring(12);
+						console.log(selectedItem);
+						if (selectedItem != -1) {
+							$("#containerEliminaActivity" + categoria).css(
+									'display', 'block');
+							for (i in activityList) {
+								if (activityList[i].id == selectedItem) {
+									$("#giornoInizioText" + categoria).text(
+											activityList[i].dataInizio);
+									$("#giornoFineText" + categoria).text(
+											activityList[i].dataFine);
+									$("#oraInizioText" + categoria).text(
+											activityList[i].oraInizio);
+									$("#oraFineText" + categoria).text(
+											activityList[i].oraFine);
+									$("#dispositivoText" + categoria).text(
+											activityList[i].device);
+								}
+							}
+
+						} else {
+							$("#containerEliminaActivity" + categoria).css(
+									'display', 'none');
+						}
+
+					});
+
+			$(".deleteBoxRegola").on(
+					'change',
+					function() {
+						selectedItemRegola = $(this).val();
+						var id = $(this).prop('id');
+						var categoria = id.substring(10);
+						console.log(selectedItemRegola);
+						if (selectedItem != -1) {
+							$("#containerEliminaRegola" + categoria).css(
+									'display', 'block');
+							for (i in regoleList) {
+								if (regoleList[i].id == selectedItemRegola) {
+									$("#versoText" + categoria).text(
+											regoleList[i].condizione);
+									$("#valoreText" + categoria).text(
+											regoleList[i].valore);
+									$("#dispositivoTextRegola" + categoria)
+											.text(regoleList[i].device);
+								}
+							}
+
+						} else {
+							$("#containerEliminaRegola" + categoria).css(
+									'display', 'none');
+						}
+
+					});
+
+		})

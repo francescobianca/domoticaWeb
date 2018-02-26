@@ -616,15 +616,15 @@
 
 					<div class="row justify-content-center">
 						<div class="select">
-							<select name="slct" id="slct">
-								<option>Quale regola eliminare?</option>
-								<option value="1">Regola 1</option>
+							<select name="slct" id="slctRegolaTemperatura"
+								class="deleteBoxRegola">
+								<option value="-1">Quale regola eliminare?</option>
 							</select>
 						</div>
 					</div>
 
-					<div id="containerEliminaRegola" class="row container"
-						style="padding-top: 2%; padding-left: 18%;">
+					<div id="containerEliminaRegolaTemperatura" class="row container"
+						style="padding-top: 2%; padding-left: 18%; display: none;">
 
 						<!-- Sezione verso -->
 						<div class="col-md-6 col-lg-6">
@@ -632,7 +632,7 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="versoText"
+							<label id="versoTextTemperatura"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
@@ -642,7 +642,7 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="valoreText"
+							<label id="valoreTextTemperatura"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
@@ -652,15 +652,21 @@
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<label id="dispositivoText"
+							<label id="dispositivoTextRegolaTemperatura"
 								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
 					</div>
 
+					<div class="container row justify-content-center">
+						<span class="card-Header success" style="display: none"
+							id="regolaEliminataTemperatura">Regola eliminata correttamente</span>
+					</div>
+
 					<div class="container row justify-content-center" id="invia">
 						<input name="eliminaRegola" type="button" value="Elimina"
-							class="btn btn-primary" id="Elimina" />
+							class="btn btn-primary" id="EliminaRegolaTemperatura"
+							onclick="eliminaRegola('Temperatura')" />
 					</div>
 
 				</div>
@@ -896,8 +902,8 @@
 
 						<div class="container row justify-content-center">
 							<span class="card-Header success" style="display: none"
-								id="attivitaEliminataLuce">Attivit&agrave;
-								eliminata correttamente</span>
+								id="attivitaEliminataLuce">Attivit&agrave; eliminata
+								correttamente</span>
 						</div>
 
 						<div class="container row justify-content-center" id="invia">
@@ -1139,8 +1145,8 @@
 
 						<div class="container row justify-content-center">
 							<span class="card-Header success" style="display: none"
-								id="attivitaEliminataCancello">Attivit&agrave;
-								eliminata correttamente</span>
+								id="attivitaEliminataCancello">Attivit&agrave; eliminata
+								correttamente</span>
 						</div>
 
 						<div class="container row justify-content-center" id="invia">
@@ -1386,8 +1392,8 @@
 
 						<div class="container row justify-content-center">
 							<span class="card-Header success" style="display: none"
-								id="attivitaEliminataFinestra">Attivit&agrave;
-								eliminata correttamente</span>
+								id="attivitaEliminataFinestra">Attivit&agrave; eliminata
+								correttamente</span>
 						</div>
 
 						<div class="container row justify-content-center" id="invia">
@@ -1720,8 +1726,8 @@
 
 						<div class="container row justify-content-center">
 							<span class="card-Header success" style="display: none"
-								id="attivitaEliminataUmidità">Attivit&agrave;
-								eliminata correttamente</span>
+								id="attivitaEliminataUmidità">Attivit&agrave; eliminata
+								correttamente</span>
 						</div>
 
 						<div class="container row justify-content-center" id="invia">
@@ -1738,15 +1744,15 @@
 
 						<div class="row justify-content-center">
 							<div class="select">
-								<select name="slct" id="slct">
-									<option>Quale regola eliminare?</option>
-									<option value="1">Regola 1</option>
+								<select name="slct" id="slctRegolaUmidità"
+									class="deleteBoxRegola">
+									<option value="-1">Quale regola eliminare?</option>
 								</select>
 							</div>
 						</div>
 
-						<div id="containerEliminaRegola" class="row container"
-							style="padding-top: 2%; padding-left: 18%;">
+						<div id="containerEliminaRegolaUmidità" class="row container"
+							style="padding-top: 2%; padding-left: 18%; display: none;">
 
 							<!-- Sezione verso -->
 							<div class="col-md-6 col-lg-6">
@@ -1754,7 +1760,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="versoText"
+								<label id="versoTextUmidità"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1764,7 +1770,7 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="valoreText"
+								<label id="valoreTextUmidità"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
@@ -1774,15 +1780,22 @@
 							</div>
 
 							<div class="col-md-6 col-lg-6">
-								<label id="dispositivoText"
+								<label id="dispositivoTextRegolaUmidità"
 									style="background-color: #DCDCDC; color: black;">Text</label>
 							</div>
 
 						</div>
 
+						<div class="container row justify-content-center">
+							<span class="card-Header success" style="display: none"
+								id="regolaEliminataUmidità">Regola eliminata
+								correttamente</span>
+						</div>
+
 						<div class="container row justify-content-center" id="invia">
 							<input name="eliminaRegola" type="button" value="Elimina"
-								class="btn btn-primary" id="Elimina" onclick="" />
+								class="btn btn-primary" id="Elimina"
+								onclick="eliminaRegola('Umidità')" />
 						</div>
 
 					</div>
@@ -2020,8 +2033,8 @@
 
 						<div class="container row justify-content-center">
 							<span class="card-Header success" style="display: none"
-								id="attivitaEliminataSicurezza">Attivit&agrave;
-								eliminata correttamente</span>
+								id="attivitaEliminataSicurezza">Attivit&agrave; eliminata
+								correttamente</span>
 						</div>
 
 						<div class="container row justify-content-center" id="invia">

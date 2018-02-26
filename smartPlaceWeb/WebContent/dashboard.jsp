@@ -5,7 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<meta name="google-signin-client_id"
+	content="653927480756-gfvi4taakmfo42otuh7bu1drq1aqpfv0.apps.googleusercontent.com">
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +26,8 @@
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet' type='text/css'>
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -50,6 +52,9 @@
 
 <body id="page-top">
 
+	<!-- Serve per il logout con google -->
+	<div class="g-signin2" style="display: none"></div>
+
 	<!-- Navigation -->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase"
@@ -70,11 +75,13 @@
 			Menu <i class="fa fa-bars"></i>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-
-			<a style="color:white;font-style:italic;font-family: 'roboto';" id="utente"
+		
+		<c:if test="${email!=null}">
+			<a style="color: white; font-style: italic; font-family: 'roboto';"
+				id="utente"
 				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
 				${nome} ${cognome}</a>
-
+		</c:if>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
@@ -88,8 +95,22 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="Charts.jsp">Charts</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
-						id="logout" class="img-fluid" src="images/logout2.png" alt=""></a></li>
+				<c:if test="${tipo=='normale'}">
+						<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+								id="logout" class="img-fluid" src="images/logout2.png" alt=""
+								style="padding-top: 20%"></a></li>
+				</c:if>
+				<c:if test="${tipo=='facebook'}">
+						<li class="nav-item mx-0 mx-lg-1"><a
+							onclick="logoutFacebook()" href=""><img id="logout"
+								class="img-fluid" src="images/logout2.png" alt=""
+								style="padding-top: 20%"></a></li>
+				</c:if>
+				<c:if test="${tipo=='google'}">
+						<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutGoogle()"
+							href=""><img id="logout" class="img-fluid"
+								src="images/logout2.png" alt="" style="padding-top: 20%"></a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
@@ -993,6 +1014,12 @@
 
 	<script
 		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+	<!-- js for facebook -->
+	<script src="js/facebookLogin.js"></script>
+	<!-- js for google -->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="js/googleLogin.js"></script>
 
 </body>
 

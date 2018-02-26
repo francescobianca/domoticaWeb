@@ -47,8 +47,7 @@ function logoutGoogle() {
 			alert('error');
 		},
 		async : false,
-		success : function(response) {
-			window.location.replace('entryPage.jsp');
-		}
+	}).done(function(risposta){
+		window.location.replace("/entryPage.jsp");
 	});
 }

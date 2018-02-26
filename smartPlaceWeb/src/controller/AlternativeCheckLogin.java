@@ -84,7 +84,7 @@ public class AlternativeCheckLogin extends HttpServlet {
 		session.removeAttribute("email");
 		session.removeAttribute("nome");
 		session.removeAttribute("cognome");
-		
+		session.removeAttribute("tipo");
 		RequestDispatcher disp;
 		disp= req.getRequestDispatcher("entryPage.jsp");
 		disp.forward(req, resp);

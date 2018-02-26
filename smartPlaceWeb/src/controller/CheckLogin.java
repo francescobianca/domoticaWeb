@@ -25,6 +25,7 @@ public class CheckLogin extends HttpServlet{
 		session.removeAttribute("nome");
 		session.removeAttribute("cognome");
 		session.removeAttribute("tipo");
+		
 		RequestDispatcher disp;
 		disp= req.getRequestDispatcher("entryPage.jsp");
 		disp.forward(req, resp);

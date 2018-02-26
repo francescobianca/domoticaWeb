@@ -4,7 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<meta name="google-signin-client_id"
+	content="653927480756-gfvi4taakmfo42otuh7bu1drq1aqpfv0.apps.googleusercontent.com">
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,6 +54,9 @@
 
 <body id="page-top">
 
+	<!-- Serve per il logout con google -->
+	<div class="g-signin2" style="display: none"></div>
+
 	<!-- Navigation -->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase"
@@ -72,11 +76,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 
-			<a style="color: white; font-style: italic; font-family: 'roboto';"
-				id="utente"
-				class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
-				${nome} ${cognome}</a>
-
+			<c:if test="${email!=null}">
+				<a style="color: white; font-style: italic; font-family: 'roboto';"
+					id="utente"
+					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">
+					${nome} ${cognome}</a>
+			</c:if>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
@@ -93,9 +98,22 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="Charts.jsp">Charts</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
-						id="logout" class="img-fluid" src="images/logout2.png" alt=""
-						style="padding-top: 20%"></a></li>
+				<c:if test="${tipo=='normale'}">
+					<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+							id="logout" class="img-fluid" src="images/logout2.png" alt=""
+							style="padding-top: 20%"></a></li>
+				</c:if>
+				<c:if test="${tipo=='facebook'}">
+					<li class="nav-item mx-0 mx-lg-1"><a
+						onclick="logoutFacebook()" href=""><img id="logout"
+							class="img-fluid" src="images/logout2.png" alt=""
+							style="padding-top: 20%"></a></li>
+				</c:if>
+				<c:if test="${tipo=='google'}">
+					<li class="nav-item mx-0 mx-lg-1"><a onclick="logoutGoogle()"
+						href=""><img id="logout" class="img-fluid"
+							src="images/logout2.png" alt="" style="padding-top: 20%"></a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
@@ -397,8 +415,8 @@
 							id="salvaFormBoxTemperatura">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteTemperatura">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteTemperatura">L'attivit&agrave;
 							inserita non è coerente con quelle già create</span> <span
 							class="card-Header errore" style="display: none"
@@ -485,7 +503,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
 						<span class="card-Header errore" style="display: none"
 							id="completaFormBoxRegolaTemperatura">Completa la form</span> <span
@@ -493,18 +511,18 @@
 							id="salvaFormBoxRegolaTemperatura">Regola salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteRegolaTemperatura">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="regolaStessoNomeTemperatura">Esiste gi&agrave;
-							una regola con lo stesso nome</span> <span
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
 							class="card-Header errore" style="display: none"
-							id="erroreServerRegolaTemperatura">Si &egrave; verificato un
-							errore durante il salvateggio della regola</span>
+							id="regolaStessoNomeTemperatura">Esiste gi&agrave; una
+							regola con lo stesso nome</span> <span class="card-Header errore"
+							style="display: none" id="erroreServerRegolaTemperatura">Si
+							&egrave; verificato un errore durante il salvateggio della regola</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" onclick="registraRegola('Temperatura')"/>
+							class="btn btn-primary" id="Invia"
+							onclick="registraRegola('Temperatura')" />
 					</div>
 
 				</div>
@@ -810,8 +828,8 @@
 							id="salvaFormBoxCancello">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteCancello">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteCancello">L'attivit&agrave; inserita
 							non è coerente con quelle già create</span> <span
 							class="card-Header errore" style="display: none"
@@ -971,8 +989,8 @@
 							id="salvaFormBoxFinestra">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteFinestra">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteFinestra">L'attivit&agrave; inserita
 							non è coerente con quelle già create</span> <span
 							class="card-Header errore" style="display: none"
@@ -1132,8 +1150,8 @@
 							id="salvaFormBoxUmidita">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteUmidita">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteUmidita">L'attivit&agrave; inserita
 							non è coerente con quelle già create</span> <span
 							class="card-Header errore" style="display: none"
@@ -1195,7 +1213,8 @@
 						<div class="col-md-6 col-lg-6">
 							<div class="form-group">
 								<input name="valoreRegola" type="text" class="form-control"
-									id="valoreRegolaBoxUmidita" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 45'/>
+									id="valoreRegolaBoxUmidita"
+									onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 45' />
 							</div>
 						</div>
 
@@ -1215,22 +1234,26 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
 						<span class="card-Header errore" style="display: none"
 							id="completaFormBoxRegolaUmidita">Completa la form</span> <span
 							class="card-Header success" style="display: none"
-							id="salvaFormBoxRegolaUmidita">Regola salvata correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteRegolaUmidita">Il sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="regolaStessoNomeUmidita">Esiste gi&agrave; una regola con lo stesso nome</span> <span
+							id="salvaFormBoxRegolaUmidita">Regola salvata
+							correttamente</span> <span class="card-Header errore"
+							style="display: none" id="sensoreNonEsisteRegolaUmidita">Il
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
 							class="card-Header errore" style="display: none"
-							id="erroreServerRegolaUmidita">Si &egrave; verificato un errore durante il salvateggio della regola</span>
+							id="regolaStessoNomeUmidita">Esiste gi&agrave; una regola
+							con lo stesso nome</span> <span class="card-Header errore"
+							style="display: none" id="erroreServerRegolaUmidita">Si
+							&egrave; verificato un errore durante il salvateggio della regola</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" onclick="registraRegola('Umidita')" />
+							class="btn btn-primary" id="Invia"
+							onclick="registraRegola('Umidita')" />
 					</div>
 
 				</div>
@@ -1374,8 +1397,8 @@
 							id="salvaFormBoxSicurezza">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteSicurezza">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteSicurezza">L'attivit&agrave;
 							inserita non è coerente con quelle già create</span> <span
 							class="card-Header errore" style="display: none"
@@ -1438,6 +1461,9 @@
 	<script src="fullcalendar-3.8.2/lib/moment.min.js"></script>
 	<script src="fullcalendar-3.8.2/fullcalendar.js"></script>
 	<script src="js/calendar.js"></script>
+	<script src="js/googleLogin.js"></script>
+	<script src="js/facebookLogin.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </body>
 

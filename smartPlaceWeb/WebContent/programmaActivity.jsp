@@ -397,8 +397,8 @@
 							id="salvaFormBoxTemperatura">Attivit&agrave; salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteTemperatura">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+							class="card-Header errore" style="display: none"
 							id="attivitaIncoerenteTemperatura">L'attivit&agrave;
 							inserita non è coerente con quelle già create</span> <span
 							class="card-Header errore" style="display: none"
@@ -485,7 +485,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row justify-content-center">
 						<span class="card-Header errore" style="display: none"
 							id="completaFormBoxRegolaTemperatura">Completa la form</span> <span
@@ -493,952 +493,1490 @@
 							id="salvaFormBoxRegolaTemperatura">Regola salvata
 							correttamente</span> <span class="card-Header errore"
 							style="display: none" id="sensoreNonEsisteRegolaTemperatura">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="regolaStessoNomeTemperatura">Esiste gi&agrave;
-							una regola con lo stesso nome</span> <span
+							sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
 							class="card-Header errore" style="display: none"
-							id="erroreServerRegolaTemperatura">Si &egrave; verificato un
-							errore durante il salvateggio della regola</span>
+							id="regolaStessoNomeTemperatura">Esiste gi&agrave; una
+							regola con lo stesso nome</span> <span class="card-Header errore"
+							style="display: none" id="erroreServerRegolaTemperatura">Si
+							&egrave; verificato un errore durante il salvateggio della regola</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" onclick="registraRegola('Temperatura')"/>
+							class="btn btn-primary" id="Invia"
+							onclick="registraRegola('Temperatura')" />
 					</div>
 
 				</div>
 
-			</div>
+				<!-- Sezione elimina attività -->
+				<div class="container" id="eliminaActivity"
+					style="display: none; padding-top: 5%;">
 
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-lg-8 mx-auto">
-						<hr class="star-dark mb-5">
+					<div class="row justify-content-center">
+						<div class="select">
+							<select name="slct" id="slct">
+								<option>Quale attivit&agrave; eliminare?</option>
+								<option value="1">Activity 1</option>
+							</select>
+						</div>
 					</div>
-				</div>
-			</div>
 
-		</div>
+					<div id="containerEliminaActivity" class="row container"
+						style="padding-top: 2%; padding-left: 18%;">
 
-	</div>
-
-
-	<!-- Categoria Luci -->
-	<div class="portfolio-modal mfp-hide" id="categoria_luci">
-
-		<div class="portfolio-modal-dialog bg-white">
-			<a
-				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
-				id="closeButtonLuce" href="#"> <i class="fa fa-3x fa-times"></i>
-			</a>
-			<div class="container">
-				<h2 class="text-center text-secondary text-uppercase mb-0">Luci</h2>
-				<hr class="star-dark mb-5">
-
-				<div class="row justify-content-center">
-
-					<div class="select" onclick="newActionLuci()">
-						<select name="slct" id="slct">
-							<option>Cosa desideri fare?</option>
-							<option value="1">Nuova attivit&agrave; periodica</option>
-							<option value="2">Elimina attivit&agrave; periodica</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="container" id="nuovaActivity" style="display: none;">
-					<!-- style="display: none;" Devo inserirlo dopo -->
-					<div class="row">
-
-						<!-- Sezione nome activity -->
+						<!-- Sezione giorno inizio -->
 						<div class="col-md-6 col-lg-6">
-							<label id="nomeActivity" for="nomeActivity">Inserisci il
-								nome dell'attività:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBoxLuce" />
-							</div>
-						</div>
-
-						<!-- Sezione giorno inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoInizio" for="giornoInizio">Scegli giorno
-								di inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoInizio" type="date"
-									class="form-control giornoInizioBox" id="giornoInizioBoxLuce" />
-								<span id="giornoInizioBoxErroreLuce" class="card-Header errore"
-									style="display: none">La data non è valida</span>
-
-							</div>
-						</div>
-
-						<!-- Sezione giorno fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoFine" for="giornoFine">Scegli giorno di
-								fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoFine" type="date"
-									class="form-control giornoFineBox" id="giornoFineBoxLuce" /> <span
-									id="giornoFineBoxErroreLuce" class="card-Header errore"
-									style="display: none">La data di fine deve essere
-									successiva a quella di inizio</span>
-							</div>
-						</div>
-
-						<!-- Sezione ora inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraInizio" for="oraInizio">Scegli ora di
+							<label id="giornoInizio" for="giornoInizio">Giorno di
 								inizio:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraInizio" type="time"
-									class="form-control oraInizioBox" id="oraInizioBoxLuce" />
-							</div>
+							<label id="giornoInizioText" for="giornoInizio"
+								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
-						<!-- Sezione ora fine activity -->
+						<!-- Sezione giorno fine -->
 						<div class="col-md-6 col-lg-6">
-							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+							<label id="giornoFine" for="giornoFine">Giorno di fine:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraFine" type="time"
-									class="form-control oraFineBox" id="oraFineBoxLuce" /><span
-									id="oraFineBoxErroreLuce" class="card-Header errore"
-									style="display: none">L'ora di fine deve essere
-									succesiva a quella di inizio</span>
-							</div>
+							<label id="giornoFineText" for="giornoFine"
+								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
 
-						<!-- Sezione dispositivo activity -->
+						<!-- Sezione ora inizio -->
 						<div class="col-md-6 col-lg-6">
-							<label id="dispositivo" for="dispositivo">Seleziona il
-								dispositivo:</label>
+							<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
 						</div>
 
 						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="slct" id="selectDeviceActivityBoxLuce">
-										<option value="1">Bagno</option>
-										<option value="2">Salone</option>
-										<option value="3">Cucina</option>
-										<option value="4">Camera letto</option>
-									</select>
-								</div>
-							</div>
+							<label id="oraInizioText" for="oraInizio"
+								style="background-color: #DCDCDC; color: black;">Text</label>
 						</div>
+
+						<!-- Sezione ora fine -->
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFine" for="oraFine">Ora di fine:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<label id="oraFineText" for="oraFine"
+								style="background-color: #DCDCDC; color: black;">Text</label>
+						</div>
+
+						<!-- Sezione dispositivo -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo" for="dispositivo">Dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivoText" for="dispositivo"
+								style="background-color: #DCDCDC; color: black;">Text</label>
+						</div>
+
 					</div>
+
+				</div>
+
+				<!-- Sezione elimina regola -->
+				<div class="container" id="eliminaRegola"
+					style="display: none; padding-top: 5%;">
 
 					<div class="row justify-content-center">
-						<span class="card-Header errore" style="display: none"
-							id="completaFormBoxLuce">Completa la form</span> <span
-							class="card-Header success" style="display: none"
-							id="salvaFormBoxLuce">Attivit&agrave; salvata
-							correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteLuce">Il sensore
-							scelto non &egrave; ancora installato nell'abitazione</span> <span
-							class="card-Header errore" style="display: none"
-							id="attivitaIncoerenteLuce">L'attivit&agrave; inserita non
-							è coerente con quelle già create</span> <span class="card-Header errore"
-							style="display: none" id="attivitaStessoNomeLuce">Esiste
-							gi&agrave; un'attivit&agrave; con lo stesso nome</span> <span
-							class="card-Header errore" style="display: none"
-							id="erroreServerLuce">Si &egrave; verificato un errore
-							durante il salvateggio dell'attivit&agrave;</span>
+						<div class="select">
+							<select name="slct" id="slct">
+								<option>Quale regola eliminare?</option>
+								<option value="1">Regola 1</option>
+							</select>
+						</div>
 					</div>
 
-					<div class="container row justify-content-center" id="invia">
-						<input name="inviaDati" type="button" value="Invia"
-							onclick="registraAttivita('Luce')" class="btn btn-primary"
-							id="Invia" />
+					<div id="containerEliminaRegola" class="row container"
+						style="padding-top: 2%; padding-left: 18%;">
+
+						<!-- Sezione verso -->
+						<div class="col-md-6 col-lg-6">
+							<label id="verso">Quando la temperatura &egrave;:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<label id="versoText"
+								style="background-color: #DCDCDC; color: black;">Text</label>
+						</div>
+
+						<!-- Sezione valore -->
+						<div class="col-md-6 col-lg-6">
+							<label id="valore">Valore:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<label id="valoreText"
+								style="background-color: #DCDCDC; color: black;">Text</label>
+						</div>
+
+						<!-- Sezione dispositivo -->
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivo">Accendi il dispositivo:</label>
+						</div>
+
+						<div class="col-md-6 col-lg-6">
+							<label id="dispositivoText"
+								style="background-color: #DCDCDC; color: black;">Text</label>
+						</div>
+
 					</div>
 
 				</div>
 
-			</div>
-
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-lg-8 mx-auto">
-						<hr class="star-dark mb-5">
+				<div class="container text-center">
+					<div class="row">
+						<div class="col-lg-8 mx-auto">
+							<hr class="star-dark mb-5">
+						</div>
 					</div>
 				</div>
+
 			</div>
 
 		</div>
 
 
-	</div>
+		<!-- Categoria Luci -->
+		<div class="portfolio-modal mfp-hide" id="categoria_luci">
 
-	<!-- Categoria cancello-->
-	<div class="portfolio-modal mfp-hide" id="categoria_cancello">
-		<div class="portfolio-modal-dialog bg-white">
-			<a
-				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
-				id="closeButtonCancello" href="#"> <i class="fa fa-3x fa-times"></i>
-			</a>
-			<div class="container">
-				<h2 class="text-center text-secondary text-uppercase mb-0">Ingressi</h2>
-				<hr class="star-dark mb-5">
+			<div class="portfolio-modal-dialog bg-white">
+				<a
+					class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+					id="closeButtonLuce" href="#"> <i class="fa fa-3x fa-times"></i>
+				</a>
+				<div class="container">
+					<h2 class="text-center text-secondary text-uppercase mb-0">Luci</h2>
+					<hr class="star-dark mb-5">
 
-				<div class="row justify-content-center">
+					<div class="row justify-content-center">
 
-					<div class="select" onclick="newActionCancello()">
-						<select name="slct" id="slct">
-							<option>Cosa desideri fare?</option>
-							<option value="1">Nuova attivit&agrave; periodica</option>
-							<option value="2">Elimina attivit&agrave; periodica</option>
-						</select>
+						<div class="select" onclick="newActionLuci()">
+							<select name="slct" id="slct">
+								<option>Cosa desideri fare?</option>
+								<option value="1">Nuova attivit&agrave; periodica</option>
+								<option value="2">Elimina attivit&agrave; periodica</option>
+							</select>
+						</div>
 					</div>
-				</div>
 
-				<div class="container" id="nuovaActivity" style="display: none;">
-					<!-- style="display: none;" Devo inserirlo dopo -->
-					<div class="row">
+					<div class="container" id="nuovaActivity" style="display: none;">
+						<!-- style="display: none;" Devo inserirlo dopo -->
+						<div class="row">
 
-						<!-- Sezione nome activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="nomeActivity" for="nomeActivity">Inserisci il
-								nome dell'attività:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBoxCancello" />
+							<!-- Sezione nome activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="nomeActivity" for="nomeActivity">Inserisci il
+									nome dell'attività:</label>
 							</div>
-						</div>
 
-						<!-- Sezione giorno inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoInizio" for="giornoInizio">Scegli giorno
-								di inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoInizio" type="date"
-									class="form-control giornoInizioBox"
-									id="giornoInizioBoxCancello" /> <span
-									id="giornoInizioBoxErroreCancello" class="card-Header errore"
-									style="display: none">La data non è valida</span>
-
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="nomeActivity" type="text" class="form-control"
+										id="nomeActivityBoxLuce" />
+								</div>
 							</div>
-						</div>
 
-						<!-- Sezione giorno fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoFine" for="giornoFine">Scegli giorno di
-								fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoFine" type="date"
-									class="form-control giornoFineBox" id="giornoFineBoxCancello" /><span
-									id="giornoFineBoxErroreCancello" class="card-Header errore"
-									style="display: none">La data di fine deve essere
-									successiva a quella di inizio</span>
+							<!-- Sezione giorno inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Scegli
+									giorno di inizio:</label>
 							</div>
-						</div>
 
-						<!-- Sezione ora inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraInizio" for="oraInizio">Scegli ora di
-								inizio:</label>
-						</div>
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoInizio" type="date"
+										class="form-control giornoInizioBox" id="giornoInizioBoxLuce" />
+									<span id="giornoInizioBoxErroreLuce" class="card-Header errore"
+										style="display: none">La data non è valida</span>
 
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraInizio" type="time"
-									class="form-control oraInizioBox" id="oraInizioBoxCancello" />
+								</div>
 							</div>
-						</div>
 
-						<!-- Sezione ora fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraFine" type="time"
-									class="form-control oraFineBox" id="oraFineBoxCancello" /><span
-									id="oraFineBoxErroreCancello" class="card-Header errore"
-									style="display: none">L'ora di fine deve essere
-									succesiva a quella di inizio</span>
+							<!-- Sezione giorno fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Scegli giorno di
+									fine:</label>
 							</div>
-						</div>
 
-						<!-- Sezione dispositivo activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="dispositivo" for="dispositivo">Seleziona il
-								dispositivo:</label>
-						</div>
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoFine" type="date"
+										class="form-control giornoFineBox" id="giornoFineBoxLuce" />
+									<span id="giornoFineBoxErroreLuce" class="card-Header errore"
+										style="display: none">La data di fine deve essere
+										successiva a quella di inizio</span>
+								</div>
+							</div>
 
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="slct" id="selectDeviceActivityBoxCancello">
-										<option value="1">Cancello</option>
-										<option value="2">Garage</option>
-									</select>
+							<!-- Sezione ora inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Scegli ora di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraInizio" type="time"
+										class="form-control oraInizioBox" id="oraInizioBoxLuce" />
+								</div>
+							</div>
+
+							<!-- Sezione ora fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraFine" type="time"
+										class="form-control oraFineBox" id="oraFineBoxLuce" /><span
+										id="oraFineBoxErroreLuce" class="card-Header errore"
+										style="display: none">L'ora di fine deve essere
+										succesiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione dispositivo activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Seleziona il
+									dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="slct" id="selectDeviceActivityBoxLuce">
+											<option value="1">Bagno</option>
+											<option value="2">Salone</option>
+											<option value="3">Cucina</option>
+											<option value="4">Camera letto</option>
+										</select>
+									</div>
 								</div>
 							</div>
 						</div>
+
+						<div class="row justify-content-center">
+							<span class="card-Header errore" style="display: none"
+								id="completaFormBoxLuce">Completa la form</span> <span
+								class="card-Header success" style="display: none"
+								id="salvaFormBoxLuce">Attivit&agrave; salvata
+								correttamente</span> <span class="card-Header errore"
+								style="display: none" id="sensoreNonEsisteLuce">Il
+								sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaIncoerenteLuce">L'attivit&agrave; inserita
+								non è coerente con quelle già create</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaStessoNomeLuce">Esiste gi&agrave;
+								un'attivit&agrave; con lo stesso nome</span> <span
+								class="card-Header errore" style="display: none"
+								id="erroreServerLuce">Si &egrave; verificato un errore
+								durante il salvateggio dell'attivit&agrave;</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="inviaDati" type="button" value="Invia"
+								onclick="registraAttivita('Luce')" class="btn btn-primary"
+								id="Invia" />
+						</div>
+
 					</div>
 
-					<div class="row justify-content-center">
-						<span class="card-Header errore" style="display: none"
-							id="completaFormBoxCancello">Completa la form</span> <span
-							class="card-Header success" style="display: none"
-							id="salvaFormBoxCancello">Attivit&agrave; salvata
-							correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteCancello">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="attivitaIncoerenteCancello">L'attivit&agrave; inserita
-							non è coerente con quelle già create</span> <span
-							class="card-Header errore" style="display: none"
-							id="attivitaStessoNomeCancello">Esiste gi&agrave;
-							un'attivit&agrave; con lo stesso nome</span> <span
-							class="card-Header errore" style="display: none"
-							id="erroreServerCancello">Si &egrave; verificato un errore
-							durante il salvateggio dell'attivit&agrave;</span>
-					</div>
+					<!-- Sezione elimina attività -->
+					<div class="container" id="eliminaActivity"
+						style="display: none; padding-top: 5%;">
 
-					<div class="container row justify-content-center" id="invia">
-						<input name="inviaDati" type="button" value="Invia"
-							onclick="registraAttivita('Cancello')" class="btn btn-primary"
-							id="Invia" />
+						<div class="row justify-content-center">
+							<div class="select">
+								<select name="slct" id="slct">
+									<option>Quale attivit&agrave; eliminare?</option>
+									<option value="1">Activity 1</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="containerEliminaActivity" class="row container"
+							style="padding-top: 2%; padding-left: 18%;">
+
+							<!-- Sezione giorno inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Giorno di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizioText" for="giornoInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione giorno fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Giorno di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFineText" for="giornoFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizioText" for="oraInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFineText" for="oraFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione dispositivo -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivoText" for="dispositivo"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+						</div>
+
 					</div>
 
 				</div>
 
-			</div>
-
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-lg-8 mx-auto">
-						<hr class="star-dark mb-5">
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<!-- Categoria finestre -->
-	<div class="portfolio-modal mfp-hide" id="categoria_finestre">
-
-		<div class="portfolio-modal-dialog bg-white">
-			<a
-				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
-				id="closeButtonFinestra" href="#"> <i class="fa fa-3x fa-times"></i>
-			</a>
-			<div class="container">
-				<h2 class="text-center text-secondary text-uppercase mb-0">Finestre</h2>
-				<hr class="star-dark mb-5">
-
-				<div class="row justify-content-center">
-
-					<div class="select" onclick="newActionFinestre()">
-						<select name="slct" id="slct">
-							<option>Cosa desideri fare?</option>
-							<option value="1">Nuova attivit&agrave; periodica</option>
-							<option value="2">Elimina attivit&agrave; periodica</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="container" id="nuovaActivity" style="display: none;">
-					<!-- style="display: none;" Devo inserirlo dopo -->
+				<div class="container text-center">
 					<div class="row">
-
-						<!-- Sezione nome activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="nomeActivity" for="nomeActivity">Inserisci il
-								nome dell'attività:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBoxFinestra" />
-							</div>
-						</div>
-
-						<!-- Sezione giorno inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoInizio" for="giornoInizio">Scegli giorno
-								di inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoInizio" type="date"
-									class="form-control giornoInizioBox"
-									id="giornoInizioBoxFinestra" /> <span
-									id="giornoInizioBoxErroreFinestra" class="card-Header errore"
-									style="display: none">La data non è valida</span>
-
-							</div>
-						</div>
-
-						<!-- Sezione giorno fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoFine" for="giornoFine">Scegli giorno di
-								fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoFine" type="date"
-									class="form-control giornoFineBox" id="giornoFineBoxFinestra" /><span
-									id="giornoFineBoxErroreFinestra" class="card-Header errore"
-									style="display: none">La data di fine deve essere
-									successiva a quella di inizio</span>
-							</div>
-						</div>
-
-						<!-- Sezione ora inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraInizio" for="oraInizio">Scegli ora di
-								inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraInizio" type="time"
-									class="form-control oraInizioBox" id="oraInizioBoxFinestra" />
-							</div>
-						</div>
-
-						<!-- Sezione ora fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraFine" type="time"
-									class="form-control oraFineBox" id="oraFineBoxFinestra" /><span
-									id="oraFineBoxErroreFinestra" class="card-Header errore"
-									style="display: none">L'ora di fine deve essere
-									succesiva a quella di inizio</span>
-							</div>
-						</div>
-
-						<!-- Sezione dispositivo activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="dispositivo" for="dispositivo">Seleziona il
-								dispositivo:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="slct" id="selectDeviceActivityBoxFinestra">
-										<option value="1">Bagno</option>
-										<option value="2">Salone</option>
-										<option value="3">Cucina</option>
-										<option value="4">Camera letto</option>
-									</select>
-								</div>
-							</div>
+						<div class="col-lg-8 mx-auto">
+							<hr class="star-dark mb-5">
 						</div>
 					</div>
-
-					<div class="row justify-content-center">
-						<span class="card-Header errore" style="display: none"
-							id="completaFormBoxFinestra">Completa la form</span> <span
-							class="card-Header success" style="display: none"
-							id="salvaFormBoxFinestra">Attivit&agrave; salvata
-							correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteFinestra">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="attivitaIncoerenteFinestra">L'attivit&agrave; inserita
-							non è coerente con quelle già create</span> <span
-							class="card-Header errore" style="display: none"
-							id="attivitaStessoNomeFinestra">Esiste gi&agrave;
-							un'attivit&agrave; con lo stesso nome</span> <span
-							class="card-Header errore" style="display: none"
-							id="erroreServerFinestra">Si &egrave; verificato un errore
-							durante il salvateggio dell'attivit&agrave;</span>
-					</div>
-
-					<div class="container row justify-content-center" id="invia">
-						<input name="inviaDati" type="button" value="Invia"
-							onclick="registraAttivita('Finestra')" class="btn btn-primary"
-							id="Invia" />
-					</div>
-
 				</div>
 
 			</div>
 
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-lg-8 mx-auto">
-						<hr class="star-dark mb-5">
-					</div>
-				</div>
-			</div>
 
 		</div>
 
-	</div>
-
-
-	<!-- Categoria umidita  -->
-	<div class="portfolio-modal mfp-hide" id="categoria_umidita">
-
-		<div class="portfolio-modal-dialog bg-white">
-			<a
-				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
-				id="closeButtonUmidita" href="#"> <i class="fa fa-3x fa-times"></i>
-			</a>
-			<div class="container">
-				<h2 class="text-center text-secondary text-uppercase mb-0">Umidit&agrave;</h2>
-				<hr class="star-dark mb-5">
-
-				<div class="row justify-content-center">
-
-					<div class="select" onclick="newActionUmidita()">
-						<select name="slct" id="slct">
-							<option>Cosa desideri fare?</option>
-							<option value="1">Nuova attivit&agrave; periodica</option>
-							<option value="2">Elimina attivit&agrave; periodica</option>
-							<option value="3">Nuova regola</option>
-							<option value="4">Elimina regola</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="container" id="nuovaActivity" style="display: none;">
-
-					<div class="row">
-
-						<!-- Sezione nome activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="nomeActivity" for="nomeActivity">Inserisci il
-								nome dell'attività:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBoxUmidita" />
-							</div>
-						</div>
-
-						<!-- Sezione giorno inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoInizio" for="giornoInizio">Scegli giorno
-								di inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoInizio" type="date"
-									class="form-control giornoInizioBox"
-									id="giornoInizioBoxUmidita" /> <span
-									id="giornoInizioBoxErroreUmidita" class="card-Header errore"
-									style="display: none">La data non è valida</span>
-							</div>
-						</div>
-
-						<!-- Sezione giorno fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoFine" for="giornoFine">Scegli giorno di
-								fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoFine" type="date"
-									class="form-control giornoFineBox" id="giornoFineBoxUmidita" /><span
-									id="giornoFineBoxErroreUmidita" class="card-Header errore"
-									style="display: none">La data di fine deve essere
-									successiva a quella di inizio</span>
-							</div>
-						</div>
-
-						<!-- Sezione ora inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraInizio" for="oraInizio">Scegli ora di
-								inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraInizio" type="time"
-									class="form-control oraInizioBox" id="oraInizioBoxUmidita" />
-							</div>
-						</div>
-
-						<!-- Sezione ora fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraFine" type="time"
-									class="form-control oraFineBox" id="oraFineBoxUmidita" /><span
-									id="oraFineBoxErroreUmidita" class="card-Header errore"
-									style="display: none">L'ora di fine deve essere
-									succesiva a quella di inizio</span>
-							</div>
-						</div>
-
-						<!-- Sezione dispositivo activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="dispositivo" for="dispositivo">Seleziona il
-								dispositivo:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="slct" id="selectDeviceActivityBoxUmidita">
-										<option value="1">Deumidificatore</option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</div>
+		<!-- Categoria cancello-->
+		<div class="portfolio-modal mfp-hide" id="categoria_cancello">
+			<div class="portfolio-modal-dialog bg-white">
+				<a
+					class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+					id="closeButtonCancello" href="#"> <i class="fa fa-3x fa-times"></i>
+				</a>
+				<div class="container">
+					<h2 class="text-center text-secondary text-uppercase mb-0">Ingressi</h2>
+					<hr class="star-dark mb-5">
 
 					<div class="row justify-content-center">
-						<span class="card-Header errore" style="display: none"
-							id="completaFormBoxUmidita">Completa la form</span> <span
-							class="card-Header success" style="display: none"
-							id="salvaFormBoxUmidita">Attivit&agrave; salvata
-							correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteUmidita">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="attivitaIncoerenteUmidita">L'attivit&agrave; inserita
-							non è coerente con quelle già create</span> <span
-							class="card-Header errore" style="display: none"
-							id="attivitaStessoNomeUmidita">Esiste gi&agrave;
-							un'attivit&agrave; con lo stesso nome</span> <span
-							class="card-Header errore" style="display: none"
-							id="erroreServerUmidita">Si &egrave; verificato un errore
-							durante il salvateggio dell'attivit&agrave;</span>
+
+						<div class="select" onclick="newActionCancello()">
+							<select name="slct" id="slct">
+								<option>Cosa desideri fare?</option>
+								<option value="1">Nuova attivit&agrave; periodica</option>
+								<option value="2">Elimina attivit&agrave; periodica</option>
+							</select>
+						</div>
 					</div>
 
-					<div class="container row justify-content-center" id="invia">
-						<input name="inviaDati" type="button" value="Invia"
-							onclick="registraAttivita('Umidita')" class="btn btn-primary"
-							id="Invia" />
+					<div class="container" id="nuovaActivity" style="display: none;">
+						<!-- style="display: none;" Devo inserirlo dopo -->
+						<div class="row">
+
+							<!-- Sezione nome activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="nomeActivity" for="nomeActivity">Inserisci il
+									nome dell'attività:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="nomeActivity" type="text" class="form-control"
+										id="nomeActivityBoxCancello" />
+								</div>
+							</div>
+
+							<!-- Sezione giorno inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Scegli
+									giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoInizio" type="date"
+										class="form-control giornoInizioBox"
+										id="giornoInizioBoxCancello" /> <span
+										id="giornoInizioBoxErroreCancello" class="card-Header errore"
+										style="display: none">La data non è valida</span>
+
+								</div>
+							</div>
+
+							<!-- Sezione giorno fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Scegli giorno di
+									fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoFine" type="date"
+										class="form-control giornoFineBox" id="giornoFineBoxCancello" /><span
+										id="giornoFineBoxErroreCancello" class="card-Header errore"
+										style="display: none">La data di fine deve essere
+										successiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione ora inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Scegli ora di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraInizio" type="time"
+										class="form-control oraInizioBox" id="oraInizioBoxCancello" />
+								</div>
+							</div>
+
+							<!-- Sezione ora fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraFine" type="time"
+										class="form-control oraFineBox" id="oraFineBoxCancello" /><span
+										id="oraFineBoxErroreCancello" class="card-Header errore"
+										style="display: none">L'ora di fine deve essere
+										succesiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione dispositivo activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Seleziona il
+									dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="slct" id="selectDeviceActivityBoxCancello">
+											<option value="1">Cancello</option>
+											<option value="2">Garage</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<span class="card-Header errore" style="display: none"
+								id="completaFormBoxCancello">Completa la form</span> <span
+								class="card-Header success" style="display: none"
+								id="salvaFormBoxCancello">Attivit&agrave; salvata
+								correttamente</span> <span class="card-Header errore"
+								style="display: none" id="sensoreNonEsisteCancello">Il
+								sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaIncoerenteCancello">L'attivit&agrave;
+								inserita non è coerente con quelle già create</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaStessoNomeCancello">Esiste gi&agrave;
+								un'attivit&agrave; con lo stesso nome</span> <span
+								class="card-Header errore" style="display: none"
+								id="erroreServerCancello">Si &egrave; verificato un
+								errore durante il salvateggio dell'attivit&agrave;</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="inviaDati" type="button" value="Invia"
+								onclick="registraAttivita('Cancello')" class="btn btn-primary"
+								id="Invia" />
+						</div>
+
 					</div>
+
+					<!-- Sezione elimina attività -->
+					<div class="container" id="eliminaActivity"
+						style="display: none; padding-top: 5%;">
+
+						<div class="row justify-content-center">
+							<div class="select">
+								<select name="slct" id="slct">
+									<option>Quale attivit&agrave; eliminare?</option>
+									<option value="1">Activity 1</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="containerEliminaActivity" class="row container"
+							style="padding-top: 2%; padding-left: 18%;">
+
+							<!-- Sezione giorno inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Giorno di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizioText" for="giornoInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione giorno fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Giorno di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFineText" for="giornoFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizioText" for="oraInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFineText" for="oraFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione dispositivo -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivoText" for="dispositivo"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+						</div>
+
+					</div>
+
 
 				</div>
 
-				<!-- Sezione programma regola -->
-				<div class="container" id="nuovaRegola" style="display: none;">
+				<div class="container text-center">
 					<div class="row">
-
-						<!-- Sezione nome regola -->
-						<div class="col-md-6 col-lg-6">
-							<label id="nomeRegola" for="nomeRegola">Inserisci il nome
-								della regola:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="nomeRegola" type="text" class="form-control"
-									id="nomeRegolaBoxUmidita" />
-							</div>
-						</div>
-
-						<!-- Sezione verso regola -->
-						<div class="col-md-6 col-lg-6">
-							<label id="versoRegola" for="versoRegola">Quando
-								l'umidit&agrave; è:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="slct" id="selectCondizioneRegolaUmidita">
-										<option value="1">Maggiore (&gt;)</option>
-										<option value="2">Minore (&lt;)</option>
-									</select>
-								</div>
-							</div>
-						</div>
-
-						<!-- Sezione valore regola -->
-						<div class="col-md-6 col-lg-6">
-							<label id="valoreRegola" for="valoreRegola">Inserisci il
-								valore:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="valoreRegola" type="text" class="form-control"
-									id="valoreRegolaBoxUmidita" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 45'/>
-							</div>
-						</div>
-
-						<!-- Sezione dispositivo regola -->
-						<div class="col-md-6 col-lg-6">
-							<label id="dispositivo" for="dispositivo">Accendi il
-								dispositivo:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="selct" id="selectDeviceRegolaUmidita">
-										<option value="1">Deumidificatore</option>
-									</select>
-								</div>
-							</div>
+						<div class="col-lg-8 mx-auto">
+							<hr class="star-dark mb-5">
 						</div>
 					</div>
-					
-					<div class="row justify-content-center">
-						<span class="card-Header errore" style="display: none"
-							id="completaFormBoxRegolaUmidita">Completa la form</span> <span
-							class="card-Header success" style="display: none"
-							id="salvaFormBoxRegolaUmidita">Regola salvata correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteRegolaUmidita">Il sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="regolaStessoNomeUmidita">Esiste gi&agrave; una regola con lo stesso nome</span> <span
-							class="card-Header errore" style="display: none"
-							id="erroreServerRegolaUmidita">Si &egrave; verificato un errore durante il salvateggio della regola</span>
-					</div>
-
-					<div class="container row justify-content-center" id="invia">
-						<input name="inviaDati" type="button" value="Invia"
-							class="btn btn-primary" id="Invia" onclick="registraRegola('Umidita')" />
-					</div>
-
 				</div>
 
 			</div>
+		</div>
 
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-lg-8 mx-auto">
-						<hr class="star-dark mb-5">
+		<!-- Categoria finestre -->
+		<div class="portfolio-modal mfp-hide" id="categoria_finestre">
+
+			<div class="portfolio-modal-dialog bg-white">
+				<a
+					class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+					id="closeButtonFinestra" href="#"> <i class="fa fa-3x fa-times"></i>
+				</a>
+				<div class="container">
+					<h2 class="text-center text-secondary text-uppercase mb-0">Finestre</h2>
+					<hr class="star-dark mb-5">
+
+					<div class="row justify-content-center">
+
+						<div class="select" onclick="newActionFinestre()">
+							<select name="slct" id="slct">
+								<option>Cosa desideri fare?</option>
+								<option value="1">Nuova attivit&agrave; periodica</option>
+								<option value="2">Elimina attivit&agrave; periodica</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="container" id="nuovaActivity" style="display: none;">
+						<!-- style="display: none;" Devo inserirlo dopo -->
+						<div class="row">
+
+							<!-- Sezione nome activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="nomeActivity" for="nomeActivity">Inserisci il
+									nome dell'attività:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="nomeActivity" type="text" class="form-control"
+										id="nomeActivityBoxFinestra" />
+								</div>
+							</div>
+
+							<!-- Sezione giorno inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Scegli
+									giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoInizio" type="date"
+										class="form-control giornoInizioBox"
+										id="giornoInizioBoxFinestra" /> <span
+										id="giornoInizioBoxErroreFinestra" class="card-Header errore"
+										style="display: none">La data non è valida</span>
+
+								</div>
+							</div>
+
+							<!-- Sezione giorno fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Scegli giorno di
+									fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoFine" type="date"
+										class="form-control giornoFineBox" id="giornoFineBoxFinestra" /><span
+										id="giornoFineBoxErroreFinestra" class="card-Header errore"
+										style="display: none">La data di fine deve essere
+										successiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione ora inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Scegli ora di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraInizio" type="time"
+										class="form-control oraInizioBox" id="oraInizioBoxFinestra" />
+								</div>
+							</div>
+
+							<!-- Sezione ora fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraFine" type="time"
+										class="form-control oraFineBox" id="oraFineBoxFinestra" /><span
+										id="oraFineBoxErroreFinestra" class="card-Header errore"
+										style="display: none">L'ora di fine deve essere
+										succesiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione dispositivo activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Seleziona il
+									dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="slct" id="selectDeviceActivityBoxFinestra">
+											<option value="1">Bagno</option>
+											<option value="2">Salone</option>
+											<option value="3">Cucina</option>
+											<option value="4">Camera letto</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<span class="card-Header errore" style="display: none"
+								id="completaFormBoxFinestra">Completa la form</span> <span
+								class="card-Header success" style="display: none"
+								id="salvaFormBoxFinestra">Attivit&agrave; salvata
+								correttamente</span> <span class="card-Header errore"
+								style="display: none" id="sensoreNonEsisteFinestra">Il
+								sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaIncoerenteFinestra">L'attivit&agrave;
+								inserita non è coerente con quelle già create</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaStessoNomeFinestra">Esiste gi&agrave;
+								un'attivit&agrave; con lo stesso nome</span> <span
+								class="card-Header errore" style="display: none"
+								id="erroreServerFinestra">Si &egrave; verificato un
+								errore durante il salvateggio dell'attivit&agrave;</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="inviaDati" type="button" value="Invia"
+								onclick="registraAttivita('Finestra')" class="btn btn-primary"
+								id="Invia" />
+						</div>
+
+					</div>
+
+					<!-- Sezione elimina attività -->
+					<div class="container" id="eliminaActivity"
+						style="display: none; padding-top: 5%;">
+
+						<div class="row justify-content-center">
+							<div class="select">
+								<select name="slct" id="slct">
+									<option>Quale attivit&agrave; eliminare?</option>
+									<option value="1">Activity 1</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="containerEliminaActivity" class="row container"
+							style="padding-top: 2%; padding-left: 18%;">
+
+							<!-- Sezione giorno inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Giorno di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<label id="giornoInizioText" for="giornoInizio"
+										style="background-color: #DCDCDC; color: black;">Text</label>
+								</div>
+							</div>
+
+							<!-- Sezione giorno fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Giorno di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFineText" for="giornoFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizioText" for="oraInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFineText" for="oraFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione dispositivo -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivoText" for="dispositivo"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<div class="container text-center">
+					<div class="row">
+						<div class="col-lg-8 mx-auto">
+							<hr class="star-dark mb-5">
+						</div>
 					</div>
 				</div>
+
 			</div>
 
 		</div>
 
 
-	</div>
+		<!-- Categoria umidita  -->
+		<div class="portfolio-modal mfp-hide" id="categoria_umidita">
 
+			<div class="portfolio-modal-dialog bg-white">
+				<a
+					class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+					id="closeButtonUmidita" href="#"> <i class="fa fa-3x fa-times"></i>
+				</a>
+				<div class="container">
+					<h2 class="text-center text-secondary text-uppercase mb-0">Umidit&agrave;</h2>
+					<hr class="star-dark mb-5">
 
-	<!--Categoria Sicurezza -->
-	<div class="portfolio-modal mfp-hide" id="categoria_sicurezza">
-		<div class="portfolio-modal-dialog bg-white">
-			<a
-				class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
-				id="closeButtonSicurezza" href="#"> <i class="fa fa-3x fa-times"></i>
-			</a>
-			<div class="container">
-				<h2 class="text-center text-secondary text-uppercase mb-0">Sicurezza</h2>
-				<hr class="star-dark mb-5">
+					<div class="row justify-content-center">
 
-				<div class="row justify-content-center">
-
-					<div class="select" onclick="newActionSicurezza()">
-						<select name="slct" id="slct">
-							<option>Cosa desideri fare?</option>
-							<option value="1">Nuova attivit&agrave; periodica</option>
-							<option value="2">Elimina attivit&agrave; periodica</option>
-						</select>
+						<div class="select" onclick="newActionUmidita()">
+							<select name="slct" id="slct">
+								<option>Cosa desideri fare?</option>
+								<option value="1">Nuova attivit&agrave; periodica</option>
+								<option value="2">Elimina attivit&agrave; periodica</option>
+								<option value="3">Nuova regola</option>
+								<option value="4">Elimina regola</option>
+							</select>
+						</div>
 					</div>
-				</div>
 
-				<div class="container" id="nuovaActivity" style="display: none;">
-					<!-- style="display: none;" Devo inserirlo dopo -->
-					<div class="row">
+					<div class="container" id="nuovaActivity" style="display: none;">
 
-						<!-- Sezione nome activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="nomeActivity" for="nomeActivity">Inserisci il
-								nome dell'attività:</label>
-						</div>
+						<div class="row">
 
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="nomeActivity" type="text" class="form-control"
-									id="nomeActivityBoxSicurezza" />
+							<!-- Sezione nome activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="nomeActivity" for="nomeActivity">Inserisci il
+									nome dell'attività:</label>
 							</div>
-						</div>
 
-						<!-- Sezione giorno inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoInizio" for="giornoInizio">Scegli giorno
-								di inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoInizio" type="date"
-									class="form-control giornoInizioBox"
-									id="giornoInizioBoxSicurezza" /> <span
-									id="giornoInizioBoxErroreSicurezza" class="card-Header errore"
-									style="display: none">La data non è valida</span>
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="nomeActivity" type="text" class="form-control"
+										id="nomeActivityBoxUmidita" />
+								</div>
 							</div>
-						</div>
 
-						<!-- Sezione giorno fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="giornoFine" for="giornoFine">Scegli giorno di
-								fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="giornoFine" type="date"
-									class="form-control giornoFineBox" id="giornoFineBoxSicurezza" /><span
-									id="giornoFineBoxErroreSicurezza" class="card-Header errore"
-									style="display: none">La data di fine deve essere
-									successiva a quella di inizio</span>
+							<!-- Sezione giorno inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Scegli
+									giorno di inizio:</label>
 							</div>
-						</div>
 
-						<!-- Sezione ora inizio activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraInizio" for="oraInizio">Scegli ora di
-								inizio:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraInizio" type="time"
-									class="form-control oraInizioBox" id="oraInizioBoxSicurezza" />
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoInizio" type="date"
+										class="form-control giornoInizioBox"
+										id="giornoInizioBoxUmidita" /> <span
+										id="giornoInizioBoxErroreUmidita" class="card-Header errore"
+										style="display: none">La data non è valida</span>
+								</div>
 							</div>
-						</div>
 
-						<!-- Sezione ora fine activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
-						</div>
-
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<input name="oraFine" type="time"
-									class="form-control oraFineBox" id="oraFineBoxSicurezza" /><span
-									id="oraFineBoxErroreSicurezza" class="card-Header errore"
-									style="display: none">L'ora di fine deve essere
-									succesiva a quella di inizio</span>
+							<!-- Sezione giorno fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Scegli giorno di
+									fine:</label>
 							</div>
-						</div>
 
-						<!-- Sezione dispositivo activity -->
-						<div class="col-md-6 col-lg-6">
-							<label id="dispositivo" for="dispositivo">Seleziona il
-								dispositivo:</label>
-						</div>
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoFine" type="date"
+										class="form-control giornoFineBox" id="giornoFineBoxUmidita" /><span
+										id="giornoFineBoxErroreUmidita" class="card-Header errore"
+										style="display: none">La data di fine deve essere
+										successiva a quella di inizio</span>
+								</div>
+							</div>
 
-						<div class="col-md-6 col-lg-6">
-							<div class="form-group">
-								<div class="select">
-									<select name="slct" id="selectDeviceActivityBoxSicurezza">
-										<option value="1">Allarme</option>
-									</select>
+							<!-- Sezione ora inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Scegli ora di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraInizio" type="time"
+										class="form-control oraInizioBox" id="oraInizioBoxUmidita" />
+								</div>
+							</div>
+
+							<!-- Sezione ora fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraFine" type="time"
+										class="form-control oraFineBox" id="oraFineBoxUmidita" /><span
+										id="oraFineBoxErroreUmidita" class="card-Header errore"
+										style="display: none">L'ora di fine deve essere
+										succesiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione dispositivo activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Seleziona il
+									dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="slct" id="selectDeviceActivityBoxUmidita">
+											<option value="1">Deumidificatore</option>
+										</select>
+									</div>
 								</div>
 							</div>
 						</div>
+
+						<div class="row justify-content-center">
+							<span class="card-Header errore" style="display: none"
+								id="completaFormBoxUmidita">Completa la form</span> <span
+								class="card-Header success" style="display: none"
+								id="salvaFormBoxUmidita">Attivit&agrave; salvata
+								correttamente</span> <span class="card-Header errore"
+								style="display: none" id="sensoreNonEsisteUmidita">Il
+								sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaIncoerenteUmidita">L'attivit&agrave; inserita
+								non è coerente con quelle già create</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaStessoNomeUmidita">Esiste gi&agrave;
+								un'attivit&agrave; con lo stesso nome</span> <span
+								class="card-Header errore" style="display: none"
+								id="erroreServerUmidita">Si &egrave; verificato un errore
+								durante il salvateggio dell'attivit&agrave;</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="inviaDati" type="button" value="Invia"
+								onclick="registraAttivita('Umidita')" class="btn btn-primary"
+								id="Invia" />
+						</div>
+
 					</div>
 
-					<div class="row justify-content-center">
-						<span class="card-Header errore" style="display: none"
-							id="completaFormBoxSicurezza">Completa la form</span> <span
-							class="card-Header success" style="display: none"
-							id="salvaFormBoxSicurezza">Attivit&agrave; salvata
-							correttamente</span> <span class="card-Header errore"
-							style="display: none" id="sensoreNonEsisteSicurezza">Il
-							sensore scelto non &egrave; ancora installato nell'abitazione</span>
-						<span class="card-Header errore" style="display: none"
-							id="attivitaIncoerenteSicurezza">L'attivit&agrave;
-							inserita non è coerente con quelle già create</span> <span
-							class="card-Header errore" style="display: none"
-							id="attivitaStessoNomeSicurezza">Esiste gi&agrave;
-							un'attivit&agrave; con lo stesso nome</span> <span
-							class="card-Header errore" style="display: none"
-							id="erroreServerSicurezza">Si &egrave; verificato un
-							errore durante il salvateggio dell'attivit&agrave;</span>
+					<!-- Sezione programma regola -->
+					<div class="container" id="nuovaRegola" style="display: none;">
+						<div class="row">
+
+							<!-- Sezione nome regola -->
+							<div class="col-md-6 col-lg-6">
+								<label id="nomeRegola" for="nomeRegola">Inserisci il
+									nome della regola:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="nomeRegola" type="text" class="form-control"
+										id="nomeRegolaBoxUmidita" />
+								</div>
+							</div>
+
+							<!-- Sezione verso regola -->
+							<div class="col-md-6 col-lg-6">
+								<label id="versoRegola" for="versoRegola">Quando
+									l'umidit&agrave; è:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="slct" id="selectCondizioneRegolaUmidita">
+											<option value="1">Maggiore (&gt;)</option>
+											<option value="2">Minore (&lt;)</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<!-- Sezione valore regola -->
+							<div class="col-md-6 col-lg-6">
+								<label id="valoreRegola" for="valoreRegola">Inserisci il
+									valore:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="valoreRegola" type="text" class="form-control"
+										id="valoreRegolaBoxUmidita"
+										onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 45' />
+								</div>
+							</div>
+
+							<!-- Sezione dispositivo regola -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Accendi il
+									dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="selct" id="selectDeviceRegolaUmidita">
+											<option value="1">Deumidificatore</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<span class="card-Header errore" style="display: none"
+								id="completaFormBoxRegolaUmidita">Completa la form</span> <span
+								class="card-Header success" style="display: none"
+								id="salvaFormBoxRegolaUmidita">Regola salvata
+								correttamente</span> <span class="card-Header errore"
+								style="display: none" id="sensoreNonEsisteRegolaUmidita">Il
+								sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+								class="card-Header errore" style="display: none"
+								id="regolaStessoNomeUmidita">Esiste gi&agrave; una regola
+								con lo stesso nome</span> <span class="card-Header errore"
+								style="display: none" id="erroreServerRegolaUmidita">Si
+								&egrave; verificato un errore durante il salvateggio della
+								regola</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="inviaDati" type="button" value="Invia"
+								class="btn btn-primary" id="Invia"
+								onclick="registraRegola('Umidita')" />
+						</div>
+
 					</div>
 
-					<div class="container row justify-content-center" id="invia">
-						<input name="inviaDati" type="button" value="Invia"
-							onclick="registraAttivita('Sicurezza')" class="btn btn-primary"
-							id="Invia" />
+					<!-- Sezione elimina attività -->
+					<div class="container" id="eliminaActivity"
+						style="display: none; padding-top: 5%;">
+
+						<div class="row justify-content-center">
+							<div class="select">
+								<select name="slct" id="slct">
+									<option>Quale attivit&agrave; eliminare?</option>
+									<option value="1">Activity 1</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="containerEliminaActivity" class="row container"
+							style="padding-top: 2%; padding-left: 18%;">
+
+							<!-- Sezione giorno inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Giorno di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizioText" for="giornoInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione giorno fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Giorno di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFineText" for="giornoFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizioText" for="oraInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFineText" for="oraFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione dispositivo -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivoText" for="dispositivo"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+						</div>
+
 					</div>
 
+					<!-- Sezione elimina regola -->
+					<div class="container" id="eliminaRegola"
+						style="display: none; padding-top: 5%;">
+
+						<div class="row justify-content-center">
+							<div class="select">
+								<select name="slct" id="slct">
+									<option>Quale regola eliminare?</option>
+									<option value="1">Regola 1</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="containerEliminaRegola" class="row container"
+							style="padding-top: 2%; padding-left: 18%;">
+
+							<!-- Sezione verso -->
+							<div class="col-md-6 col-lg-6">
+								<label id="verso">Quando la temperatura &egrave;:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="versoText"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione valore -->
+							<div class="col-md-6 col-lg-6">
+								<label id="valore">Valore:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="valoreText"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione dispositivo -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo">Accendi il dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivoText"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+						</div>
+
+					</div>
+
+
+
+				</div>
+
+				<div class="container text-center">
+					<div class="row">
+						<div class="col-lg-8 mx-auto">
+							<hr class="star-dark mb-5">
+						</div>
+					</div>
 				</div>
 
 			</div>
 
-			<div class="container text-center">
-				<div class="row">
-					<div class="col-lg-8 mx-auto">
-						<hr class="star-dark mb-5">
-					</div>
-				</div>
-			</div>
 
 		</div>
-	</div>
 
-	<!-- Bootstrap core JavaScript -->
-	<script
-		src="startbootstrap-freelancer-gh-pages/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="startbootstrap-freelancer-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Plugin JavaScript -->
-	<script
-		src="startbootstrap-freelancer-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
-	<script
-		src="startbootstrap-freelancer-gh-pages/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<!--Categoria Sicurezza -->
+		<div class="portfolio-modal mfp-hide" id="categoria_sicurezza">
+			<div class="portfolio-modal-dialog bg-white">
+				<a
+					class="close-button d-none d-md-block portfolio-modal-dismiss closeButton"
+					id="closeButtonSicurezza" href="#"> <i
+					class="fa fa-3x fa-times"></i>
+				</a>
+				<div class="container">
+					<h2 class="text-center text-secondary text-uppercase mb-0">Sicurezza</h2>
+					<hr class="star-dark mb-5">
 
-	<!-- Contact Form JavaScript -->
-	<script
-		src="startbootstrap-freelancer-gh-pages/js/jqBootstrapValidation.js"></script>
-	<script src="startbootstrap-freelancer-gh-pages/js/contact_me.js"></script>
+					<div class="row justify-content-center">
 
-	<!-- Custom scripts for this template -->
-	<script src="startbootstrap-freelancer-gh-pages/js/freelancer.min.js"></script>
+						<div class="select" onclick="newActionSicurezza()">
+							<select name="slct" id="slct">
+								<option>Cosa desideri fare?</option>
+								<option value="1">Nuova attivit&agrave; periodica</option>
+								<option value="2">Elimina attivit&agrave; periodica</option>
+							</select>
+						</div>
+					</div>
 
-	<script
-		src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+					<div class="container" id="nuovaActivity" style="display: none;">
+						<!-- style="display: none;" Devo inserirlo dopo -->
+						<div class="row">
 
-	<!-- Custom scripts for this page -->
-	<script src="js/activity.js"></script>
+							<!-- Sezione nome activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="nomeActivity" for="nomeActivity">Inserisci il
+									nome dell'attività:</label>
+							</div>
 
-	<!-- Script for calendar -->
-	<script src="fullcalendar-3.8.2/lib/jquery.min.js"></script>
-	<script src="fullcalendar-3.8.2/lib/moment.min.js"></script>
-	<script src="fullcalendar-3.8.2/fullcalendar.js"></script>
-	<script src="js/calendar.js"></script>
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="nomeActivity" type="text" class="form-control"
+										id="nomeActivityBoxSicurezza" />
+								</div>
+							</div>
 
+							<!-- Sezione giorno inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Scegli
+									giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoInizio" type="date"
+										class="form-control giornoInizioBox"
+										id="giornoInizioBoxSicurezza" /> <span
+										id="giornoInizioBoxErroreSicurezza" class="card-Header errore"
+										style="display: none">La data non è valida</span>
+								</div>
+							</div>
+
+							<!-- Sezione giorno fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Scegli giorno di
+									fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="giornoFine" type="date"
+										class="form-control giornoFineBox" id="giornoFineBoxSicurezza" /><span
+										id="giornoFineBoxErroreSicurezza" class="card-Header errore"
+										style="display: none">La data di fine deve essere
+										successiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione ora inizio activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Scegli ora di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraInizio" type="time"
+										class="form-control oraInizioBox" id="oraInizioBoxSicurezza" />
+								</div>
+							</div>
+
+							<!-- Sezione ora fine activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Scegli ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<input name="oraFine" type="time"
+										class="form-control oraFineBox" id="oraFineBoxSicurezza" /><span
+										id="oraFineBoxErroreSicurezza" class="card-Header errore"
+										style="display: none">L'ora di fine deve essere
+										succesiva a quella di inizio</span>
+								</div>
+							</div>
+
+							<!-- Sezione dispositivo activity -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Seleziona il
+									dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<div class="form-group">
+									<div class="select">
+										<select name="slct" id="selectDeviceActivityBoxSicurezza">
+											<option value="1">Allarme</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<span class="card-Header errore" style="display: none"
+								id="completaFormBoxSicurezza">Completa la form</span> <span
+								class="card-Header success" style="display: none"
+								id="salvaFormBoxSicurezza">Attivit&agrave; salvata
+								correttamente</span> <span class="card-Header errore"
+								style="display: none" id="sensoreNonEsisteSicurezza">Il
+								sensore scelto non &egrave; ancora installato nell'abitazione</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaIncoerenteSicurezza">L'attivit&agrave;
+								inserita non è coerente con quelle già create</span> <span
+								class="card-Header errore" style="display: none"
+								id="attivitaStessoNomeSicurezza">Esiste gi&agrave;
+								un'attivit&agrave; con lo stesso nome</span> <span
+								class="card-Header errore" style="display: none"
+								id="erroreServerSicurezza">Si &egrave; verificato un
+								errore durante il salvateggio dell'attivit&agrave;</span>
+						</div>
+
+						<div class="container row justify-content-center" id="invia">
+							<input name="inviaDati" type="button" value="Invia"
+								onclick="registraAttivita('Sicurezza')" class="btn btn-primary"
+								id="Invia" />
+						</div>
+
+					</div>
+
+					<!-- Sezione elimina attività -->
+					<div class="container" id="eliminaActivity"
+						style="display: none; padding-top: 5%;">
+
+						<div class="row justify-content-center">
+							<div class="select">
+								<select name="slct" id="slct">
+									<option>Quale attivit&agrave; eliminare?</option>
+									<option value="1">Activity 1</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="containerEliminaActivity" class="row container"
+							style="padding-top: 2%; padding-left: 18%;">
+
+							<!-- Sezione giorno inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizio" for="giornoInizio">Giorno di
+									inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoInizioText" for="giornoInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione giorno fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFine" for="giornoFine">Giorno di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="giornoFineText" for="giornoFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora inizio -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizio" for="oraInizio">Giorno di inizio:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraInizioText" for="oraInizio"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione ora fine -->
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFine" for="oraFine">Ora di fine:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="oraFineText" for="oraFine"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+							<!-- Sezione dispositivo -->
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivo" for="dispositivo">Dispositivo:</label>
+							</div>
+
+							<div class="col-md-6 col-lg-6">
+								<label id="dispositivoText" for="dispositivo"
+									style="background-color: #DCDCDC; color: black;">Text</label>
+							</div>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<div class="container text-center">
+					<div class="row">
+						<div class="col-lg-8 mx-auto">
+							<hr class="star-dark mb-5">
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript -->
+		<script
+			src="startbootstrap-freelancer-gh-pages/vendor/jquery/jquery.min.js"></script>
+		<script
+			src="startbootstrap-freelancer-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Plugin JavaScript -->
+		<script
+			src="startbootstrap-freelancer-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+		<script
+			src="startbootstrap-freelancer-gh-pages/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+		<!-- Contact Form JavaScript -->
+		<script
+			src="startbootstrap-freelancer-gh-pages/js/jqBootstrapValidation.js"></script>
+		<script src="startbootstrap-freelancer-gh-pages/js/contact_me.js"></script>
+
+		<!-- Custom scripts for this template -->
+		<script src="startbootstrap-freelancer-gh-pages/js/freelancer.min.js"></script>
+
+		<script
+			src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+		<!-- Custom scripts for this page -->
+		<script src="js/activity.js"></script>
+
+		<!-- Script for calendar -->
+		<script src="fullcalendar-3.8.2/lib/jquery.min.js"></script>
+		<script src="fullcalendar-3.8.2/lib/moment.min.js"></script>
+		<script src="fullcalendar-3.8.2/fullcalendar.js"></script>
+		<script src="js/calendar.js"></script>
 </body>
 
 </html>

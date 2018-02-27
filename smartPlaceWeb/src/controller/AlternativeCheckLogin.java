@@ -49,7 +49,11 @@ public class AlternativeCheckLogin extends HttpServlet {
 			session.setAttribute("nome", nome);
 			session.setAttribute("cognome", cognome);
 			session.setAttribute("tipo",tipo);
-	/*		RequestDispatcher disp;
+			System.out.println(req.getContextPath());
+			resp.sendRedirect(req.getContextPath() + "/configArduino.html");
+			//	RequestDispatcher dispatcher=req.getRequestDispatcher("configArduino.html");
+		//	dispatcher.forward(req, resp);	
+			/*		RequestDispatcher disp;
 			disp= req.getRequestDispatcher("entryPage.jsp");
 			req.setAttribute("utente", alternativeUser);
 			disp.forward(req, resp);*/

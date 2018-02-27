@@ -47,17 +47,17 @@
 </head>
 
 <body id="page-top">
-	
+
 	<!-- Serve per il logout con google -->
-	<div class="g-signin2" style="display:none"></div>
-	
+	<div class="g-signin2" style="display: none"></div>
+
 	<!-- Navigation -->
 	<nav
 		class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase"
 		id="mainNav">
 	<div class="container">
 
-		<img id="logo" alt="Brand" src="images/Logo.png">
+	<!-- <img id="logo" alt="Brand" src="images/Logo.png">  -->	
 
 		<!-- <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a> -->
 
@@ -151,8 +151,8 @@
 					<h2 id="phone3">#OvunqueTuSia</h2>
 					<p id="phone3">Con SmartPlace puoi tenere sotto controllo la
 						tua casa con una semplice app.</p>
-					<img src="images/playStore.png" id="playStore" alt="Google Play"
-						title="Google Play">
+					<a href="https://drive.google.com/open?id=1qTtlPL2T8CMBAYN_SpBUZGViDzM6Aai6"> <img src="images/playStore.png" id="playStore"
+						alt="Google Play" title="Google Play"></a>
 				</div>
 			</div>
 		</div>

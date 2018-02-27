@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>SmartPlace</title>
+<!-- Bootstrap core CSS-->
+<link
+	href="startbootstrap-sb-admin-gh-pages/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link
+	href="startbootstrap-sb-admin-gh-pages/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<!-- Custom styles for this template-->
+<link href="startbootstrap-sb-admin-gh-pages/css/sb-admin.css"
+	rel="stylesheet">
+</head>
+<!-- Custom css for register page -->
+<link href="css/register.css" rel="stylesheet" type="text/css" />
+
+<body class="bg-dark">
+	<div class="container">
+		<form method="post" action="ConfiguraArduino">
+
+			<!-- Configurazione del proprio dispositivo -->
+			<div class="card card-register mx-auto mt-5"
+				id="containerDispositivo">
+				<div class="card-header">Configura il tuo dispositivo</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="email">Indirizzo IP:</label> <input name="indirizzoIP"
+							type="text" class="form-control" id="indirizzoIP"
+							onblur="checkIndirizzoIP()" />
+						<span class="card-Header errore" id="ErroreIndirizzo" style="display: none">L'indirizzo non è un indirizzo IP valido</span>
+					</div>
+
+					<div class="form-group">
+						<label for="email">Porta:</label> <input name="porta" type="text"
+							class="form-control" id="porta" onblur="checkPorta()" />
+						<span class="card-Header errore" id="ErrorePorta" style="display: none">Deve essere un numero intero</span>
+							
+					</div>
+
+					<div class="form-group">
+							<input
+								name="inviaDati" type="submit" value="Configura"
+								class="btn btn-primary btn-block" id="registratiButton" />
+					</div>
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<!-- Bootstrap core JavaScript-->
+	<script
+		src="startbootstrap-sb-admin-gh-pages/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="startbootstrap-sb-admin-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script
+		src="startbootstrap-sb-admin-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</body>
+
+</html>

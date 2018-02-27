@@ -69,7 +69,7 @@ function buildProfile(user) {
 		},
 		async : false,
 		success : function(response) {
-			window.location.replace('entryPage.jsp');
+			//window.location.replace('entryPage.jsp');
 		}
 	});
 }

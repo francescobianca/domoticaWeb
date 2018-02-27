@@ -18,6 +18,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>ConfiguraArduino</servlet-name>
+		<servlet-class>controller.ConfiguraArduino</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConfiguraArduino</servlet-name>
+		<url-pattern>/ConfiguraArduino</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>ResetPassword</servlet-name>
 		<servlet-class>controller.ResetPassword</servlet-class>
 	</servlet>

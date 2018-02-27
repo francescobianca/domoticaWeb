@@ -22,7 +22,7 @@ function onSignIn(googleUser) {
 				async : false
 
 			}).done(function(risposta) {
-		window.location.replace('entryPage.jsp');
+	//	window.location.replace('entryPage.jsp');
 	});
 
 }

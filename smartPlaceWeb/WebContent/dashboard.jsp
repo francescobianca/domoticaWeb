@@ -95,9 +95,9 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="Charts.jsp">Charts</a></li>
-				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+				<li class="nav-item mx-0 mx-lg-1"><a href="entryPage.jsp"><img
 								id="home" class="img-fluid" src="images/homepage.png" alt=""
-								style="padding-top: 20%" href="entryPage.jsp"></a></li>
+								style="padding-top: 20%"></a></li>
 				<c:if test="${tipo=='normale'}">
 						<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
 								id="logout" class="img-fluid" src="images/logout2.png" alt=""

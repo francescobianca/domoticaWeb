@@ -16,6 +16,15 @@
 		<servlet-name>IscriviUtenteServlet</servlet-name>
 		<url-pattern>/iscriviUtente</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ResetPassword</servlet-name>
+		<servlet-class>controller.ResetPassword</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResetPassword</servlet-name>
+		<url-pattern>/ResetPassword</url-pattern>
+	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>CheckLogin</servlet-name>

@@ -273,6 +273,11 @@
 			<div class="container">
 				<h2 class="text-center text-secondary text-uppercase mb-0">Temperatura</h2>
 				<hr class="star-dark mb-5">
+				
+				<div class="row justify-content-center">
+					<img class="img-fluid" src="images/refresh.png" href="" onclick="leggiTemperatura()">
+				</div>
+				
 				<div class="row">
 
 					<div class="col-md-6 col-lg-6">
@@ -286,6 +291,7 @@
 							</div> <span class="thermometer"><span id="celsius"></span>&deg;C</span>
 						</a>
 					</div>
+		
 
 					<div class="col-md-6 col-lg-6">
 						<a class="d-block mx-auto">

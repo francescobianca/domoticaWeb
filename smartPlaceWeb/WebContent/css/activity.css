@@ -16,7 +16,6 @@ img#logo {
 }
 
 }
-
 .portfolio {
 	padding-top: 10%;
 }
@@ -34,7 +33,6 @@ label {
 }
 
 /* Menù a tendina */
-
 select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -94,11 +92,11 @@ select::-ms-expand {
 }
 
 div#nuovaActivity.container {
-   	padding-top: 5%;
+	padding-top: 5%;
 }
 
 input#Invia.btn-primary {
-	background-color: #2c3e50; 
+	background-color: #2c3e50;
 	border-color: #2c3e50;
 }
 
@@ -107,11 +105,16 @@ div#invia.container {
 }
 
 div#nuovaRegola.container {
-   	padding-top: 5%;
+	padding-top: 5%;
 }
 
 input#Elimina.btn-primary {
-	background-color: #2c3e50; 
+	background-color: #2c3e50;
+	border-color: #2c3e50;
+}
+
+.eliminaRegola {
+	background-color: #2c3e50;
 	border-color: #2c3e50;
 }
 
@@ -119,34 +122,34 @@ input#Elimina.btn-primary {
 	color: rgb(219, 55, 55)
 }
 
-.success{
+.success {
 	color: rgb(0, 204, 122)
 }
 
-.giornoInizioBox{
+.giornoInizioBox {
 	
 }
 
-.giornoFineBox{
+.giornoFineBox {
 	
 }
 
-.oraInizioBox{
+.oraInizioBox {
 	
 }
 
-.oraFineBox{
+.oraFineBox {
 	
 }
 
-.closeButton{
+.closeButton {
 	
 }
 
-.deleteBoxActivity{
+.deleteBoxActivity {
 	
 }
 
-.deleteBoxRegola{
+.deleteBoxRegola {
 	
 }

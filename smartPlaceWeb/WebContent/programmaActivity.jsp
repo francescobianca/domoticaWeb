@@ -97,6 +97,9 @@
 				<li class="nav-item mx-0 mx-lg-1"><a
 					class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
 					href="Charts.jsp">Charts</a></li>
+				<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
+						id="home" class="img-fluid" src="images/homepage.png" alt=""
+						style="padding-top: 20%" href="entryPage.jsp"></a></li>
 				<c:if test="${tipo=='normale'}">
 					<li class="nav-item mx-0 mx-lg-1"><a href="checkLogin"> <img
 							id="logout" class="img-fluid" src="images/logout2.png" alt=""
@@ -660,12 +663,14 @@
 
 					<div class="container row justify-content-center">
 						<span class="card-Header success" style="display: none"
-							id="regolaEliminataTemperatura">Regola eliminata correttamente</span>
+							id="regolaEliminataTemperatura">Regola eliminata
+							correttamente</span>
 					</div>
 
 					<div class="container row justify-content-center" id="invia">
 						<input name="eliminaRegola" type="button" value="Elimina"
-							class="btn btn-primary" id="EliminaRegolaTemperatura"
+							class="btn btn-primary eliminaRegola"
+							id="EliminaRegolaTemperatura"
 							onclick="eliminaRegola('Temperatura')" />
 					</div>
 
@@ -1794,7 +1799,7 @@
 
 						<div class="container row justify-content-center" id="invia">
 							<input name="eliminaRegola" type="button" value="Elimina"
-								class="btn btn-primary" id="Elimina"
+								class="btn btn-primary eliminaRegola" id="Elimina"
 								onclick="eliminaRegola('Umidità')" />
 						</div>
 

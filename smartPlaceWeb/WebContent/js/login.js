@@ -32,5 +32,9 @@ function checkEmail(){
 }
 
 jQuery(document).ready(function(){
-	//$("#loginButton").prop("disabled",true);
+	var green_color = "rgba(111, 214, 111, 0.75) none repeat scroll 0% 0% / auto padding-box border-box";
+	if($("#emailBox").css('background')==green_color)
+		$("#loginButton").prop("disabled",false);
+	else
+		$("#loginButton").prop("disabled",true);
 });

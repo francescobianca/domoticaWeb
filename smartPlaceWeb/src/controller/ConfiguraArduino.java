@@ -29,6 +29,7 @@ import persistence.dao.UtenteDao;
  * @author andre
  *
  */
+@SuppressWarnings("serial")
 public class ConfiguraArduino extends HttpServlet {
 
 	/*
@@ -44,11 +45,17 @@ public class ConfiguraArduino extends HttpServlet {
 		String indirizzoIP = req.getParameter("indirizzoIP");
 		String porta = req.getParameter("porta");
 
-		if (req.getSession().getAttribute("checkIndirizzoIP") != null) {
-			req.getSession().setAttribute("indirizzoIP", indirizzoIP);
+		if (req.getParameter("checkIndirizzoIP") != null) {
+			if(!esistente(indirizzoIP))
+				req.getSession().setAttribute("indirizzoIP", indirizzoIP);
+			else {
+				resp.getWriter().print("indirizzoGiaEsistente");
+				resp.getWriter().flush();
+				resp.getWriter().close();
+			}
 			return;
 		}
-		if (req.getSession().getAttribute("checkPorta") != null) {
+		if (req.getParameter("checkPorta") != null) {
 			req.getSession().setAttribute("porta", porta);
 			return;
 		}
@@ -73,17 +80,25 @@ public class ConfiguraArduino extends HttpServlet {
 				aDao.save(arduino);
 
 				installaDispositivi(arduino);
-				HttpSession session = req.getSession();
-				RequestDispatcher disp;
-				disp = req.getRequestDispatcher("entryPage.jsp");
-				req.setAttribute("utente", utente);
-				disp.forward(req, resp);
+				resp.getWriter().print("ok");
+				resp.getWriter().flush();
+				resp.getWriter().close();
 			} catch (Exception e) {
 				resp.getWriter().print("errore");
+				resp.getWriter().flush();
+				resp.getWriter().close();
 			}
 		} else {
 			System.out.println("I dati non corrispondono");
 		}
+	}
+	
+	private boolean esistente(String indirizzoIP){
+		Arduino a=DatabaseManager.getInstance().getDaoFactory().getArduinoDAO().findByPrimaryKey(indirizzoIP);
+		if(a!=null)
+			return true;
+		else
+			return false;
 	}
 
 	private void installaDispositivi(Arduino arduino) {

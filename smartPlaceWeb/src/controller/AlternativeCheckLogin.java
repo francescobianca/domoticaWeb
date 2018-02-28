@@ -49,8 +49,9 @@ public class AlternativeCheckLogin extends HttpServlet {
 			session.setAttribute("nome", nome);
 			session.setAttribute("cognome", cognome);
 			session.setAttribute("tipo",tipo);
-			System.out.println(req.getContextPath());
-			resp.sendRedirect(req.getContextPath() + "/configArduino.html");
+			resp.getWriter().print("nuovoUtente");
+			resp.getWriter().flush();
+			resp.getWriter().close();
 			//	RequestDispatcher dispatcher=req.getRequestDispatcher("configArduino.html");
 		//	dispatcher.forward(req, resp);	
 			/*		RequestDispatcher disp;
@@ -70,6 +71,9 @@ public class AlternativeCheckLogin extends HttpServlet {
 			session.setAttribute("nome", nome);
 			session.setAttribute("cognome", cognome);
 			session.setAttribute("tipo",tipo);
+			resp.getWriter().print("giaRegistrato");
+			resp.getWriter().flush();
+			resp.getWriter().close();
 		/*	RequestDispatcher disp;
 			disp= req.getRequestDispatcher("entryPage.jsp");
 			Utente alternativeUser = dao.findByPrimaryKey(email);

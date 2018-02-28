@@ -69,7 +69,11 @@ function buildProfile(user) {
 		},
 		async : false,
 		success : function(response) {
-			//window.location.replace('entryPage.jsp');
+			console.log(response)
+			if(response == "nuovoUtente")
+				window.location.replace('configArduino.html');
+			else
+				window.location.replace('entryPage.jsp');
 		}
 	});
 }

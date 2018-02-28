@@ -22,7 +22,10 @@ function onSignIn(googleUser) {
 				async : false
 
 			}).done(function(risposta) {
-	//	window.location.replace('entryPage.jsp');
+				if(risposta == "nuovoUtente")
+					window.location.replace('configArduino.html');
+				else
+					window.location.replace('entryPage.jsp');
 	});
 
 }
@@ -48,6 +51,6 @@ function logoutGoogle() {
 		},
 		async : false,
 	}).done(function(risposta){
-		window.location.replace("/entryPage.jsp");
+		window.location.replace("entryPage.jsp");
 	});
 }

@@ -1,6 +1,6 @@
 # domoticaWeb
 
-Progetto realizzaro per il corso di WebComputing.
+Progetto realizzato per il corso di WebComputing.
 
 Il sistema simula il comportamento di una moderna casa domotica attraverso l'utilizzo di Arduino.
 
@@ -9,7 +9,7 @@ Il sistema simula il comportamento di una moderna casa domotica attraverso l'uti
 -Una volta configurato il sistema arduino e selezionata la porta mandare in run il server sul progetto smartHOMEwithArduino
 -Mandare in run il server smartPlaceWeb, registrati ed esplora smartPlace.
 
--Per fare qualche puoi loggarti come:
+-Per fare qualche prova puoi loggarti come:
 francesco@gmail.com //user
 prova //password
 

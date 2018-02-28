@@ -32,5 +32,5 @@ function checkEmail(){
 }
 
 jQuery(document).ready(function(){
-	$("#loginButton").prop("disabled",true);
+	//$("#loginButton").prop("disabled",true);
 });

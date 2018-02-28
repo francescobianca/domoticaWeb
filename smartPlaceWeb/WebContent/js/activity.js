@@ -374,7 +374,7 @@ function leggiRegole(categoria) {
 	regoleList = new Array();
 
 	$('#slctRegola' + categoria).find('option').remove().end().append(
-			'<option value="-1">Quale attivit&agrave; eliminare?</option>');
+			'<option value="-1">Quale regole eliminare?</option>');
 
 	var element = $("#slctRegola" + categoria);
 	$.ajax({
@@ -677,14 +677,14 @@ function eliminaAttivita(categoria) {
 									$("#attivitaEliminata" + categoria).css(
 											'display', 'none');
 								}, 4000);
-								$("#containerEliminaActivity" + categoria).css(
-										'display', 'none');
+								$("#containerEliminaActivity" + categoria).css('display', 'none');
 								$('#slctActivity' + categoria)
 										.find('option')
 										.remove()
 										.end()
 										.append(
 												'<option value="-1">Quale attivit&agrave; eliminare?</option>');
+								selectedItem="-1";
 								leggiActivity(categoria);
 								ReloadCalendarActivity();
 
@@ -723,7 +723,8 @@ function eliminaRegola(categoria) {
 										.remove()
 										.end()
 										.append(
-												'<option value="-1">Quale attivit&agrave; eliminare?</option>');
+												'<option value="-1">Quale regole eliminare?</option>');
+								selectedItemRegola="-1";
 								leggiRegole(categoria);
 
 							}
@@ -883,14 +884,14 @@ jQuery(document).ready(
 
 					});
 
-			$(".deleteBoxRegola").on(
-					'change',
-					function() {
+			$(".deleteBoxRegola").on('change',function() {
 						selectedItemRegola = $(this).val();
 						var id = $(this).prop('id');
 						var categoria = id.substring(10);
 						console.log(selectedItemRegola);
-						if (selectedItem != -1) {
+						console.log(selectedItemRegola)
+						if (selectedItemRegola != -1) {
+							console.log("ook")
 							$("#containerEliminaRegola" + categoria).css(
 									'display', 'block');
 							for (i in regoleList) {

@@ -34,7 +34,7 @@
 						<c:if test="${email!=null}">
 							<label for="email">Indirizzo email</label>
 							<input name="email" value="${email}" type="text"
-								class="form-control" id="emailBox" onblur="checkEmail()" />
+								class="form-control validFormBox" id="emailBox" onblur="checkEmail()" />
 							<span class="card-Header errore" id="ErroreEmail"
 								style="display: none">Indirizzo non registrato</span>
 						</c:if>
@@ -43,7 +43,7 @@
 							<input name="email" type="text" class="form-control"
 								id="emailBox" onblur="checkEmail()" />
 							<span class="card-Header errore" id="ErroreEmail"
-								style="display: none">Indirizzo non registrato</span>
+								style="display: none" disabled="true">Indirizzo non registrato</span>
 						</c:if>
 					</div>
 					<div class="form-group">
@@ -51,7 +51,7 @@
 							type="password" class="form-control" id="passwordBox" />
 						<c:if test="${email!=null}">
 							<span class="card-Header errore" id="ErroreConfermaPassword"
-								style="display: block">Password errata</span>
+								style="display: block" disabled="false">Password errata</span>
 						</c:if>
 					</div>
 

@@ -57,14 +57,6 @@
 					</div>
 
 					<div class="form-group">
-						<div class="form-check">
-							<label class="form-check-label"> <input
-								class="form-check-input" type="checkbox"> Ricorda
-								credenziali
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
 						<input name="inviaDati" type="submit" id="loginButton"
 							value="Login" class="btn btn-primary btn-block" />
 					</div>

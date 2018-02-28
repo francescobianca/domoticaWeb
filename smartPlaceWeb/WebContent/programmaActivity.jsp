@@ -547,6 +547,7 @@
 
 				<div id="containerEliminaActivityTemperatura" class="container"
 					style="padding-top: 2%; padding-left: 14%; display: none;">
+					
 					<div class="row">
 						<!-- Sezione giorno inizio -->
 						<div class="col-md-6 col-lg-6">

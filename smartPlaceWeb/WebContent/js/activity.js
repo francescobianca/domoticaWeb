@@ -1,31 +1,59 @@
 function newActionTemperatura() {
 
 	var element = document.getElementById("slct");
-	var selectedItem = element.options[element.selectedIndex].value;
+	var selectedItemMenu = element.options[element.selectedIndex].value;
 
-	if (selectedItem == 1) {
+	console.log(selectedItemMenu)
+
+	if (selectedItemMenu == 1) {
 		pulisciFormActivity("Temperatura");
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
+
+		$("#containerEliminaActivityTemperatura").css('display', 'none');
+
 		$("#eliminaRegola").css('display', 'none');
-	} else if (selectedItem == 2) {
+
+		$("#containerEliminaRegolaTemperatura").css('display', 'none');
+
+	} else if (selectedItemMenu == 2) {
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
 		$("#eliminaRegola").css('display', 'none');
+
+		$("#containerEliminaRegolaTemperatura").css('display', 'none');
+
+		if (selectedItem != -1)
+			$("#containerEliminaActivityTemperatura").css('display', 'block');
+
 		leggiActivity('Temperatura');
-	} else if (selectedItem == 3) {
+
+	} else if (selectedItemMenu == 3) {
 		pulisciFormRegola("Temperatura");
 		$("#nuovaActivity").css('display', 'none');
 		$("#nuovaRegola").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
+
+		$("#containerEliminaActivityTemperatura").css('display', 'none');
+
 		$("#eliminaRegola").css('display', 'none');
-	} else if (selectedItem == 4) {
+
+		$("#containerEliminaRegolaTemperatura").css('display', 'none');
+
+	} else if (selectedItemMenu == 4) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#nuovaRegola").css('display', 'none');
 		$("#eliminaActivity").css('display', 'none');
+
+		$("#containerEliminaActivityTemperatura").css('display', 'none');
+
 		$("#eliminaRegola").css('display', 'block');
+
+		if (selectedItemRegola != -1)
+			$("#containerEliminaRegolaTemperatura").css('display', 'block');
+
 		leggiRegole('Temperatura');
 	}
 
@@ -34,14 +62,21 @@ function newActionTemperatura() {
 function newActionLuci() {
 
 	var element = document.getElementById("slct");
-	var selectedItem = element.options[element.selectedIndex].value;
+	var selectedItemMenu = element.options[element.selectedIndex].value;
 
-	if (selectedItem == 1) {
+	if (selectedItemMenu == 1) {
 		$("#nuovaActivity").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
-	} else if (selectedItem == 2) {
+
+		$("#containerEliminaActivityLuce").css('display', 'none');
+
+	} else if (selectedItemMenu == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+
+		if (selectedItem != -1)
+			$("#containerEliminaActivityLuce").css('display', 'block');
+
 		leggiActivity('Luce');
 	}
 
@@ -50,14 +85,21 @@ function newActionLuci() {
 function newActionCancello() {
 
 	var element = document.getElementById("slct");
-	var selectedItem = element.options[element.selectedIndex].value;
+	var selectedItemMenu = element.options[element.selectedIndex].value;
 
-	if (selectedItem == 1) {
+	if (selectedItemMenu == 1) {
 		$("#nuovaActivity").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
-	} else if (selectedItem == 2) {
+
+		$("#containerEliminaActivityCancello").css('display', 'none');
+
+	} else if (selectedItemMenu == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+
+		if (selectedItem != -1)
+			$("#containerEliminaActivityCancello").css('display', 'block');
+
 		leggiActivity('Cancello');
 	}
 
@@ -66,14 +108,21 @@ function newActionCancello() {
 function newActionFinestre() {
 
 	var element = document.getElementById("slct");
-	var selectedItem = element.options[element.selectedIndex].value;
+	var selectedItemMenu = element.options[element.selectedIndex].value;
 
-	if (selectedItem == 1) {
+	if (selectedItemMenu == 1) {
 		$("#nuovaActivity").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
-	} else if (selectedItem == 2) {
+
+		$("#containerEliminaActivityFinestra").css('display', 'none');
+
+	} else if (selectedItemMenu == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+
+		if (selectedItem != -1)
+			$("#containerEliminaActivityFinestra").css('display', 'block');
+
 		leggiActivity('Finestra');
 	}
 
@@ -82,31 +131,56 @@ function newActionFinestre() {
 function newActionUmidita() {
 
 	var element = document.getElementById("slct");
-	var selectedItem = element.options[element.selectedIndex].value;
+	var selectedItemMenu = element.options[element.selectedIndex].value;
 
-	if (selectedItem == 1) {
+	if (selectedItemMenu == 1) {
 		pulisciFormActivity("Umidita")
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
+
+		$("#containerEliminaActivityUmidità").css('display', 'none');
+
 		$("#eliminaRegola").css('display', 'none');
-	} else if (selectedItem == 2) {
+
+		$("#containerEliminaRegolaUmidità").css('display', 'none');
+
+	} else if (selectedItemMenu == 2) {
 		$("#nuovaRegola").css('display', 'none');
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
 		$("#eliminaRegola").css('display', 'none');
+
+		$("#containerEliminaRegolaUmidità").css('display', 'none');
+
+		if (selectedItem != -1)
+			$("#containerEliminaActivityUmidità").css('display', 'block');
+
 		leggiActivity('Umidità');
-	} else if (selectedItem == 3) {
+	} else if (selectedItemMenu == 3) {
 		pulisciFormRegola("Umidita");
 		$("#nuovaActivity").css('display', 'none');
 		$("#nuovaRegola").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
+
+		$("#containerEliminaActivityUmidità").css('display', 'none');
+
 		$("#eliminaRegola").css('display', 'none');
-	} else if (selectedItem == 4) {
+
+		$("#containerEliminaRegolaUmidità").css('display', 'none');
+
+	} else if (selectedItemMenu == 4) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#nuovaRegola").css('display', 'none');
 		$("#eliminaActivity").css('display', 'none');
+
+		$("#containerEliminaActivityUmidità").css('display', 'none');
+
 		$("#eliminaRegola").css('display', 'block');
+
+		if (selectedItemRegola != -1)
+			$("#containerEliminaRegolaUmidità").css('display', 'block');
+
 		leggiRegole('Umidità');
 	}
 
@@ -115,14 +189,21 @@ function newActionUmidita() {
 function newActionSicurezza() {
 
 	var element = document.getElementById("slct");
-	var selectedItem = element.options[element.selectedIndex].value;
+	var selectedItemMenu = element.options[element.selectedIndex].value;
 
-	if (selectedItem == 1) {
+	if (selectedItemMenu == 1) {
 		$("#nuovaActivity").css('display', 'block');
 		$("#eliminaActivity").css('display', 'none');
-	} else if (selectedItem == 2) {
+
+		$("#containerEliminaActivitySicurezza").css('display', 'none');
+
+	} else if (selectedItemMenu == 2) {
 		$("#nuovaActivity").css('display', 'none');
 		$("#eliminaActivity").css('display', 'block');
+
+		if (selectedItem != -1)
+			$("#containerEliminaActivitySicurezza").css('display', 'block');
+
 		leggiActivity('Sicurezza');
 	}
 
@@ -219,6 +300,9 @@ function leggiActivity(categoria) {
 
 	activityList = new Array();
 
+	$('#slctActivity' + categoria).find('option').remove().end().append(
+			'<option value="-1">Quale attivit&agrave; eliminare?</option>');
+
 	var element = $("#slctActivity" + categoria);
 
 	$.ajax({
@@ -288,6 +372,9 @@ function leggiActivity(categoria) {
 
 function leggiRegole(categoria) {
 	regoleList = new Array();
+
+	$('#slctRegola' + categoria).find('option').remove().end().append(
+			'<option value="-1">Quale attivit&agrave; eliminare?</option>');
 
 	var element = $("#slctRegola" + categoria);
 	$.ajax({

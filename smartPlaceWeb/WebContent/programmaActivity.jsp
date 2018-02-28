@@ -132,7 +132,7 @@
 
 	<!-- Portfolio Grid Section -->
 
-	<section class="portfolio" id="portfolio" style="padding-top:10%">
+	<section class="portfolio" id="portfolio" style="background-image: url('images/pow-star.png');">
 	<div class="container">
 		<h2 class="text-center text-uppercase text-secondary mb-0">Programma
 			Attivit&agrave;</h2>

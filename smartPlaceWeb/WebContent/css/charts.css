@@ -24,6 +24,14 @@ img#logout {
 	padding-top: 10%;
 }
 
+@media only screen and (max-device-width:480px) {
+	/* styles for mobile browsers smaller than 480px; (iPhone) */
+	.portfolio {
+		padding-top: 25%;
+	}
+}
+
+
 canvas {
 	-moz-user-select: none;
 	-webkit-user-select: none;

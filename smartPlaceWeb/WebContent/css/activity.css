@@ -6,18 +6,26 @@ img#logo {
 	top: -20%;
 }
 
-@media only screen and (min-device-width: 400px) {
-}
-
 img#logo {
 	position: absolute;
 	max-width: 100%;
 	height: auto;
 }
 
-}
 .portfolio {
 	padding-top: 10%;
+}
+
+@media only screen and (max-device-width:480px) {
+	/* styles for mobile browsers smaller than 480px; (iPhone) */
+	.portfolio {
+		padding-top: 25%;
+	}
+}
+
+hr.star-dark:after {
+	color: #2c3e50;
+	background-color: #e9ecef;
 }
 
 label {

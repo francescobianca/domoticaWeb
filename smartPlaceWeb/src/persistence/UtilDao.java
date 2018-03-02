@@ -16,10 +16,11 @@ public class UtilDao {
 
 		Connection connection = dataSource.getConnection();
 		try {
-			String delete = "drop SEQUENCE if EXISTS sequenza_id;" + "drop table if exists utente;"
-					+ "drop table if exists arduino;" + "drop table if exists attivitaPeriodica;"
-					+ "drop table if exists sensore;" + "drop table if exists misurazione;"
-					+ "drop table if exists regola;";
+			String delete = "drop SEQUENCE if EXISTS sequenza_id;" + "drop table if exists risposta;"
+					+ "drop table if exists domanda;" + "drop table if exists categoria;"
+					+ "drop table if exists misurazione;" + "drop table if exists attivitaperiodica;"
+					+ "drop table if exists regola;" + "drop table if exists sensore;"
+					+ "drop table if exists arduino;" + "drop table if exists utente;";
 			PreparedStatement statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();
@@ -67,8 +68,18 @@ public class UtilDao {
 					+ "create table regola (id BIGSERIAL primary key, "
 					+ "nome VARCHAR(255), valoreMisurazione FLOAT, condizione VARCHAR(255), utente VARCHAR(255) REFERENCES utente(\"email\"),"
 					+ "indirizzoIP VARCHAR(255), tipo VARCHAR(255), stanza VARCHAR(255), attiva boolean,"
-					+ "FOREIGN KEY (indirizzoIP,tipo,stanza) REFERENCES sensore(\"arduino_indirizzoIP\",\"tipo\",\"stanza\"));";
-
+					+ "FOREIGN KEY (indirizzoIP,tipo,stanza) REFERENCES sensore(\"arduino_indirizzoIP\",\"tipo\",\"stanza\"));"
+					
+					+ "create table categoria(nome varchar(255) primary key);"
+					
+					+ "create table domanda(\"id\" BIGSERIAL primary key,"
+					+ "titolo varchar(255), testo varchar(800), utente varchar(255) REFERENCES utente(\"email\"),"
+					+ "categoria varchar(255) REFERENCES categoria(nome));"
+					
+					+ "create table risposta(id BIGSERIAL primary key, "
+					+ "testo varchar(1000), utente varchar(255) REFERENCES utente(\"email\"),"
+					+ "domanda INTEGER REFERENCES domanda(\"id\"));";
+			
 			PreparedStatement statement = connection.prepareStatement(create);
 
 			statement.executeUpdate();
@@ -115,11 +126,27 @@ public class UtilDao {
 			statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();
-			
+
 			delete = "delete FROM regola";
 			statement = connection.prepareStatement(delete);
 
 			statement.executeUpdate();
+			
+			delete = "delete FROM categoria";
+			statement = connection.prepareStatement(delete);
+
+			statement.executeUpdate();
+			
+			delete = "delete FROM risposta";
+			statement = connection.prepareStatement(delete);
+
+			statement.executeUpdate();
+			
+			delete = "delete FROM domanda";
+			statement = connection.prepareStatement(delete);
+
+			statement.executeUpdate();
+			
 
 		} catch (SQLException e) {
 

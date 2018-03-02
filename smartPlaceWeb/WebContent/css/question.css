@@ -1,0 +1,364 @@
+img#logout {
+	padding-top: 20%;
+}
+
+.portfolio {
+	padding-top: 10%;
+}
+
+@media only screen and (max-device-width:480px) {
+	/* styles for mobile browsers smaller than 480px; (iPhone) */
+	.portfolio {
+		padding-top: 25%;
+	}
+}
+
+.errore {
+	color: rgb(219, 55, 55)
+}
+
+.success {
+	color: rgb(0, 204, 122)
+}
+
+#title.form-control {
+	width: 50%;
+}
+
+div#title {
+	padding-top: 4%;
+}
+
+div#text {
+	padding-top: 4%;
+}
+
+#text.form-control {
+	width: 60%;
+}
+
+div#inviaDomanda {
+	padding-top: 2%;
+}
+
+input#inviaDomanda {
+	width: 20%;
+	background-color: #2c3e50;
+	border-color: #2c3e50;
+}
+
+div#inviaRisposta {
+	padding-top: 2%;
+}
+
+input#inviaRisposta {
+	width: 20%;
+	background-color: #2c3e50;
+	border-color: #2c3e50;
+}
+
+div#textRisp {
+	padding-top: 4%;
+}
+
+#textRisp.form-control {
+	width: 60%;
+}
+
+.aStyle{
+	font-size: 20px;
+	font-style: italic;
+}
+
+/* Menù a tendina */
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: #2c3e50;
+	background-image: none;
+}
+/* Custom Select */
+.select {
+	position: relative;
+	display: block;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background: #2c3e50;
+	overflow: hidden;
+	border-radius: .25em;
+	font-family: Montserrat
+}
+
+select {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0 0 0 .5em;
+	color: #fff;
+	cursor: pointer;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+/* Arrow */
+.select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0 1em;
+	background: #34495e;
+	pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+	color: #f39c12;
+}
+
+.select::after {
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+}
+
+/* search bar */
+.sbx-google {
+  display: inline-block;
+  position: relative;
+  width: 500px;
+  height: 41px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.sbx-google__wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.sbx-google__input {
+  display: inline-block;
+  -webkit-transition: box-shadow .4s ease, background .4s ease;
+  transition: box-shadow .4s ease, background .4s ease;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px #CCCCCC;
+  background: #FFFFFF;
+  padding: 0;
+  padding-right: 77px;
+  padding-left: 11px;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  white-space: normal;
+  font-size: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.sbx-google__input::-webkit-search-decoration, .sbx-google__input::-webkit-search-cancel-button, .sbx-google__input::-webkit-search-results-button, .sbx-google__input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.sbx-google__input:hover {
+  box-shadow: inset 0 0 0 1px #b3b3b3;
+}
+
+.sbx-google__input:focus, .sbx-google__input:active {
+  outline: 0;
+  box-shadow: inset 0 0 0 1px #3E82F7;
+  background: #FFFFFF;
+}
+
+.sbx-google__input::-webkit-input-placeholder {
+  color: #AAAAAA;
+}
+
+.sbx-google__input::-moz-placeholder {
+  color: #AAAAAA;
+}
+
+.sbx-google__input:-ms-input-placeholder {
+  color: #AAAAAA;
+}
+
+.sbx-google__input::placeholder {
+  color: #AAAAAA;
+}
+
+.sbx-google__submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: inherit;
+  margin: 0;
+  border: 0;
+  border-radius: 0 3px 3px 0;
+  background-color: #3e82f7;
+  padding: 0;
+  width: 49px;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  font-size: inherit;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.sbx-google__submit::before {
+  display: inline-block;
+  margin-right: -4px;
+  height: 100%;
+  vertical-align: middle;
+  content: '';
+}
+
+.sbx-google__submit:hover, .sbx-google__submit:active {
+  cursor: pointer;
+}
+
+.sbx-google__submit:focus {
+  outline: 0;
+}
+
+.sbx-google__submit svg {
+  width: 21px;
+  height: 21px;
+  vertical-align: middle;
+  fill: #FFFFFF;
+}
+
+.sbx-google__reset {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 56px;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+.sbx-google__reset:focus {
+  outline: 0;
+}
+
+.sbx-google__reset svg {
+  display: block;
+  margin: 4px;
+  width: 13px;
+  height: 13px;
+}
+
+.sbx-google__input:valid ~ .sbx-google__reset {
+  display: block;
+  -webkit-animation-name: sbx-reset-in;
+          animation-name: sbx-reset-in;
+  -webkit-animation-duration: .15s;
+          animation-duration: .15s;
+}
+
+@-webkit-keyframes sbx-reset-in {
+  0% {
+    -webkit-transform: translate3d(-20%, 0, 0);
+            transform: translate3d(-20%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes sbx-reset-in {
+  0% {
+    -webkit-transform: translate3d(-20%, 0, 0);
+            transform: translate3d(-20%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: none;
+            transform: none;
+    opacity: 1;
+  }
+}
+
+/* square */
+.square-box{
+    position: relative;
+    width: 9%;
+    overflow: hidden;
+    background: #4679BD;
+    left: 40%;
+}
+.square-box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.square-content{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+.square-content div {
+   display: table;
+   width: 100%;
+   height: 100%;
+}
+.square-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+	font-size: 12px;
+}
+
+/* Button */
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary {
+    background: #4679BD; /* this is a light blue */
+}
+
+/* label */
+label {
+	left: 44%;
+	background-color: #3e82f7;
+	color: white;
+	font-family: Monserrat;
+	border-radius: .25em;
+	font-family: Montserrat;
+	width: 15em;
+	height: 2.5em;
+	text-align: center;
+}
+

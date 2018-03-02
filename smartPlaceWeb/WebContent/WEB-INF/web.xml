@@ -81,6 +81,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>AllCategories</servlet-name>
+		<servlet-class>controller.AllCategories</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AllCategories</servlet-name>
+		<url-pattern>/AllCategories</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AccendiLuci</servlet-name>
 		<servlet-class>controller.AccendiLuci</servlet-class>
 	</servlet>
@@ -186,6 +195,42 @@
 	<servlet-mapping>
 		<servlet-name>LeggiRegole</servlet-name>
 		<url-pattern>/LeggiRegole</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NuovaDomanda</servlet-name>
+		<servlet-class>controller.NuovaDomanda</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NuovaDomanda</servlet-name>
+		<url-pattern>/NuovaDomanda</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ApriQuestion</servlet-name>
+		<servlet-class>controller.ApriQuestion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ApriQuestion</servlet-name>
+		<url-pattern>/ApriQuestion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RestituisciRisposte</servlet-name>
+		<servlet-class>controller.RestituisciRisposte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestituisciRisposte</servlet-name>
+		<url-pattern>/RestituisciRisposte</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NuovaRisposta</servlet-name>
+		<servlet-class>controller.NuovaRisposta</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NuovaRisposta</servlet-name>
+		<url-pattern>/NuovaRisposta</url-pattern>
 	</servlet-mapping>
 
 	<!-- Android Servlet -->

@@ -2,8 +2,11 @@ package persistence;
 
 import persistence.dao.ArduinoDao;
 import persistence.dao.AttivitaPeriodicaDao;
+import persistence.dao.CategoriaDao;
+import persistence.dao.DomandaDao;
 import persistence.dao.MisurazioneDao;
 import persistence.dao.RegolaDao;
+import persistence.dao.RispostaDao;
 import persistence.dao.SensoreDao;
 import persistence.dao.UtenteDao;
 
@@ -21,11 +24,11 @@ class PostgresDAOFactory extends DAOFactory {
 			// DataSource("jdbc:postgresql://52.39.164.176:5432/xx","xx","p@xx");
 
 			// dbLocale
-			//dataSource = new DataSource("jdbc:postgresql://localhost:5432/SmartPlaceWeb","postgres", "postgres");
+			dataSource = new DataSource("jdbc:postgresql://localhost:5432/SmartPlaceWeb","postgres", "postgres");
 
 			// dbRemoto
-			dataSource = new DataSource("jdbc:postgresql://packy.db.elephantsql.com:5432/hvkahtzn", "hvkahtzn",
-					"Lk4jd8cKUMF4Jox30NF5R4I5cWERb6vh");
+			/*dataSource = new DataSource("jdbc:postgresql://packy.db.elephantsql.com:5432/hvkahtzn", "hvkahtzn",
+					"Lk4jd8cKUMF4Jox30NF5R4I5cWERb6vh");*/
 			
 
 		} catch (Exception e) {
@@ -64,6 +67,21 @@ class PostgresDAOFactory extends DAOFactory {
 	@Override
 	public RegolaDao getRegolaDAO() {
 		return new RegolaDaoJDBC(dataSource);
+	}
+	
+	@Override
+	public CategoriaDao getCategoriaDAO() {
+		return new CategoriaDaoJDBC(dataSource);
+	}
+	
+	@Override
+	public DomandaDao getDomandaDAO() {
+		return new DomandaDaoJDBC(dataSource);
+	}
+	
+	@Override
+	public RispostaDao getRispostaDAO() {
+		return new RispostaDaoJDBC(dataSource);
 	}
 
 	@Override

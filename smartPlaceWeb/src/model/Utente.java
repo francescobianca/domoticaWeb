@@ -12,6 +12,9 @@ public class Utente {
 	private String cognome;
 	private Date dataNascita;
 	private Set<AttivitaPeriodica> attivita;
+	private Set<Regola> regola;
+	private Set<Domanda> domanda;
+	private Set<Risposta> risposta;
 
 	public Utente() {
 		this.attivita = new HashSet<>();
@@ -70,6 +73,54 @@ public class Utente {
 
 	public void removeStudente(AttivitaPeriodica attivitaPeriodica) {
 		this.getAttivita().remove(attivitaPeriodica);
+	}
+	
+	public Set<Regola> getRegola() {
+		return regola;
+	}
+	
+	public void setRegola(Set<Regola> regola) {
+		this.regola = regola;
+	}
+	
+	public void addRegola(Regola regola) {
+		this.getRegola().add(regola);
+	}
+	
+	public void removeRegola(Regola regola) {
+		this.getRegola().remove(regola);
+	}
+	
+	public Set<Domanda> getDomanda() {
+		return domanda;
+	}
+	
+	public void setDomanda(Set<Domanda> domanda) {
+		this.domanda = domanda;
+	}
+	
+	public void addRegola(Domanda domanda) {
+		this.getDomanda().add(domanda);
+	}
+	
+	public void removeDomanda(Domanda domanda) {
+		this.getRegola().remove(domanda);
+	}
+	
+	public Set<Risposta> getRisposta() {
+		return risposta;
+	}
+	
+	public void setRisposta(Set<Risposta> risposta) {
+		this.risposta = risposta;
+	}
+	
+	public void addRisposta(Risposta risposta) {
+		this.getRisposta().add(risposta);
+	}
+	
+	public void removeRisposta(Risposta risposta) {
+		this.getRisposta().remove(risposta);
 	}
 
 	public boolean equals(Object object) {

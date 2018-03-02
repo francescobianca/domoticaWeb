@@ -60,7 +60,8 @@ class UpdateServer extends Thread {
 				Connection connection = DatabaseManager.getInstance().getDaoFactory().getDataSource().getConnection();
 				try {
 					//sleep(3600000);
-					sleep(60000);
+					//sleep(60000);
+					sleep(30000);
 					
 					String query = "select * from arduino";
 					PreparedStatement statement = connection.prepareStatement(query);

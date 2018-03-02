@@ -1,4 +1,17 @@
 jQuery(document).ready(function() {
+	
+	function pulisciFormDomanda(){
+		console.log("sto pulendo la form")
+		$("textarea#text").val("");
+		$("input#title").val("");
+		$("#slct").val("-1");
+	}
+	
+	function pulisciFormRisposta(){
+		$("#textRisposta").val("");
+	}
+	
+	
 	$("#inviaRisposta").on('click',function(){
 		if($("#textRisposta").val()!=""){
 			$('#noRisp').css('display','none');
@@ -16,6 +29,7 @@ jQuery(document).ready(function() {
 			}).done(function(risposta) {
 				
 				if (risposta!="errore") {
+					pulisciFormRisposta();
 					$('#okRisp').css('display','block');
 					setTimeout(function(){
 						$('#okRisp').css('display','none');
@@ -47,6 +61,7 @@ jQuery(document).ready(function() {
 			}).done(function(risposta) {
 				
 				if (risposta!="errore") {
+					pulisciFormDomanda();
 					$('#okDomanda').css('display','block');
 					setTimeout(function(){
 						$('#okDomanda').css('display','none');
@@ -165,7 +180,10 @@ function visualizzaDomanda(titolo,testo,id,autore){
 	
 	$("#provaBottone").click();
 	domandaSelezionata=id;
-	
+	console.log(titolo)
+	console.log(testo)
+	console.log(id)
+	console.log(autore)
 	$("#titoloDellaDomanda").text(titolo);
 	$("#testoDellaDomanda").text(testo);
 	$("#autoreDomanda").text(autore);

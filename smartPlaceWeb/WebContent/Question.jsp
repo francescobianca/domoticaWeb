@@ -317,7 +317,7 @@
 
 				<div class="row justify-content-center" id="text">
 					<textarea rows="4" cols="50" placeholder="Testo della domanda"
-						style="resize: none;" id="text" class="form-control"></textarea>
+						style="resize: none;" id="text" class="form-control" maxlength="1000"></textarea>
 				</div>
 
 				<div class="row justify-content-center" id="text">
@@ -375,7 +375,7 @@
 					<c:if test="${email!=null}">
 						<div class="row justify-content-center" id="textRisp">
 							<textarea rows="4" cols="50" placeholder="Inserisci la risposta"
-								style="resize: none;" id="textRisposta" class="form-control"></textarea>
+								style="resize: none;" id="textRisposta" class="form-control" maxlength="1000"></textarea>
 						</div>
 
 						<div class="row justify-content-center" id="textRisp">

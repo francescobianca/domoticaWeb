@@ -124,7 +124,7 @@ function init() {
 							var marker = new google.maps.Marker({
 								position : latlng,
 								map : mappa,
-								icon : 'images/loc.png'
+								icon : 'images/icon.png'
 							});
 							var infowindow = new google.maps.InfoWindow();
 
